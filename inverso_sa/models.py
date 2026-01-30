@@ -85,11 +85,21 @@ class Recarga(models.Model):
         return f"{self.usuario.username} - {self.monto}"
 
 
+from django.db import models
+from django.utils import timezone
+from datetime import timedelta
+from decimal import Decimal
+from .models import Transaccion, Usuario, Producto
+
+
 class Inversion(models.Model):
+
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+
     fecha_inicio = models.DateTimeField(auto_now_add=True)
     ultimo_pago = models.DateTimeField(null=True, blank=True)
+
     activa = models.BooleanField(default=True)
 
     ganancia_total = models.DecimalField(
@@ -99,37 +109,58 @@ class Inversion(models.Model):
     )
 
     dias_pagados = models.PositiveIntegerField(default=0)
-    
 
+    # ------------------------------------------------
+    # ¿YA PASARON 24 HORAS?
+    # ------------------------------------------------
     def puede_pagar(self):
         ahora = timezone.now()
-        proximo_pago = (self.ultimo_pago or self.fecha_inicio) + timedelta(hours=24)
+        base = self.ultimo_pago or self.fecha_inicio
+        proximo_pago = base + timedelta(hours=24)
         return ahora >= proximo_pago
 
+    # ------------------------------------------------
+    # PAGO EXACTO CADA 24 HORAS
+    # ------------------------------------------------
     def pagar(self):
-        if not self.puede_pagar():
+        ahora = timezone.now()
+
+        # fecha base REAL
+        base = self.ultimo_pago or self.fecha_inicio
+
+        # horas transcurridas
+        horas = (ahora - base).total_seconds() / 3600
+
+        # cuántos pagos completos de 24h existen
+        pagos = int(horas // 24)
+
+        if pagos <= 0:
             return
 
-        ingreso = Decimal(self.producto.ingreso_diario)
+        ingreso_diario = Decimal(self.producto.ingreso_diario)
+        total = ingreso_diario * pagos
 
-        # 💰 sumar al saldo
-        self.usuario.saldo += ingreso
+        # 💰 pagar saldo
+        self.usuario.saldo += total
         self.usuario.save()
 
-         # 📊 acumular ganancia
-        self.ganancia_total += ingreso
-        self.dias_pagados += 1
+        # 📊 acumular
+        self.ganancia_total += total
+        self.dias_pagados += pagos
 
-        # 🧾 registrar transacción
-        Transaccion.objects.create(
-            usuario=self.usuario,
-            monto=ingreso,
-            tipo='ingreso'
-        )
+        # ⏱ avanzar exactamente 24h * pagos
+        self.ultimo_pago = base + timedelta(hours=24 * pagos)
 
-        # ⏱ actualizar fecha
-        self.ultimo_pago = timezone.now()
         self.save()
+
+        # 🧾 registrar historial
+        for _ in range(pagos):
+            Transaccion.objects.create(
+                usuario=self.usuario,
+                monto=ingreso_diario,
+                tipo='ingreso'
+            )
+
 
 class Retiro(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

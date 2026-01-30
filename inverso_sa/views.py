@@ -215,9 +215,18 @@ def mio_view(request):
 
 
 
-@login_required
+@staff_member_required
 def panel_view(request):
 
+    # 🔐 EJECUTA PAGOS SOLO CUANDO ENTRA EL ADMIN
+    inversiones = Inversion.objects.filter(activa=True)
+
+    for inversion in inversiones:
+        inversion.pagar()
+
+    # =========================
+    # PANEL DE USUARIOS
+    # =========================
     filtro = request.GET.get("rol")
 
     usuarios = Usuario.objects.all()
