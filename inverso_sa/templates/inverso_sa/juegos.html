@@ -1,34 +1,38 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-
 {% block title %}Juegos{% endblock %}
-
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/juegos.css' %}">
 {% endblock %}
 
-
 {% block contenido %}
-
 
 <h2 class="titulo">🎮 Zona de Juegos</h2>
 
-
 <div class="juegos-grid">
 
+    {% for juego in juegos %}
 
-{% for juego in juegos %}
-<div class="juego-card">
-<div class="icono">{{ juego.icono }}</div>
-<h3>{{ juego.nombre }}</h3>
-<span class="estado">{{ juego.estado }}</span>
+    {% if juego.nombre == "Ruleta" %}
+        <a href="{% url 'ruleta' %}" class="juego-card activo">
+    {% else %}
+        <div class="juego-card">
+    {% endif %}
+
+        <div class="icono">{{ juego.icono }}</div>
+        <h3>{{ juego.nombre }}</h3>
+        <span class="estado">{{ juego.estado }}</span>
+
+    {% if juego.nombre == "Ruleta" %}
+        </a>
+    {% else %}
+        </div>
+    {% endif %}
+
+    {% endfor %}
+
 </div>
-{% endfor %}
-
-
-</div>
-
 
 {% endblock %}

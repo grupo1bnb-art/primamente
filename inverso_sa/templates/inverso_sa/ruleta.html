@@ -1,0 +1,262 @@
+{% extends "inverso_sa/dashboard.html" %}
+{% load static %}
+
+{% block title %}Ruleta Casino{% endblock %}
+
+{% block extra_css %}
+<style>
+
+.casino-box {
+    max-width: 450px;
+    margin: auto;
+    background: radial-gradient(circle at top,#1a1a1a,#080808);
+    padding: 28px;
+    border-radius: 24px;
+    color: white;
+    box-shadow: 0 0 40px rgba(255,215,0,0.8);
+    text-align: center;
+    border: 2px solid rgba(255,215,0,0.4);
+}
+
+.casino-box h2 {
+    color: gold;
+    letter-spacing: 2px;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.subtitulo {
+    color: #ffd700;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px gold;
+}
+
+.saldo {
+    color: #00ff9c;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.reglas {
+    background: linear-gradient(145deg,#141414,#0b0b0b);
+    border: 1px solid gold;
+    border-radius: 18px;
+    padding: 18px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: #eee;
+    box-shadow: 0 0 15px rgba(255,215,0,0.35);
+    text-align: left;
+}
+
+.reglas h4 {
+    color: gold;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.reglas p {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.reglas span {
+    color: gold;
+    font-weight: bold;
+}
+
+.ruleta-wrapper {
+    position: relative;
+    width: 270px;
+    height: 270px;
+    margin: 30px auto;
+}
+
+.ruleta {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 14px solid gold;
+    background: conic-gradient(
+        green 0deg 20deg,
+        red 20deg 70deg,
+        black 70deg 120deg,
+        red 120deg 170deg,
+        black 170deg 220deg,
+        red 220deg 270deg,
+        black 270deg 320deg,
+        red 320deg 360deg
+    );
+    transition: transform 4s cubic-bezier(.17,.67,.2,1);
+    box-shadow: 0 0 25px gold inset;
+}
+
+.flecha {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px;
+    color: gold;
+    z-index: 10;
+    text-shadow: 0 0 10px gold;
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+}
+
+input {
+    background: #1c1c1c;
+    color: white;
+    border: 1px solid #333;
+}
+
+button {
+    background: linear-gradient(135deg,#ffd700,#ffb700);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1.5px;
+}
+
+button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px gold;
+}
+
+.resultado {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: bold;
+    min-height: 34px;
+    text-shadow: 0 0 10px gold;
+}
+
+.mensaje-final {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #ccc;
+    opacity: 0.9;
+}
+
+</style>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="casino-box">
+
+    <h2>🎰 RULETA INVERSO</h2>
+    <div class="subtitulo">
+        La suerte gira… ¿estás listo para apostar?
+    </div>
+
+    <p>
+        💰 Tu saldo actual:
+        <span class="saldo" id="saldo">
+            C$ {{ request.user.saldo }}
+        </span>
+    </p>
+
+    <!-- 📜 REGLAS -->
+    <div class="reglas">
+        <h4>📜 Reglas del Juego</h4>
+
+        <p>🎡 Cada giro utiliza el monto que tú elijas apostar.</p>
+
+        <p>🔴 <span style="color:#ff4d4d;">Color Rojo</span>  
+        → ¡Ganas el <span>50%</span> adicional de tu apuesta!</p>
+
+        <p>⚫ <span style="color:#cfcfcf;">Color Negro</span>  
+        → La suerte no estuvo de tu lado y se descuenta el monto apostado.</p>
+
+        <p>🟢 <span style="color:#3cff3c;">Color Verde</span>  
+        → Giro especial. No ganas ni pierdes, la ruleta se reinicia.</p>
+
+        <p style="margin-top:10px;color:#ffd700;">
+            ⚠ Cada giro es independiente. No hay patrones.  
+            La suerte puede cambiar en cualquier segundo.
+        </p>
+
+        <p style="margin-top:6px;color:#00ff9c;">
+            💎 Juega con inteligencia. El verdadero ganador es quien sabe cuándo parar.
+        </p>
+    </div>
+
+    <!-- APUESTA -->
+    <input type="number" id="monto" placeholder="💵 Ingresa tu monto a apostar">
+
+    <button onclick="jugar()">🎡 GIRAR LA RULETA</button>
+
+    <!-- RULETA -->
+    <div class="ruleta-wrapper">
+        <div class="flecha">🔻</div>
+        <div class="ruleta" id="ruleta"></div>
+    </div>
+
+    <div class="resultado" id="resultado"></div>
+
+    <div class="mensaje-final">
+        🍀 La fortuna sonríe a los valientes…  
+        pero premia a los inteligentes.
+    </div>
+
+</div>
+
+<script>
+function jugar() {
+    const monto = document.getElementById("monto").value;
+    const ruleta = document.getElementById("ruleta");
+    const resultado = document.getElementById("resultado");
+
+    if (!monto || monto <= 0) {
+        resultado.innerHTML = "⚠ Ingresa un monto válido para apostar";
+        return;
+    }
+
+    const giro = Math.floor(Math.random() * 3600) + 2000;
+    ruleta.style.transform = `rotate(${giro}deg)`;
+
+    fetch("{% url 'jugar_ruleta' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: "monto=" + monto
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        setTimeout(() => {
+
+            if (data.error) {
+                resultado.innerHTML = "❌ " + data.error;
+                return;
+            }
+
+            if (data.resultado === "GANÓ") {
+                resultado.innerHTML =
+                    "🎉 ¡LA SUERTE TE SONRÍE! Ganaste C$ " + data.ganancia.toFixed(2);
+            } else {
+                resultado.innerHTML =
+                    "💀 La ruleta decidió… inténtalo otra vez";
+            }
+
+            document.getElementById("saldo").innerText =
+                "C$ " + data.saldo.toFixed(2);
+
+        }, 4200);
+    });
+}
+</script>
+
+{% endblock %}

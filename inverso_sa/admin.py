@@ -59,3 +59,7 @@ class ProductoAdmin(admin.ModelAdmin):
     list_filter = ('activo', 'creado')
     search_fields = ('nombre',)
     readonly_fields = ('creado',)
+
+
+
+   

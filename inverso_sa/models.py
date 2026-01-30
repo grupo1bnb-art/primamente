@@ -190,4 +190,13 @@ class ComisionReferido(models.Model):
 
     def __str__(self):
         return f"{self.invitador.username} ← {self.referido.username}"
+    
+
+class Ruleta(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    apuesta = models.DecimalField(max_digits=10, decimal_places=2)
+    resultado = models.CharField(max_length=10)
+    ganancia = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha = models.DateTimeField(auto_now_add=True)
+
 

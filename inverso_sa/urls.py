@@ -83,7 +83,8 @@ path('retiros/historial/', views.historial_retiros, name='historial_retiros'),
 path('finanzas/', views.ingresos_egresos, name='ingresos_egresos'),
 path('finanzas/ocultar/<int:recarga_id>/', views.ocultar_recarga, name='ocultar_recarga'),
 path('juegos/', views2.juegos, name='juegos'),
-
+  path('ruleta/jugar/', views2.jugar_ruleta, name='jugar_ruleta'),
+  path('ruleta/', views2.ruleta_view, name='ruleta'),
 
 
 ]
