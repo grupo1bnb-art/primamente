@@ -177,6 +177,7 @@ def ingreso(request):
 # --------------------
 # MIO
 # --------------------
+@login_required
 def mio_view(request):
     usuario = request.user
 
@@ -201,6 +202,7 @@ def mio_view(request):
     }
 
     return render(request, 'inverso_sa/mio.html', context)
+
 
 
 @login_required
@@ -239,6 +241,7 @@ def inicio(request):
     return render(request, "inverso_sa/inicio.html", {
         "productos": productos
     })
+
 
 
 @login_required
