@@ -41,7 +41,17 @@ def login_view(request):
 # --------------------
 @login_required(login_url='login')
 def dashboard(request):
+
+    inversiones = Inversion.objects.filter(
+        usuario=request.user,
+        activa=True
+    )
+
+    for inversion in inversiones:
+        inversion.pagar()
+
     return redirect('inicio')
+
 
 
 # --------------------
@@ -227,20 +237,12 @@ def panel_view(request):
 @login_required
 def inicio(request):
 
-    inversiones = Inversion.objects.filter(
-        usuario=request.user,
-        activa=True
-    )
-
-    # 🔁 PAGO AUTOMÁTICO
-    for inversion in inversiones:
-        inversion.pagar()
-
     productos = Producto.objects.filter(activo=True)
 
     return render(request, "inverso_sa/inicio.html", {
         "productos": productos
     })
+
 
 
 
