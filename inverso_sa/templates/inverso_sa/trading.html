@@ -1,0 +1,61 @@
+{% extends "inverso_sa/dashboard.html" %}
+{% load static %}
+
+{% block title %}Trading | Inverso{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'inverso_sa/css/trading.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="trading-fullscreen">
+
+    <div class="trading-topbar">
+        <h3 id="asset-name">📈 EUR/USD</h3>
+        <div>💰 Balance: ${{ request.user.saldo }}</div>
+    </div>
+
+    <div class="trading-main">
+        <div class="chart-area">
+            <div id="tradingview_chart"></div>
+        </div>
+
+        <div class="trade-panel">
+            <h4>Realizar Operación</h4>
+
+            <div class="trade-input">
+                <input type="number" id="amount" placeholder="Monto">
+                <select id="duration">
+                    <option value="30">30s</option>
+                    <option value="60">1m</option>
+                    <option value="300">5m</option>
+                </select>
+            </div>
+
+            <button class="btn-buy" onclick="openTrade('buy')">⬆ COMPRAR</button>
+            <button class="btn-sell" onclick="openTrade('sell')">⬇ VENDER</button>
+        </div>
+    </div>
+
+    <div class="history">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th>Activo</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script src="{% static 'inverso_sa/js/trading.js' %}"></script>
+</div>
+
+{% endblock %}

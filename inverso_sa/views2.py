@@ -189,6 +189,14 @@ def jugar_tragamonedas(request):
         "simbolos": simbolos
     })
 
+
+
+
+@login_required
+def trading_view(request):
+    return render(request, 'inverso_sa/trading.html')
+
+
 def error_403(request, exception=None):
     """
     Vista personalizada para manejar errores 403

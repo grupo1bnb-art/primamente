@@ -88,6 +88,14 @@ urlpatterns = [
     path('ruleta/', views2.ruleta_view, name='ruleta'),
     path('tragamonedas/', views2.tragamonedas_view, name='tragamonedas'),
     path('tragamonedas/jugar/', views2.jugar_tragamonedas, name='jugar_tragamonedas'),
+    
+
+
+
+
+    
+     path('trading/', views2.trading_view, name='trading'),
+
 
 
 

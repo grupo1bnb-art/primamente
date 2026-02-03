@@ -1,0 +1,97 @@
+/* ===== MODO PANTALLA COMPLETA ===== */
+.trading-fullscreen{
+    position: fixed;
+    top:70px;
+    left:220px;
+    right:0;
+    bottom:0;
+    background: radial-gradient(circle at top,#0b1220,#05070d);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* TOP */
+.trading-topbar{
+    height:60px;
+    padding:0 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#0b1220;
+    border-bottom:1px solid #1f2937;
+    color: antiquewhite;
+}
+
+/* MAIN AREA */
+.trading-main{
+    flex:1;
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+/* CHART */
+.chart-area{
+    flex:3.5;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #1f2937;
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+#tradingview_chart{
+    height:100%;
+}
+
+/* PANEL DERECHO */
+.trade-panel{
+    flex:1;
+    background:#0f172a;
+    border-radius:16px;
+    padding:20px;
+    border:1px solid #1f2937;
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
+    display:flex;
+    flex-direction:column;
+}
+
+.trade-panel h4{
+    margin-bottom:20px;
+}
+
+.trade-input input,
+.trade-input select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #1f2937;
+    background:#0b1220;
+    color:white;
+    margin-bottom:15px;
+}
+
+/* BOTONES */
+.btn-buy,.btn-sell{
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.btn-buy{ background:#16a34a; }
+.btn-sell{ background:#dc2626; }
+
+/* HISTORIAL ABAJO */
+.history{
+    color: antiquewhite;
+    height:160px;
+    margin:0 20px 20px 20px;
+    border-radius:16px;
+    border:1px solid #1f2937;
+    background:#0b1220;
+    overflow:auto;
+    padding:10px;
+}
