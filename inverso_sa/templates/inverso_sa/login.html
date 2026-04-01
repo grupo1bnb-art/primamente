@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Binance Min</title>
+    <title>Login | Prima Mente</title>
 
     <link rel="stylesheet" href="{% static 'inverso_sa/css/login.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -12,17 +12,16 @@
 
 <body>
 
-<!-- FONDO -->
 <div class="bg-overlay"></div>
 
 <main class="page-container">
 
     <section class="login-card">
 
-        <!-- LOGO -->
         <div class="brand-header">
             <img src="{% static 'inverso_sa/img/logo.png' %}" class="logo-img">
-            <h1>MINERIA <span>BINANCE</span></h1>
+            <h1>PRIMA <span>MENTE</span></h1>
+            <p class="subtitle">Tu nueva app de inversiones</p>
         </div>
 
         {% if error %}
@@ -49,7 +48,7 @@
             <p id="wait-msg">⏳ Validando acceso...</p>
 
             <div class="form-footer">
-                
+                <a href="#">¿Olvidaste tu contraseña?</a>
                 <a href="{% url 'registro' %}" class="register">Registrarse</a>
             </div>
         </form>

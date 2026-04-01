@@ -1,9 +1,10 @@
 :root {
-    --yellow: #fcd535;
-    --bg: #0b0e11;
-    --card: #181a20;
+    --bg1: #0f172a;
+    --bg2: #020617;
+    --primary: #22c55e;
+    --secondary: #3b82f6;
     --text: #ffffff;
-    --muted: #848e9c;
+    --muted: #94a3b8;
 }
 
 /* RESET */
@@ -11,14 +12,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 /* BODY */
-html, body {
-    height: 100%;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, #0b0e11, #11151c);
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1e293b, #020617);
 }
 
 /* LAYOUT */
@@ -27,84 +27,56 @@ html, body {
     min-height: 100vh;
 }
 
-/* LEFT PANEL */
+/* LEFT */
 .left-panel {
-    flex: 1.2;
-    position: relative;
+    flex: 1;
+    padding: 80px;
     display: flex;
     align-items: center;
-    padding: 80px;
-    overflow: hidden;
 }
 
-/* IMAGEN CONTROLADA */
-.left-panel::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('/static/inverso_sa/img/bg-crypto.jpg') center center / cover no-repeat;
-    transform: scale(1.05);
-    filter: brightness(0.7) contrast(1.1);
-    z-index: 0;
-}
-
-/* OVERLAY */
-.left-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: radial-gradient(circle at 20% 50%, rgba(252,213,53,0.12), transparent 40%),
-                linear-gradient(to right, rgba(11,14,17,0.95), rgba(11,14,17,0.7));
-}
-
-/* TEXTO */
-.left-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    max-width: 420px;
-}
-
-.left-content h1 {
-    font-size: 42px;
+.content h1 {
+    font-size: 44px;
     font-weight: 800;
+    color: var(--text);
     margin-bottom: 15px;
 }
 
-.left-content p {
+.content p {
     color: var(--muted);
     margin-bottom: 40px;
 }
 
-/* STATS */
 .stats {
     display: flex;
     gap: 40px;
 }
 
 .stats h2 {
-    color: var(--yellow);
+    color: var(--primary);
 }
 
 .stats span {
     color: var(--muted);
 }
 
-/* RIGHT PANEL */
+/* RIGHT */
 .right-panel {
-    width: 460px;
-    background: #0b0e11;
+    width: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #1e2329;
 }
 
-/* FORM */
-.form-box {
+/* CARD */
+.card {
     width: 100%;
     padding: 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
 }
 
 /* LOGO */
@@ -112,46 +84,45 @@ html, body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .logo img {
-    width: 35px;
+    width: 40px;
 }
 
 .logo span {
-    color: var(--yellow);
-    font-weight: 800;
+    font-weight: 700;
+    color: var(--text);
 }
 
 /* TITLE */
 h2 {
-    margin-bottom: 20px;
     color: white;
+    margin-bottom: 20px;
 }
 
-/* INPUTS */
+/* INPUT */
 input {
     width: 100%;
     padding: 14px;
-    margin-bottom: 15px;
-    background: #181a20;
-    border: 1px solid #2b3139;
+    margin-bottom: 14px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
     color: white;
-    border-radius: 8px;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 input:focus {
-    border-color: var(--yellow);
-    box-shadow: 0 0 0 2px rgba(252,213,53,0.2);
-    background: #11151c;
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px rgba(59,130,246,0.5);
 }
 
 /* GRID */
 .grid {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
 /* PASSWORD */
@@ -163,26 +134,26 @@ input:focus {
     position: absolute;
     right: 12px;
     top: 14px;
-    cursor: pointer;
     color: var(--muted);
+    cursor: pointer;
 }
 
 /* BUTTON */
 button {
     width: 100%;
     padding: 14px;
-    background: var(--yellow);
     border: none;
-    font-weight: bold;
-    border-radius: 8px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: black;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.25s;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #ffe16a;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(252,213,53,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(34,197,94,0.4);
 }
 
 /* LOGIN */
@@ -193,12 +164,12 @@ button:hover {
 }
 
 .login-link a {
-    color: var(--yellow);
+    color: var(--secondary);
 }
 
 /* ERROR */
 .error {
-    background: rgba(255,70,93,0.2);
+    background: rgba(255,0,0,0.2);
     color: #ff6b6b;
     padding: 10px;
     border-radius: 6px;
@@ -215,8 +186,8 @@ button:hover {
         width: 100%;
     }
 
-    .form-box {
-        max-width: 420px;
+    .card {
+        max-width: 400px;
         margin: auto;
     }
 }

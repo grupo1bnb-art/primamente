@@ -4,43 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro | MINERIA BINANCE</title>
+    <title>Registro | Prima Mente</title>
 
     <link rel="stylesheet" href="{% static 'inverso_sa/css/registro.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="layout">
 
-    <!-- LEFT PANEL -->
+    <!-- LEFT -->
     <div class="left-panel">
-        <div class="left-content">
-            <h1>Empieza tu viaje en cripto</h1>
-            <p>Compra, tradea y genera ingresos con minería digital en tiempo real.</p>
+        <div class="content">
+            <h1>Invierte como los profesionales</h1>
+            <p>Automatiza, escala y controla tu dinero desde una sola plataforma inteligente.</p>
 
             <div class="stats">
                 <div>
                     <h2>+120K</h2>
-                    <span>Usuarios activos</span>
+                    <span>Usuarios</span>
                 </div>
                 <div>
-                    <h2>$5M+</h2>
-                    <span>Volumen diario</span>
+                    <h2>99.8%</h2>
+                    <span>Disponibilidad</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- RIGHT PANEL -->
+    <!-- RIGHT -->
     <div class="right-panel">
 
-        <div class="form-box">
+        <div class="card">
 
             <div class="logo">
                 <img src="{% static 'inverso_sa/img/logo.png' %}">
-                <span>MINERIA BINANCE</span>
+                <span>PRIMA MENTE</span>
             </div>
 
             <h2>Crear cuenta</h2>
@@ -58,7 +58,6 @@
                 </div>
 
                 <input type="email" name="email" placeholder="Correo electrónico" required>
-
                 <input type="tel" name="username" placeholder="Teléfono" required>
 
                 <div class="pass">
@@ -72,11 +71,10 @@
                 </div>
 
                 <button>Crear cuenta</button>
-
             </form>
 
             <p class="login-link">
-                ¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a>
+                ¿Ya tienes cuenta? <a href="{% url 'login' %}">Entrar</a>
             </p>
 
         </div>
