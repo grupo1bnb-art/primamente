@@ -1,81 +1,97 @@
+{% extends "inverso_sa/dashboard.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro | Prima Mente</title>
 
-    <link rel="stylesheet" href="{% static 'inverso_sa/css/registro.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
+{% block title %}Acerca de | Plataforma{% endblock %}
 
-<body>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'inverso_sa/css/acerca.css' %}">
 
-<div class="layout">
+<!-- ICONOS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+{% endblock %}
 
-    <!-- LEFT -->
-    <div class="left-panel">
-        <div class="content">
-            <h1>Invierte como los profesionales</h1>
-            <p>Automatiza, escala y controla tu dinero desde una sola plataforma inteligente.</p>
+{% block contenido %}
 
-            <div class="stats">
-                <div>
-                    <h2>+Activos de criptomonedas</h2>
-                    <span>Minadas</span>
-                </div>
-                <div>
-                    <h2>99.8%</h2>
-                    <span>Disponibilidad</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="main-content">
 
-    <!-- RIGHT -->
-    <div class="right-panel">
+    <div class="about-wrapper">
 
-        <div class="card">
+        <h2 class="page-title">
+            <i class="bi bi-cpu"></i> Plataforma Digital
+        </h2>
 
-            <div class="logo">
-                <img src="{% static 'inverso_sa/img/logo.png' %}">
-                <span>PRIMA MENTE</span>
-            </div>
+        <div class="about-card">
 
-            <h2>Crear cuenta</h2>
+            <img src="{% static 'inverso_sa/img/logo.png' %}" class="about-logo">
 
-            {% if error %}
-            <div class="error">{{ error }}</div>
-            {% endif %}
-
-            <form method="POST">
-                {% csrf_token %}
-
-                <div class="grid">
-                    <input type="text" name="first_name" placeholder="Nombre" required>
-                    <input type="text" name="last_name" placeholder="Apellido" required>
-                </div>
-
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <input type="tel" name="username" placeholder="Teléfono" required>
-
-                <div class="pass">
-                    <input type="password" id="p1" name="password1" placeholder="Contraseña" required>
-                    <span onclick="toggle('p1')">👁</span>
-                </div>
-
-                <div class="pass">
-                    <input type="password" id="p2" name="password2" placeholder="Confirmar contraseña" required>
-                    <span onclick="toggle('p2')">👁</span>
-                </div>
-
-                <button>Crear cuenta</button>
-            </form>
-
-            <p class="login-link">
-                ¿Ya tienes cuenta? <a href="{% url 'login' %}">Entrar</a>
+            <p class="about-text center">
+                Plataforma digital enfocada en la <strong>generación automatizada de ingresos</strong>,
+                donde los usuarios pueden acceder a sistemas financieros modernos sin complejidad técnica.
             </p>
+
+            <div class="about-section">
+                <h4><i class="bi bi-lightbulb"></i> ¿De qué trata?</h4>
+                <p>
+                    Brindamos acceso a herramientas digitales que permiten activar planes
+                    y generar ingresos de forma automatizada.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-bullseye"></i> Misión</h4>
+                <p>
+                    Facilitar el acceso a oportunidades digitales mediante tecnología simple, segura y rentable.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-rocket-takeoff"></i> Visión</h4>
+                <p>
+                    Ser una plataforma líder en innovación financiera digital a nivel global.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-gear"></i> ¿Cómo funciona?</h4>
+                <p>
+                    Activas un plan dentro del sistema y comienzas a generar ingresos automáticamente.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-graph-up-arrow"></i> Beneficios</h4>
+                <ul class="about-list">
+                    <li><i class="bi bi-check-circle"></i> Ingresos automáticos</li>
+                    <li><i class="bi bi-check-circle"></i> Sistema activo 24/7</li>
+                    <li><i class="bi bi-check-circle"></i> Sin procesos complejos</li>
+                    <li><i class="bi bi-check-circle"></i> Control desde tu cuenta</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-shield-lock"></i> Seguridad</h4>
+                <p>
+                    Protección de datos, monitoreo continuo y estabilidad del sistema.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h4><i class="bi bi-cash-coin"></i> Rentabilidad</h4>
+                <p>
+                    Ganancias variables según el plan activo dentro del sistema.
+                </p>
+            </div>
+
+            <div class="about-section highlight">
+                <h4><i class="bi bi-hand-thumbs-up"></i> Compromiso</h4>
+                <p>
+                    Plataforma estable, transparente y en constante evolución tecnológica.
+                </p>
+            </div>
+
+            <div class="about-footer">
+                © 2026 Plataforma Digital
+            </div>
 
         </div>
 
@@ -83,12 +99,4 @@
 
 </div>
 
-<script>
-function toggle(id){
-    let i = document.getElementById(id);
-    i.type = i.type === "password" ? "text" : "password";
-}
-</script>
-
-</body>
-</html>
+{% endblock %}
