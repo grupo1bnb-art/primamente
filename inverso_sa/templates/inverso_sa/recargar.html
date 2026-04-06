@@ -3,102 +3,126 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/recarga.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block contenido %}
-<div class="container-recarga">
 
-    <h2><i class="fa-solid fa-coins"></i> DEPOSITAR USDT</h2>
+<div class="deposit-wrapper">
 
-    <!-- BOTONES -->
-    <div class="acciones">
-
-        <a href="{% url 'inicio' %}" class="btn-cta">
-            <i class="fa-solid fa-arrow-left"></i> Regresar
-        </a>
-
-        <a href="{% url 'mis_recargas' %}" class="btn-cta secondary">
-            <i class="fa-solid fa-file-lines"></i> Historial
-        </a>
-
+    <!-- HEADER -->
+    <div class="deposit-header">
+        <h2><i class="fa-solid fa-coins"></i> Depositar USDT</h2>
+        <p>Transfiere fondos y activa tu minería en segundos</p>
     </div>
 
-    <!-- MENSAJES -->
+    <!-- ACCIONES -->
+    <div class="deposit-actions">
+        <a href="{% url 'inicio' %}" class="action-btn back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <a href="{% url 'mis_recargas' %}" class="action-btn history">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </a>
+    </div>
+
+    <!-- ALERTAS -->
     {% for message in messages %}
-        <div class="alert">{{ message }}</div>
+        <div class="alert-box">{{ message }}</div>
     {% endfor %}
 
-    <!-- TARJETA -->
-    <div class="card-bg">
+    <!-- GRID PRINCIPAL -->
+    <div class="deposit-grid">
 
-        <p>
-            <span><strong>RED:</strong> {{ cuenta.banco }}</span>
-            <button onclick="copiar('{{ cuenta.banco }}')">
-                <i class="fa-regular fa-copy"></i>
-            </button>
-        </p>
+        <!-- CARD DIRECCION -->
+        <div class="deposit-card address-card">
 
-        <p>
-            <span><strong>Destino:</strong> {{ cuenta.destinatario }}</span>
-            <button onclick="copiar('{{ cuenta.destinatario }}')">
-                <i class="fa-regular fa-copy"></i>
-            </button>
-        </p>
+            <h3><i class="fa-solid fa-link"></i> Dirección de Depósito</h3>
 
-        <p>
-            <span><strong>Direccion:</strong> {{ cuenta.numero_cuenta }}</span>
-            <button onclick="copiar('{{ cuenta.numero_cuenta }}')">
-                <i class="fa-regular fa-copy"></i>
-            </button>
-        </p>
+            <div class="address-item">
+                <span>Red</span>
+                <div>
+                    <strong>{{ cuenta.banco }}</strong>
+                    <button onclick="copiar('{{ cuenta.banco }}')">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="address-item">
+                <span>Destino</span>
+                <div>
+                    <strong>{{ cuenta.destinatario }}</strong>
+                    <button onclick="copiar('{{ cuenta.destinatario }}')">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="address-item highlight">
+                <span>Dirección Wallet</span>
+                <div>
+                    <strong>{{ cuenta.numero_cuenta }}</strong>
+                    <button onclick="copiar('{{ cuenta.numero_cuenta }}')">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="deposit-card form-card">
+
+            <h3><i class="fa-solid fa-upload"></i> Enviar comprobante</h3>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <label>Monto USDT</label>
+                <input type="number" name="monto" id="monto" required>
+
+                <!-- QUICK -->
+                <div class="quick-grid">
+                    <button type="button" onclick="setMonto(10)">10</button>
+                    <button type="button" onclick="setMonto(25)">25</button>
+                    <button type="button" onclick="setMonto(50)">50</button>
+                    <button type="button" onclick="setMonto(100)">100</button>
+                    <button type="button" onclick="setMonto(250)">250</button>
+                    <button type="button" onclick="setMonto(500)">500</button>
+                </div>
+
+                <label>Comprobante</label>
+                <input type="file" name="voucher" required>
+
+                <button class="btn-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Confirmar Depósito
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
-    <!-- FORM -->
-    <form method="POST" enctype="multipart/form-data" class="form-recarga">
-        {% csrf_token %}
-
-        <label>Cantidad de USDT</label>
-        <input type="number" name="monto" id="monto" required>
-
-        <!-- MONTOS -->
-        <div class="quick-amounts">
-            <button type="button" onclick="setMonto(10)">10</button>
-            <button type="button" onclick="setMonto(20)">20</button>
-            <button type="button" onclick="setMonto(50)">50</button>
-            <button type="button" onclick="setMonto(100)">100</button>
-            <button type="button" onclick="setMonto(200)">200</button>
-            <button type="button" onclick="setMonto(1000)">1000</button>
-        </div>
-
-        <label>Screenshot Transfer</label>
-        <input type="file" name="voucher" required>
-
-        <button type="submit" class="btn-submit">
-            <i class="fa-solid fa-paper-plane"></i> Enviar solicitud
-        </button>
-
-        <!-- INFO -->
-        <div class="info-box">
-            <strong>Información importante:</strong>
-            <ul>
-                <li>Mínimo: 10 USDT</li>
-                <li>Usuario Binance Verificado</li>
-                <li>Screenshot Transfer claro y completo</li>
-                <li>No se aceptan ediciones</li>
-                <li>Validación Automatica</li>
-                <li>Fraudes = suspensión</li>
-            </ul>
-        </div>
-
-    </form>
+    <!-- INFO -->
+    <div class="deposit-info">
+        <h4><i class="fa-solid fa-shield-halved"></i> Seguridad</h4>
+        <ul>
+            <li>Mínimo: 10 USDT</li>
+            <li>Validación manual</li>
+            <li>Tiempo: 1 - 2 horas</li>
+            <li>Fondos protegidos</li>
+        </ul>
+    </div>
 
 </div>
 
 <script>
 function copiar(texto) {
     navigator.clipboard.writeText(texto);
-    alert("Copiado ✅");
 }
 
 function setMonto(valor) {

@@ -5,18 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Panel de Control{% endblock %}</title>
+    <title>{% block title %}PrimaMente Admin{% endblock %}</title>
 
-    <!-- CSS BASE DEL PANEL -->
+    <!-- CSS BASE -->
     <link rel="stylesheet" href="{% static 'inverso_sa/css/panel.css' %}">
 
-    <!-- ✅ CSS DE PLANTILLAS HIJAS -->
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     {% block css %}{% endblock %}
 </head>
 
 <body>
 
-<!-- OVERLAY MOBILE -->
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <div class="container">
@@ -25,54 +26,52 @@
     <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-header">
-            <img src="{% static 'inverso_sa/img/logo.jpeg' %}" class="logo">
-            <a href="{% url 'inicio' %}" class="brand-name">
-                INVERSO ADMIN
-            </a>
+            <img src="{% static 'primamente/img/logo.jpeg' %}" class="logo">
+            <span class="brand-name">PRIMAMENTE</span>
         </div>
 
         <nav>
             <ul class="nav-menu">
 
-                <li class="nav-item {% if request.path == '/recargas/solicitudes/' %}active{% endif %}">
-                    <a href="{% url 'solicitudes_recarga' %}" class="nav-link">
-                        💷 Solicitudes de recarga
+                <li class="nav-item active">
+                    <a href="{% url 'solicitudes_recarga' %}">
+                        <i class="fa-solid fa-coins"></i> Recargas
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{% url 'panel_usuarios' %}" class="nav-link">
-                        👥 Usuarios
-                    </a>
-                </li>
-
-                <li class="nav-item {% if request.path == '/productos/agregar/' %}active{% endif %}">
-                    <a href="{% url 'agregar_producto' %}" class="nav-link">
-                        📋 Agregar producto
+                    <a href="{% url 'panel_usuarios' %}">
+                        <i class="fa-solid fa-users"></i> Usuarios
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{% url 'ver_productos' %}" class="nav-link">
-                        📦 Ver productos
-                    </a>
-                </li>
-
-                <li class="nav-item {% if request.path == '/cuentas/bancarias/' %}active{% endif %}">
-                    <a href="{% url 'cuentas_bancarias' %}" class="nav-link">
-                        🏦 Cuentas bancarias
+                    <a href="{% url 'agregar_producto' %}">
+                        <i class="fa-solid fa-box"></i> Crear Plan
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{% url 'ingresos_egresos' %}" class="nav-link">
-                        💹 Ingresos y egresos
+                    <a href="{% url 'ver_productos' %}">
+                        <i class="fa-solid fa-layer-group"></i> Planes
                     </a>
                 </li>
 
-                <li class="nav-item {% if request.path == '/retiros/solicitudes/' %}active{% endif %}">
-                    <a href="{% url 'solicitudes_retiro' %}" class="nav-link">
-                        ✅ Solicitudes de retiro
+                <li class="nav-item">
+                    <a href="{% url 'cuentas_bancarias' %}">
+                        <i class="fa-solid fa-wallet"></i> Wallets
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'ingresos_egresos' %}">
+                        <i class="fa-solid fa-chart-line"></i> Finanzas
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'solicitudes_retiro' %}">
+                        <i class="fa-solid fa-arrow-up-right-dots"></i> Retiros
                     </a>
                 </li>
 
@@ -80,52 +79,38 @@
         </nav>
 
         <a href="{% url 'logout' %}" class="logout-btn">
-            🚪 Cerrar sesión
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
         </a>
 
     </aside>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- MAIN -->
     <div class="main-wrapper">
 
-        <!-- HEADER -->
         <header class="header">
 
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+            <button class="menu-btn" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
             <div class="header-info">
-                <h1>{% block page_title %}Panel de Control{% endblock %}</h1>
-                <p>
-                    Bienvenido
-                    {{ request.user.first_name|default:request.user.username }}
-                </p>
+                <h1>{% block page_title %}Panel Admin{% endblock %}</h1>
+                <p>Bienvenido {{ request.user.username }}</p>
             </div>
-
-            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
         </header>
 
-        <!-- CONTENIDO -->
         <main class="main-content">
             {% block content %}{% endblock %}
         </main>
 
-        <!-- FOOTER -->
         <footer class="footer">
-            © 2026 INVERSO — Panel Administrativo 🚀
+            © 2026 PRIMAMENTE — Sistema Inteligente 🚀
         </footer>
 
     </div>
 
 </div>
-
-<!-- JS GLOBAL -->
-<script src="{% static 'inverso_sa/js/panel.js' %}"></script>
-
-<!-- ✅ JS DE PLANTILLAS HIJAS -->
-{% block js %}
-{% endblock %}
 
 <script>
 function toggleSidebar() {
@@ -133,6 +118,8 @@ function toggleSidebar() {
     document.getElementById("overlay").classList.toggle("show");
 }
 </script>
+
+{% block js %}{% endblock %}
 
 </body>
 </html>

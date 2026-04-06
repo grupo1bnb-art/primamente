@@ -1,147 +1,99 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Mi Cuenta | MINERIA BINANCE {% endblock %}
+{% block title %}Mi Cuenta | Prima Mente{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/mio.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'inverso_sa/img/favicon.jpeg' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
-{% block nav_mio %}active{% endblock %}
-
 {% block contenido %}
-<div class="main-content container">
+<div class="main-container">
 
-    <!-- HEADER USUARIO -->
-    <header class="user-header">
-        <div class="user-details">
-            <h1>Bienvenido: {{ usuario.username }}</h1>
-            <p>
-                Nombre: {{ usuario.first_name }} <br>
-                Apellido: {{ usuario.last_name }} <br>
-                Correo: {{ usuario.email }} <br>
-                Mi código de invitación:
-                <strong>{{ usuario.codigo_invitacion }}</strong>
-                <i class="far fa-copy" id="copy-code" style="cursor:pointer; margin-left:5px;"
-                    title="Copiar código"></i>
-            </p>
+    <!-- HEADER -->
+    <div class="user-header">
+        <div>
+            <h1><i class="fa-solid fa-user-astronaut"></i> {{ usuario.username }}</h1>
+            <p>{{ usuario.email }}</p>
         </div>
 
-    </header>
+        <div class="invite-box">
+            <span>Código</span>
+            <strong id="codigo">{{ usuario.codigo_invitacion }}</strong>
+            <button onclick="copiarCodigo()" class="btn-copy">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- BALANCE -->
-    <section class="balance-card-inverso">
-        <div class="balance-item">
-            <span class="amount">{{ ganancias_hoy }}</span>
-            <span class="label">USDT ganados hoy</span>
+    <div class="balance-grid">
+
+        <div class="balance-card">
+            <i class="fa-solid fa-coins"></i>
+            <h2>{{ saldo }}</h2>
+            <span>Balance USDT</span>
         </div>
 
-        <div class="balance-item">
-            <span class="amount">{{ saldo }}</span>
-            <span class="label">Balance USDT</span>
+        <div class="balance-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>{{ ganancias_hoy }}</h2>
+            <span>Ganancia Hoy</span>
         </div>
-    </section>
+
+    </div>
 
     <!-- ACCIONES -->
-    <section class="action-buttons-grid">
+    <div class="actions">
 
-        <a href="{% url 'recargar' %}" class="btn-box blue">
-            <i class="fas fa-arrow-down"></i>
-            <div class="btn-info">
-                <strong>Depositar USDT</strong>
-                <span>Mínimo 10 USDT</span>
-            </div>
+        <a href="{% url 'recargar' %}" class="action-btn deposit">
+            <i class="fa-solid fa-arrow-down"></i>
+            Depositar
         </a>
 
-        <a href="{% url 'retirar' %}" class="btn-box green">
-            <i class="fas fa-university"></i>
-            <div class="btn-info">
-                <strong>Retirar USDT</strong>
-                <span>Mínimo 5 USDT</span>
-            </div>
+        <a href="{% url 'retirar' %}" class="action-btn withdraw">
+            <i class="fa-solid fa-arrow-up"></i>
+            Retirar
         </a>
 
-    </section>
+    </div>
 
     <!-- FUNCIONES -->
-    <h3 class="section-title">Mis Funciones</h3>
+    <h3 class="section-title">Panel de Control</h3>
 
-    <section class="functions-grid">
+    <div class="functions-grid">
 
-        <a href="{% url 'agregar_cuenta_usuario' %}" class="func-item">
-            <i class="fas fa-university"></i>
-            <div class="func-info">
-                <strong>Direccion USDT</strong>
-                <p>Vincular Direccion para retiros USDT </p>
-            </div>
+        <a href="{% url 'agregar_cuenta_usuario' %}" class="func-card">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Dirección USDT</span>
         </a>
 
-        <a href="{% url 'acerca_de' %}" class="func-item">
-            <i class="fas fa-info-circle"></i>
-            <div class="func-info">
-                <strong>Acerca de</strong>
-                <p>Información sobre MINERIA BINANCE</p>
-            </div>
+        <a href="{% url 'equipo' %}" class="func-card">
+            <i class="fa-solid fa-users"></i>
+            <span>Mi Equipo</span>
         </a>
 
-        <a href="{% url 'asistencia' %}" class="func-item">
-            <i class="fas fa-comment-dots"></i>
-            <div class="func-info">
-                <strong>Asistencia</strong>
-                <p>Soporte para USDT</p>
-            </div>
+        <a href="{% url 'asistencia' %}" class="func-card">
+            <i class="fa-solid fa-headset"></i>
+            <span>Soporte</span>
         </a>
 
-       
-
-
-        <a href="{% url 'logout' %}" class="func-item">
-            <i class="fas fa-sign-out-alt"></i>
-            <div class="func-info">
-                <strong>Cerrar sesión</strong>
-                <p>Salir de la cuenta</p>
-            </div>
+        <a href="{% url 'logout' %}" class="func-card logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Salir</span>
         </a>
 
-    </section>
+    </div>
 
 </div>
 
-<!-- JS -->
 <script>
-    function safeGet(id) {
-        return document.getElementById(id) || {
-            onclick: function () { },
-            classList: { add() { }, remove() { } }
-        };
-    }
-
-    const pcBtn = safeGet('pc-view');
-    const mobileBtn = safeGet('mobile-view');
-    const wrapper = document.querySelector('.main-content');
-
-    pcBtn.onclick = () => changeView('pc');
-    mobileBtn.onclick = () => changeView('mobile');
-
-    function changeView(mode) {
-        if (mode === 'mobile') {
-            wrapper.classList.add('phone-mode');
-            mobileBtn.classList.add('active-icon');
-            pcBtn.classList.remove('active-icon');
-        } else {
-            wrapper.classList.remove('phone-mode');
-            pcBtn.classList.add('active-icon');
-            mobileBtn.classList.remove('active-icon');
-        }
-    }
-
-    // COPIAR CÓDIGO
-    safeGet('copy-code').onclick = function () {
-        navigator.clipboard.writeText("{{ usuario.codigo_invitacion }}")
-            .then(() => alert("Código de invitación copiado correctamente"))
-            .catch(() => alert("No se pudo copiar el código"));
-    };
+function copiarCodigo() {
+    const texto = document.getElementById("codigo").innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Código copiado 🚀");
+}
 </script>
 
 {% endblock %}

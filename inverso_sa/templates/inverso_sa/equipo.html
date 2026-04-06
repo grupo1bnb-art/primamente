@@ -1,41 +1,41 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Mi Equipo | Mineria Binance {%endblock %}
+{% block title %}Mi Equipo | Prima Mente{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/equipo.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
-
-{% block nav_equipo %}active{% endblock %}
 
 {% block contenido %}
 
-<div class="binance-container">
+<div class="team-container">
 
-    <!-- 🔥 HEADER -->
-    <div class="binance-header">
-        <h1>Mi Equipo</h1>
-        <p>Invita usuarios y genera recompensas automáticas</p>
+    <!-- HEADER FUTURISTA -->
+    <div class="team-header">
+        <h1><i class="fa-solid fa-network-wired"></i> Red de Minería</h1>
+        <p>Expande tu red y genera ingresos automáticos en blockchain</p>
     </div>
 
-    <!-- 💰 INVITACIÓN -->
-    <div class="binance-card">
+    <!-- INVITACIÓN PRO -->
+    <div class="team-card glow">
 
-        <h3>Invitar amigos</h3>
+        <h3><i class="fa-solid fa-user-plus"></i> Invitar Mineros</h3>
 
         <div class="invite-grid">
 
             <div class="invite-box">
-                <span>Código</span>
+                <span>Código único</span>
                 <strong>{{ codigo }}</strong>
             </div>
 
             <div class="invite-box">
-                <span>Link</span>
+                <span>Link de referido</span>
                 <strong class="link-text">{{ link }}</strong>
-                <button onclick="copiarLink('{{ link }}')" class="btn-yellow">
-                    Copiar
+
+                <button onclick="copiarLink('{{ link }}')" class="btn-main">
+                    <i class="fa-solid fa-copy"></i> Copiar enlace
                 </button>
             </div>
 
@@ -43,14 +43,37 @@
 
     </div>
 
-    <!-- 📊 TABLA -->
-    <div class="binance-card">
+    <!-- STATS MINI -->
+    <div class="team-stats">
 
-        <h3>Usuarios referidos</h3>
+        <div class="stat-box">
+            <i class="fa-solid fa-users"></i>
+            <h4>{{ equipo|length }}</h4>
+            <span>Referidos</span>
+        </div>
+
+        <div class="stat-box">
+            <i class="fa-solid fa-coins"></i>
+            <h4>{{ total_comision|default:"0" }}</h4>
+            <span>Comisiones</span>
+        </div>
+
+        <div class="stat-box">
+            <i class="fa-solid fa-chart-line"></i>
+            <h4>{{ total_volumen|default:"0" }}</h4>
+            <span>Volumen</span>
+        </div>
+
+    </div>
+
+    <!-- TABLA FUTURISTA -->
+    <div class="team-card">
+
+        <h3><i class="fa-solid fa-diagram-project"></i> Red de Referidos</h3>
 
         <div class="table-container">
 
-            <table class="binance-table">
+            <table class="team-table">
 
                 <thead>
                     <tr>
@@ -66,8 +89,14 @@
                     {% for m in equipo %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td class="user">{{ m.referido__username }}</td>
+
+                        <td class="user">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                            {{ m.referido__username }}
+                        </td>
+
                         <td>{{ m.total_invertido }} USDT</td>
+
                         <td class="profit">
                             +{{ m.total_comision|floatformat:2 }}
                         </td>
@@ -75,8 +104,8 @@
                     {% empty %}
                     <tr>
                         <td colspan="4" class="empty">
-                            Aún no tienes inversiones de referidos registradas.<br>
-                            Invita a tus referidos a invertir para comenzar a generar comisiones y hacer crecer tu red.
+                            🚀 Aún no tienes red activa.<br>
+                            Invita usuarios y activa tu sistema de minería.
                         </td>
                     </tr>
                     {% endfor %}
@@ -92,10 +121,10 @@
 </div>
 
 <script>
-    function copiarLink(texto) {
-        navigator.clipboard.writeText(texto);
-        alert("✅ Copiado");
-    }
+function copiarLink(texto) {
+    navigator.clipboard.writeText(texto);
+    alert("🚀 Enlace copiado correctamente");
+}
 </script>
 
 {% endblock %}

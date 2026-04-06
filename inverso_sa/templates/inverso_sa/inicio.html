@@ -1,78 +1,93 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Inicio | Mineria Binance{% endblock %}
+{% block title %}Inicio | Prima Mente{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/inicio.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block contenido %}
 
 <!-- HERO -->
 <section class="hero-pro">
-    <div>
-        <h2>Opera criptomonedas como un profesional</h2>
-        <p>Mina criptomonedas y gestiona tus activos en tiempo real</p>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text">
+        <h2><i class="fa-solid fa-microchip"></i> MINING CORE SYSTEM</h2>
+        <p>Sistema distribuido de generación de activos digitales en tiempo real</p>
+
         <button class="btn-main" onclick="window.location.href='{% url 'recargar' %}'">
-            Depositar
+            <i class="fa-solid fa-bolt"></i> INYECTAR CAPITAL
         </button>
     </div>
 </section>
 
-<!-- CARDS -->
+<!-- STATS -->
 <section class="stats-cards">
 
-    <div class="card">
-        <span>Balance</span>
-        <h3>{{ user.saldo }}</h3>
+    <div class="card stat">
+        <i class="fa-solid fa-wallet icon"></i>
+        <span>Balance Total</span>
+        <h3>{{ user.saldo }} USDT</h3>
     </div>
 
-    <div class="card">
-        <span>Ganancia</span>
-        <h3 class="green">{{ ganancias_hoy }}</h3>
+    <div class="card stat">
+        <i class="fa-solid fa-chart-line icon green"></i>
+        <span>Rendimiento Diario</span>
+        <h3 class="green">+{{ ganancias_hoy }} USDT</h3>
     </div>
 
-    <div class="card">
-        <span>Operaciones</span>
-        <h3>{{total_proyectos }}</h3>
-    </div>
-
-</section>
-
-<!-- MERCADO -->
-<section class="market-box">
-
-    <h3>Mercado</h3>
-
-    <div class="market-table">
-        <div class="market-row header">
-            <span>Par</span>
-            <span>Precio</span>
-            <span>Cambio</span>
-        </div>
-
-        <div class="market-row">
-            <span>BTC/USDT</span>
-            <span id="btc">$0</span>
-            <span class="green">+2.5%</span>
-        </div>
-
-        <div class="market-row">
-            <span>ETH/USDT</span>
-            <span id="eth">$0</span>
-            <span class="red">-1.1%</span>
-        </div>
+    <div class="card stat">
+        <i class="fa-solid fa-server icon"></i>
+        <span>Nodos Activos</span>
+        <h3>{{ total_proyectos }}</h3>
     </div>
 
 </section>
 
-<!-- PRODUCTOS COMO PLANES -->
+<!-- DATA CENTER -->
+<section class="machines">
+
+    <h3><i class="fa-solid fa-database"></i> DATA CENTER</h3>
+
+    <div class="machines-grid">
+
+        <div class="machine-card">
+            <i class="fa-brands fa-bitcoin machine-icon btc"></i>
+            <h4>BTC ASIC CORE</h4>
+            <p>Hashrate: 120 TH/s</p>
+            <p>Temp: 68°C</p>
+            <span class="status online">ONLINE</span>
+        </div>
+
+        <div class="machine-card">
+            <i class="fa-solid fa-cube machine-icon"></i>
+            <h4>BNB NODE</h4>
+            <p>Sync: 99.98%</p>
+            <p>Latency: 10ms</p>
+            <span class="status online">STABLE</span>
+        </div>
+
+        <div class="machine-card">
+            <i class="fa-solid fa-bolt machine-icon xrp"></i>
+            <h4>XRP VALIDATOR</h4>
+            <p>Nodes: 24</p>
+            <p>Load: 32%</p>
+            <span class="status online">ACTIVE</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PLANES -->
 <section class="products-pro">
 
     <div class="products-header">
-        <h3>📊 Planes de inversión</h3>
-        <span class="badge-live">EN VIVO</span>
+        <h3><i class="fa-solid fa-layer-group"></i> PLANES DE MINERÍA</h3>
+        <span class="badge-live">LIVE</span>
     </div>
 
     <div class="products-grid">
@@ -84,25 +99,26 @@
             <div class="tag">TOP</div>
             {% endif %}
 
-            <!-- IMAGEN -->
             <div class="product-img">
-                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                <img src="{{ producto.imagen.url }}">
             </div>
 
             <h4>{{ producto.nombre }}</h4>
 
-            <p class="hash">⚡ {{ producto.duracion }}</p>
+            <p class="hash">
+                <i class="fa-solid fa-bolt"></i> {{ producto.duracion }}
+            </p>
 
             <div class="profit">
-                +{{ producto.ingreso_diario }} USDT Diario
+                +{{ producto.ingreso_diario }} USDT / día
             </div>
 
-            <small>Precio: {{ producto.precio }} USDT</small>
+            <small class="price">{{ producto.precio }} USDT</small>
 
             <form method="POST" action="{% url 'invertir_producto' producto.id %}">
                 {% csrf_token %}
                 <button class="btn-mine">
-                    MINAR
+                    <i class="fa-solid fa-play"></i> ACTIVAR
                 </button>
             </form>
 
@@ -112,26 +128,5 @@
     </div>
 
 </section>
-
-<!-- JS PRECIOS -->
-<script>
-    async function cargarPrecios() {
-        try {
-            const res = await fetch("https://api.binance.com/api/v3/ticker/price");
-            const data = await res.json();
-
-            function getPrice(symbol) {
-                return parseFloat(data.find(x => x.symbol === symbol).price).toFixed(2);
-            }
-
-            document.getElementById("btc").innerText = "$" + getPrice("BTCUSDT");
-            document.getElementById("eth").innerText = "$" + getPrice("ETHUSDT");
-
-        } catch (e) { }
-    }
-
-    cargarPrecios();
-    setInterval(cargarPrecios, 10000);
-</script>
 
 {% endblock %}

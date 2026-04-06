@@ -1,55 +1,130 @@
-/* CONTENEDOR */
-.container-historial {
-    width: 100%;
+:root {
+    --bg: #020617;
+    --card: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.08);
+
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --yellow: #facc15;
+    --red: #ef4444;
+
+    --text: #e2e8f0;
+    --muted: #94a3b8;
 }
 
-/* TITULO */
-.container-historial h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #fcd535;
+/* FONDO */
+body {
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* TABLA WRAPPER */
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
+/* WRAPPER */
+.history-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
 }
 
-/* TABLA */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #1e2329;
-    border-radius: 12px;
+/* HEADER */
+.history-header {
+    margin-bottom: 25px;
+}
+
+.history-header h2 {
+    color: var(--green);
+    font-size: 26px;
+}
+
+.history-header p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* STATS */
+.history-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(34,197,94,0.2);
+}
+
+.stat-card span {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.stat-card h3 {
+    margin-top: 5px;
+}
+
+.green { color: var(--green); }
+.yellow { color: var(--yellow); }
+
+/* TABLE CARD */
+.table-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
     overflow: hidden;
 }
 
-/* HEAD */
-table th {
-    background: #2b3139;
-    color: #aaa;
-    padding: 14px;
-    text-align: left;
-    font-size: 13px;
+/* HEADER */
+.table-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
 }
 
-/* BODY */
-table td {
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(255,255,255,0.05);
+}
+
+th {
+    text-align: left;
     padding: 14px;
-    border-bottom: 1px solid #2b3139;
-    font-size: 14px;
-    color: #eaecef;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
 }
 
 /* HOVER */
-table tbody tr:hover {
-    background: #2b3139;
+tbody tr:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* AMOUNT */
+.amount {
+    color: var(--green);
+    font-weight: bold;
 }
 
 /* ESTADOS */
 .estado {
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
@@ -57,33 +132,31 @@ table tbody tr:hover {
 
 /* APROBADO */
 .estado.aprobado {
-    background: rgba(14, 203, 129, 0.1);
-    color: #0ecb81;
+    background: rgba(34,197,94,0.15);
+    color: var(--green);
+    box-shadow: 0 0 10px rgba(34,197,94,0.4);
 }
 
 /* PENDIENTE */
 .estado.pendiente {
-    background: rgba(240, 185, 11, 0.1);
-    color: #f0b90b;
+    background: rgba(250,204,21,0.15);
+    color: var(--yellow);
 }
 
 /* RECHAZADO */
 .estado.rechazado {
-    background: rgba(246, 70, 93, 0.1);
-    color: #f6465d;
+    background: rgba(239,68,68,0.15);
+    color: var(--red);
 }
 
-/* VACIO */
+/* EMPTY */
 .empty {
     text-align: center;
-    padding: 25px;
-    color: #848e9c;
+    padding: 30px;
+    color: var(--muted);
 }
 
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media (max-width: 768px) {
 
     table thead {
@@ -91,31 +164,30 @@ table tbody tr:hover {
     }
 
     table,
-    table tbody,
-    table tr,
-    table td {
+    tbody,
+    tr,
+    td {
         display: block;
         width: 100%;
     }
 
-    table tr {
+    tr {
         margin-bottom: 12px;
-        background: #1e2329;
+        background: var(--card);
         border-radius: 10px;
         padding: 10px;
     }
 
-    table td {
+    td {
         display: flex;
         justify-content: space-between;
-        padding: 10px;
-        font-size: 13px;
+        padding: 8px;
         border: none;
     }
 
-    table td::before {
+    td::before {
         content: attr(data-label);
-        font-weight: 600;
-        color: #848e9c;
+        color: var(--muted);
+        font-size: 12px;
     }
 }

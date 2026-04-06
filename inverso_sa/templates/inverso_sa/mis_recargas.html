@@ -3,44 +3,89 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/misrecargas.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block contenido %}
 
-<div class="container-historial">
+<div class="history-wrapper">
 
-    <h2><i class="fa-solid fa-clock-rotate-left"></i> Historial de Depositos</h2>
+    <!-- HEADER -->
+    <div class="history-header">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Historial de Depósitos</h2>
+        <p>Seguimiento de todas tus transacciones en la plataforma</p>
+    </div>
 
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>USDT</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
+    <!-- STATS -->
+    <div class="history-stats">
+        <div class="stat-card">
+            <span>Total Depositos</span>
+            <h3>{{ recargas|length }}</h3>
+        </div>
 
-            <tbody>
-                {% for r in recargas %}
-                <tr>
-                    <td data-label="Fecha">{{ r.fecha }}</td>
-                    <td data-label="USDT">{{ r.monto }}</td>
-                    <td data-label="Estado">
-                        <span class="estado {{ r.estado }}">
-                            {{ r.get_estado_display }}
-                        </span>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="empty">
-                        <i class="fa-solid fa-folder-open"></i> No tienes recargas aún
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="stat-card">
+            <span>Aprobados</span>
+            <h3 class="green">
+                {{ recargas|dictsort:"estado"|length }}
+            </h3>
+        </div>
+
+        <div class="stat-card">
+            <span>En proceso</span>
+            <h3 class="yellow">...</h3>
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="table-card">
+
+        <div class="table-header">
+            <h3>Transacciones</h3>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-calendar"></i> Fecha</th>
+                        <th><i class="fa-solid fa-coins"></i> Monto</th>
+                        <th><i class="fa-solid fa-signal"></i> Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for r in recargas %}
+                    <tr>
+                        <td data-label="Fecha">
+                            {{ r.fecha }}
+                        </td>
+
+                        <td data-label="Monto" class="amount">
+                            {{ r.monto }} USDT
+                        </td>
+
+                        <td data-label="Estado">
+                            <span class="estado {{ r.estado }}">
+                                {{ r.get_estado_display }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="empty">
+                            <i class="fa-solid fa-folder-open"></i><br>
+                            No tienes depósitos aún
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
 
 </div>

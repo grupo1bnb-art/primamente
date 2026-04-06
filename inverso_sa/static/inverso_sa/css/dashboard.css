@@ -8,19 +8,19 @@
 
 /* BODY */
 body {
-    background: #0b0e11;
-    color: #eaecef;
+    background: #0f172a;
+    color: #e2e8f0;
 }
 
 /* NAVBAR */
 .navbar {
     height: 60px;
-    background: #0b0e11;
+    background: #0f172a;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 25px;
-    border-bottom: 1px solid #1e2329;
+    border-bottom: 1px solid #1e293b;
     position: fixed;
     width: 100%;
     top: 0;
@@ -28,16 +28,16 @@ body {
 }
 
 .logo {
-    color: #fcd535;
+    color: #22c55e;
     font-weight: bold;
 }
 
 .logo span {
-    color: #fff;
+    color: #3b82f6;
 }
 
 .user-id {
-    color: #b7bdc6;
+    color: #94a3b8;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -48,11 +48,9 @@ body {
     position: fixed;
     width: 230px;
     height: 100%;
-    background: #0b0e11;
-    border-right: 1px solid #1e2329;
+    background: #0f172a;
+    border-right: 1px solid #1e293b;
     padding-top: 60px;
-    transition: 0.3s;
-    z-index: 1200;
 }
 
 .sidebar ul {
@@ -68,27 +66,20 @@ body {
     align-items: center;
     gap: 12px;
     padding: 14px 20px;
-    color: #b7bdc6;
+    color: #94a3b8;
     text-decoration: none;
     transition: 0.2s;
-    font-size: 15px;
 }
 
-.sidebar ul li a i {
-    font-size: 16px;
-}
-
-/* HOVER */
 .sidebar ul li a:hover {
-    background: #1e2329;
-    color: #fcd535;
+    background: #1e293b;
+    color: #22c55e;
 }
 
-/* ACTIVO (opcional si luego quieres) */
 .sidebar ul li a.active {
-    background: #1e2329;
-    color: #fcd535;
-    border-left: 3px solid #fcd535;
+    background: #1e293b;
+    color: #22c55e;
+    border-left: 3px solid #22c55e;
 }
 
 /* CONTENIDO */
@@ -101,55 +92,61 @@ body {
 
 /* ALERTAS */
 .alert {
-    background: #1e2329;
+    background: #1e293b;
     padding: 12px;
     margin-bottom: 15px;
-    border-left: 4px solid #fcd535;
-    border-radius: 4px;
+    border-left: 4px solid #22c55e;
+    border-radius: 6px;
 }
 
-/* OVERLAY */
-.overlay {
+/* NAVBAR INFERIOR (MÓVIL) */
+.bottom-nav {
     display: none;
-}
-
-.overlay.show {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    top: 0;
-    left: 0;
-    z-index: 1100;
-}
-
-/* BOTÓN */
-.menu-toggle {
-    display: none;
-    font-size: 22px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
 
+    /* QUITAR SIDEBAR */
     .sidebar {
-        left: -230px;
-    }
-
-    .sidebar.open {
-        left: 0;
-    }
-
-    .menu-toggle {
-        display: block;
+        display: none;
     }
 
     .main-content {
         margin-left: 0;
+        padding-bottom: 80px;
+    }
+
+    /* NAVBAR INFERIOR */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 65px;
+        background: #0f172a;
+        border-top: 1px solid #1e293b;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 12px;
+        gap: 3px;
+    }
+
+    .bottom-nav a i {
+        font-size: 18px;
+    }
+
+    .bottom-nav a:hover {
+        color: #22c55e;
     }
 }

@@ -1,201 +1,204 @@
-/* ===============================
-   BASE BINANCE
-================================ */
+:root {
+    --bg: #020617;
+    --card: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.08);
+
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --yellow: #fcd535;
+    --red: #ef4444;
+
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+}
+
+/* FONDO */
 body {
-    background: #0b0e11;
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: var(--text);
     font-family: 'Segoe UI', sans-serif;
-    color: #eaecef;
 }
 
-/* ===============================
-   CONTENEDOR
-================================ */
-.container-historial {
+/* CONTENEDOR */
+.historial-container {
     max-width: 1200px;
-    margin: 40px auto;
-    padding: 25px;
-    background: #161a1e;
-    border-radius: 16px;
-    border: 1px solid #2b3139;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-
-/* ===============================
-   TITULO
-================================ */
-.container-historial h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #fcd535;
-}
-
-/* ===============================
-   TABLA WRAPPER (SCROLL PRO)
-================================ */
-.tabla-wrapper {
-    overflow-x: auto;
-}
-
-/* ===============================
-   TABLA
-================================ */
-.tabla-retiros {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
+    margin: auto;
+    padding: 30px 20px;
 }
 
 /* HEADER */
-.tabla-retiros thead {
-    background: #1e2329;
+.historial-header {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.tabla-retiros th {
-    color: #848e9c;
+.historial-header h2 {
+    color: var(--green);
+    font-size: 24px;
+}
+
+.historial-header p {
+    color: var(--muted);
+}
+
+/* TABLA BOX */
+.tabla-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(34,197,94,0.1);
+}
+
+/* TABLA */
+.tabla-pro {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+.tabla-pro thead {
+    background: rgba(255,255,255,0.04);
+}
+
+.tabla-pro th {
     padding: 14px;
     font-size: 12px;
+    color: var(--muted);
     text-transform: uppercase;
-    font-weight: 600;
     text-align: center;
 }
 
 /* FILAS */
-.tabla-retiros td {
-    padding: 14px 10px;
-    border-bottom: 1px solid #2b3139;
-    font-size: 13px;
+.tabla-pro td {
+    padding: 14px;
     text-align: center;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
 }
 
-/* HOVER */
-.tabla-retiros tbody tr:hover {
-    background: #1e2329;
+/* HOVER PRO */
+.tabla-pro tbody tr:hover {
+    background: rgba(34,197,94,0.05);
+    transform: scale(1.01);
 }
 
-/* DESTACADO RECIBES */
-.recibes {
-    color: #0ecb81;
-    font-weight: 600;
+/* TEXTO ESPECIAL */
+.coin {
+    color: var(--yellow);
+    font-weight: bold;
 }
 
-/* ===============================
-   ESTADOS BINANCE
-================================ */
+.fee {
+    color: var(--red);
+}
+
+.profit {
+    color: var(--green);
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(34,197,94,0.5);
+}
+
+/* NETWORK */
+.network {
+    color: var(--blue);
+}
+
+/* DIRECCION */
+.address {
+    font-family: monospace;
+    color: var(--muted);
+}
+
+/* ESTADOS */
 .estado {
     padding: 5px 12px;
-    border-radius: 999px;
+    border-radius: 20px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 /* PENDIENTE */
 .estado.pendiente {
-    background: rgba(240,185,11,0.15);
-    color: #fcd535;
+    background: rgba(252,213,53,0.15);
+    color: var(--yellow);
 }
 
 /* APROBADO */
 .estado.aprobado {
-    background: rgba(14,203,129,0.15);
-    color: #0ecb81;
+    background: rgba(34,197,94,0.15);
+    color: var(--green);
 }
 
 /* RECHAZADO */
 .estado.rechazado {
-    background: rgba(246,70,93,0.15);
-    color: #f6465d;
+    background: rgba(239,68,68,0.15);
+    color: var(--red);
 }
 
-/* ===============================
-   SIN DATOS
-================================ */
-.sin-retiros {
+/* VACIO */
+.empty-box {
     text-align: center;
-    margin: 40px 0;
-    font-size: 14px;
-    color: #848e9c;
+    padding: 40px;
+    color: var(--muted);
 }
 
-/* ===============================
-   BOTON VOLVER
-================================ */
-.btn-volver {
+.empty-box i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* BOTON */
+.btn-back {
     display: block;
-    margin-top: 25px;
+    margin-top: 20px;
     text-align: center;
     padding: 12px;
-    background: #fcd535;
-    color: #000;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    color: white;
     text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: 0.2s;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.btn-volver:hover {
-    background: #e6c200;
-    transform: translateY(-2px);
+.btn-back:hover {
+    transform: scale(1.05);
 }
 
-/* ===============================
-   SCROLL PERSONALIZADO
-================================ */
-.tabla-wrapper::-webkit-scrollbar {
-    height: 6px;
-}
+/* RESPONSIVE */
+@media (max-width: 768px) {
 
-.tabla-wrapper::-webkit-scrollbar-thumb {
-    background: #2b3139;
-    border-radius: 10px;
-}
-
-/* ===============================
-   RESPONSIVE
-================================ */
-@media (max-width: 600px) {
-
-    .container-historial {
-        padding: 15px;
-    }
-
-    .tabla-retiros {
-        min-width: 100%;
-    }
-
-    /* MODO TARJETAS */
-    .tabla-retiros thead {
+    .tabla-pro thead {
         display: none;
     }
 
-    .tabla-retiros,
-    .tabla-retiros tbody,
-    .tabla-retiros tr,
-    .tabla-retiros td {
+    .tabla-pro,
+    .tabla-pro tbody,
+    .tabla-pro tr,
+    .tabla-pro td {
         display: block;
         width: 100%;
     }
 
-    .tabla-retiros tr {
-        background: #1e2329;
+    .tabla-pro tr {
+        background: var(--card);
         margin-bottom: 15px;
         border-radius: 12px;
-        padding: 12px;
+        padding: 10px;
     }
 
-    .tabla-retiros td {
+    .tabla-pro td {
         text-align: right;
-        padding: 8px 0;
-        border: none;
         position: relative;
+        padding: 8px;
     }
 
-    .tabla-retiros td::before {
+    .tabla-pro td::before {
         content: attr(data-label);
         position: absolute;
         left: 0;
-        color: #848e9c;
-        font-weight: 500;
+        color: var(--muted);
     }
 }

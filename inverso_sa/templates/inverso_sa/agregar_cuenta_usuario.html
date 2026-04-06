@@ -3,39 +3,64 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_bancaria.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
-{% block title %}Mi cuenta {% endblock %}
+{% block title %}Wallet | PrimaMente{% endblock %}
 
 {% block contenido %}
 
-<div class="card-form">
+<div class="wallet-container">
 
-    <h2 class="form-title">Agregar Direccion Wallet</h2>
+    <!-- HEADER -->
+    <div class="wallet-header">
+        <h2><i class="fa-solid fa-wallet"></i> Vincular Wallet USDT</h2>
+        <p>Agrega una dirección segura para retiros automáticos</p>
+    </div>
 
-    <form method="POST">
-        {% csrf_token %}
+    <!-- CARD -->
+    <div class="wallet-card">
 
-        <div class="form-group">
-            <label>RED USDT</label>
-            <input type="text" name="banco" required>
-        </div>
+        <form method="POST">
+            {% csrf_token %}
 
-        <div class="form-group">
-            <label>TITULAR</label>
-            <input type="text" name="titular" required>
-        </div>
+            <!-- RED -->
+            <div class="input-group">
+                <label><i class="fa-solid fa-network-wired"></i> Red USDT</label>
+                <input type="text" name="banco" placeholder="Ej: TRC20 / BEP20 / ID Binance" required>
+            </div>
 
-        <div class="form-group">
-            <label>DIRECCION</label>
-            <input type="text" name="numero_cuenta" required>
-        </div>
+            <!-- TITULAR -->
+            <div class="input-group">
+                <label><i class="fa-solid fa-user"></i> Titular</label>
+                <input type="text" name="titular" placeholder="Nombre del titular" required>
+            </div>
 
-        <button type="submit" class="btn-primary">
-            Guardar cuenta
-        </button>
+            <!-- DIRECCION -->
+            <div class="input-group">
+                <label><i class="fa-solid fa-link"></i> Dirección Wallet o ID Binance</label>
+                <input type="text" name="numero_cuenta" placeholder="Dirección USDT" required>
+            </div>
 
-    </form>
+            <!-- BOTON -->
+            <button type="submit" class="btn-save">
+                <i class="fa-solid fa-shield-halved"></i> Guardar Cartera
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="wallet-info">
+        <h4><i class="fa-solid fa-circle-info"></i> Seguridad</h4>
+        <ul>
+            <li>✔ Verifica la red antes de guardar</li>
+            <li>✔ Transacciones irreversibles</li>
+            <li>✔ Protección en tiempo real</li>
+            <li>✔ Validación automática del sistema</li>
+        </ul>
+    </div>
 
 </div>
 

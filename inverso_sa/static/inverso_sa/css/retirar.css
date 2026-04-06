@@ -1,174 +1,178 @@
-/* ===============================
-   BASE BINANCE
-================================ */
+:root {
+    --bg: #020617;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --yellow: #fcd535;
+    --red: #ef4444;
+
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+}
+
+/* FONDO */
 body {
-    background: #0b0e11;
+    background: radial-gradient(circle at top, #0f172a, #020617);
     font-family: 'Segoe UI', sans-serif;
-    color: #eaecef;
+    color: var(--text);
 }
 
-/* ===============================
-   CONTENEDOR
-================================ */
-.container-retiro {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 30px;
-    background: #161a1e;
-    border-radius: 16px;
-    border: 1px solid #2b3139;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+/* WRAPPER */
+.withdraw-wrapper {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
 }
 
-/* ===============================
-   TITULO
-================================ */
-h2 {
+/* HEADER */
+.withdraw-header {
     text-align: center;
-    font-size: 20px;
     margin-bottom: 20px;
-    color: #fcd535;
 }
 
-/* ===============================
-   SALDO
-================================ */
-.saldo-disponible {
-    background: #0b0e11;
-    border: 1px solid #2b3139;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
+.withdraw-header h2 {
+    color: var(--green);
+    font-size: 26px;
+}
+
+.withdraw-header p {
+    color: var(--muted);
+}
+
+/* BALANCE */
+.balance-card {
+    background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(59,130,246,0.15));
+    padding: 20px;
+    border-radius: 15px;
     text-align: center;
-    font-size: 14px;
-    color: #848e9c;
-}
-
-.saldo-disponible strong {
-    color: #fcd535;
-}
-
-/* ===============================
-   ALERTAS
-================================ */
-.alerts-container {
     margin-bottom: 20px;
+    border: 1px solid var(--border);
 }
 
+.balance-card h3 {
+    color: var(--green);
+    font-size: 28px;
+}
+
+/* ALERT */
 .alert {
-    padding: 12px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     margin-bottom: 10px;
-    font-size: 13px;
-    border: 1px solid;
 }
 
-/* SUCCESS */
 .alert.success {
-    color: #0ecb81;
-    border-color: #0ecb81;
-    background: rgba(14,203,129,0.08);
+    background: rgba(34,197,94,0.1);
+    border: 1px solid var(--green);
 }
 
-/* ERROR */
 .alert.error {
-    color: #f6465d;
-    border-color: #f6465d;
-    background: rgba(246,70,93,0.08);
+    background: rgba(239,68,68,0.1);
+    border: 1px solid var(--red);
 }
 
-/* WARNING */
-.alert.warning {
-    color: #fcd535;
-    border-color: #fcd535;
-    background: rgba(252,213,53,0.08);
+/* GRID */
+.withdraw-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
 }
 
-/* ===============================
-   FORMULARIO
-================================ */
-.retiro-form label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 6px;
-    color: #848e9c;
+/* CARD */
+.withdraw-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    transition: 0.3s;
 }
 
-/* INPUTS */
+.withdraw-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(34,197,94,0.2);
+}
+
+/* FORM */
 .retiro-form input,
 .retiro-form select {
     width: 100%;
     padding: 12px;
+    margin-bottom: 15px;
     border-radius: 10px;
-    border: 1px solid #2b3139;
-    margin-bottom: 18px;
-    font-size: 14px;
-    background: #0b0e11;
-    color: #eaecef;
-    transition: 0.2s;
+    border: 1px solid var(--border);
+    background: #020617;
+    color: white;
 }
 
-/* FOCUS */
 .retiro-form input:focus,
 .retiro-form select:focus {
-    outline: none;
-    border-color: #fcd535;
-    box-shadow: 0 0 0 1px #fcd535;
+    border-color: var(--green);
 }
 
-/* ===============================
-   BOTÓN RETIRO
-================================ */
+/* QUICK */
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.quick-grid button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.quick-grid button:hover {
+    background: linear-gradient(90deg, var(--green), var(--blue));
+}
+
+/* BOTON */
 .btn-retirar {
     width: 100%;
-    background: #fcd535;
-    color: #000;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    padding: 12px;
     border: none;
-    padding: 14px;
     border-radius: 10px;
-    font-size: 15px;
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .btn-retirar:hover {
-    background: #e6c200;
-    transform: translateY(-2px);
+    transform: scale(1.05);
 }
 
-/* ===============================
-   BOTÓN HISTORIAL
-================================ */
+/* INFO */
+.info-card ul {
+    padding-left: 18px;
+    color: var(--muted);
+}
+
 .btn-historial {
     display: block;
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: #fcd535;
+    margin-top: 15px;
     text-align: center;
+    padding: 10px;
     border-radius: 10px;
+    border: 1px solid var(--green);
+    color: var(--green);
     text-decoration: none;
-    font-weight: 600;
-    border: 1px solid #fcd535;
-    transition: 0.2s;
 }
 
 .btn-historial:hover {
-    background: rgba(252,213,53,0.08);
+    background: rgba(34,197,94,0.1);
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
-@media (max-width: 600px) {
-    .container-retiro {
-        margin: 20px 15px;
-        padding: 20px;
-    }
-
-    h2 {
-        font-size: 18px;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .withdraw-grid {
+        grid-template-columns: 1fr;
     }
 }

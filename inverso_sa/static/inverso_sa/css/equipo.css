@@ -1,51 +1,54 @@
-/* =========================
-   BASE BINANCE
-========================= */
+:root {
+    --yellow: #fcd535;
+    --bg: #0b0e11;
+    --card: #1e2329;
+    --border: #2b3139;
+    --text: #ffffff;
+    --muted: #848e9c;
+    --green: #0ecb81;
+}
+
+/* FONDO */
 body {
-    background: #0b0e11;
-    color: #eaecef;
-    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle at top, #0b0e11, #020617);
 }
 
-/* CONTENEDOR FULL WIDTH */
-.binance-container {
-    width: 100%;
-    max-width: 1400px;
+/* CONTENEDOR */
+.team-container {
+    max-width: 1300px;
     margin: auto;
-    padding: 20px;
+    padding: 25px;
 }
 
-/* =========================
-   HEADER
-========================= */
-.binance-header h1 {
+/* HEADER */
+.team-header h1 {
     font-size: 28px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.binance-header p {
-    color: #848e9c;
+.team-header p {
+    color: var(--muted);
     margin-top: 5px;
 }
 
-/* =========================
-   CARD
-========================= */
-.binance-card {
-    background: #181a20;
-    border-radius: 14px;
+/* CARD */
+.team-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
-    box-shadow: 0 0 0 1px #2b3139;
 }
 
-.binance-card h3 {
-    margin-bottom: 15px;
+/* EFECTO GLOW */
+.glow {
+    box-shadow: 0 0 25px rgba(252,213,53,0.15);
 }
 
-/* =========================
-   INVITACIÓN
-========================= */
+/* INVITE */
 .invite-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -56,112 +59,116 @@ body {
     background: #0b0e11;
     padding: 15px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
 }
 
 .invite-box span {
+    color: var(--muted);
     font-size: 13px;
-    color: #848e9c;
 }
 
 .invite-box strong {
     margin-top: 5px;
-    font-size: 16px;
+    display: block;
 }
 
-/* BOTÓN BINANCE */
-.btn-yellow {
+/* BOTÓN */
+.btn-main {
     margin-top: 10px;
-    background: #fcd535;
+    background: linear-gradient(90deg, #fcd535, #0ecb81);
     border: none;
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
-    font-weight: 600;
+    color: black;
     cursor: pointer;
-    color: #000;
-    transition: 0.2s;
+    font-weight: bold;
 }
 
-.btn-yellow:hover {
-    background: #e6c200;
+/* STATS */
+.team-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-top: 20px;
 }
 
-/* =========================
-   TABLA
-========================= */
+.stat-box {
+    background: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(14,203,129,0.2);
+}
+
+.stat-box i {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: var(--yellow);
+}
+
+.stat-box h4 {
+    margin: 5px 0;
+}
+
+/* TABLA */
 .table-container {
     overflow-x: auto;
 }
 
-.binance-table {
+.team-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.binance-table th {
-    text-align: left;
+.team-table th {
+    color: var(--muted);
     font-size: 13px;
-    color: #848e9c;
-    padding: 12px 10px;
-    border-bottom: 1px solid #2b3139;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
 }
 
-.binance-table td {
-    padding: 14px 10px;
-    border-bottom: 1px solid #2b3139;
-    font-size: 14px;
+.team-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
 }
 
-/* FILA HOVER */
-.binance-table tr:hover {
-    background: #202630;
+.team-table tr:hover {
+    background: rgba(255,255,255,0.03);
 }
 
 /* USER */
 .user {
-    color: #fcd535;
-    font-weight: 600;
+    color: var(--yellow);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* GANANCIA */
+/* PROFIT */
 .profit {
-    color: #0ecb81;
-    font-weight: 600;
+    color: var(--green);
+    font-weight: bold;
 }
 
 /* EMPTY */
 .empty {
     text-align: center;
     padding: 20px;
-    color: #848e9c;
+    color: var(--muted);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 @media (max-width: 900px) {
 
     .invite-grid {
         grid-template-columns: 1fr;
     }
 
-}
-
-@media (max-width: 600px) {
-
-    .binance-header h1 {
-        font-size: 22px;
+    .team-stats {
+        grid-template-columns: 1fr;
     }
-
-    .binance-card {
-        padding: 15px;
-    }
-
-    .binance-table th,
-    .binance-table td {
-        font-size: 12px;
-        padding: 10px;
-    }
-
 }
