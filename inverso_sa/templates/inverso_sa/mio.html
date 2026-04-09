@@ -79,6 +79,12 @@
             <span>Soporte</span>
         </a>
 
+        <!-- NUEVO BOTON DESCARGAR -->
+        <a href="{% static 'inverso_sa/app/primamente.apk' %}" class="func-card download" download>
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span>Descargar App</span>
+        </a>
+
         <a href="{% url 'logout' %}" class="func-card logout">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Salir</span>
@@ -89,11 +95,11 @@
 </div>
 
 <script>
-function copiarCodigo() {
-    const texto = document.getElementById("codigo").innerText;
-    navigator.clipboard.writeText(texto);
-    alert("Código copiado 🚀");
-}
+    function copiarCodigo() {
+        const texto = document.getElementById("codigo").innerText;
+        navigator.clipboard.writeText(texto);
+        alert("Código copiado 🚀");
+    }
 </script>
 
 {% endblock %}

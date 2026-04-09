@@ -159,6 +159,21 @@ body {
     box-shadow: 0 0 20px rgba(59,130,246,0.3);
 }
 
+/* DESCARGAR APP */
+.download {
+    border: 1px solid var(--green);
+    background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(59,130,246,0.15));
+}
+
+.download i {
+    color: var(--green);
+}
+
+.download:hover {
+    box-shadow: 0 0 25px rgba(34,197,94,0.5);
+    transform: translateY(-5px) scale(1.03);
+}
+
 /* LOGOUT */
 .logout i {
     color: red;
