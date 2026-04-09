@@ -12,13 +12,13 @@
 
 <div class="team-container">
 
-    <!-- HEADER FUTURISTA -->
+    <!-- HEADER -->
     <div class="team-header">
         <h1><i class="fa-solid fa-network-wired"></i> Red de Minería</h1>
         <p>Expande tu red y genera ingresos automáticos en blockchain</p>
     </div>
 
-    <!-- INVITACIÓN PRO -->
+    <!-- INVITACIÓN -->
     <div class="team-card glow">
 
         <h3><i class="fa-solid fa-user-plus"></i> Invitar Mineros</h3>
@@ -43,7 +43,7 @@
 
     </div>
 
-    <!-- STATS MINI -->
+    <!-- STATS -->
     <div class="team-stats">
 
         <div class="stat-box">
@@ -66,7 +66,7 @@
 
     </div>
 
-    <!-- TABLA FUTURISTA -->
+    <!-- TABLA -->
     <div class="team-card">
 
         <h3><i class="fa-solid fa-diagram-project"></i> Red de Referidos</h3>
@@ -88,18 +88,24 @@
 
                     {% for m in equipo %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
 
-                        <td class="user">
+                        <td data-label="#">
+                            {{ forloop.counter }}
+                        </td>
+
+                        <td data-label="Usuario" class="user">
                             <i class="fa-solid fa-user-astronaut"></i>
                             {{ m.referido__username }}
                         </td>
 
-                        <td>{{ m.total_invertido }} USDT</td>
+                        <td data-label="Volumen">
+                            {{ m.total_invertido }} USDT
+                        </td>
 
-                        <td class="profit">
+                        <td data-label="Ganancia" class="profit">
                             +{{ m.total_comision|floatformat:2 }}
                         </td>
+
                     </tr>
                     {% empty %}
                     <tr>
