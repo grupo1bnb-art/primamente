@@ -36,23 +36,19 @@
             </div>
 
             <div class="form-group">
-                <label>Número de Cuenta</label>
+                <label>Nombre del Destinatario</label>
+                {{ form.destinatario }}
+            </div>
+
+            <div class="form-group">
+                <label>Número de Cuenta / Wallet</label>
                 {{ form.numero_cuenta }}
             </div>
 
-            <div class="form-group">
-                <label>Tipo de Cuenta</label>
-                {{ form.tipo }}
-            </div>
-
-            <div class="form-group">
-                <label>Titular</label>
-                {{ form.titular }}
-            </div>
-
-            <div class="form-group">
-                <label>Documento (opcional)</label>
-                {{ form.documento }}
+            <div class="form-group checkbox">
+                <label>
+                    {{ form.activa }} Cuenta activa
+                </label>
             </div>
 
             <div class="form-actions">
