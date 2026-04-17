@@ -1,68 +1,161 @@
-{% extends "inverso_sa/panel.html" %}
-{% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'inverso_sa/css/crear_editar_cuenta.css' %}">
-{% endblock %}
+/* CONTENEDOR PRINCIPAL */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10; /* 🔥 evita bloqueo del overlay */
+}
 
+/* TARJETA */
+.card-form {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: fadeIn 0.3s ease;
+}
 
-{% block title %}{{ titulo }}{% endblock %}
-{% block page_title %}{{ titulo }}{% endblock %}
+/* ANIMACIÓN SUAVE */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-{% block content %}
+/* TÍTULO */
+.card-form h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
 
-<div class="form-card">
+/* GRUPOS */
+.form-group {
+    margin-bottom: 18px;
+}
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert {{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+/* LABEL */
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #cbd5f5;
+}
 
-    {% if form.non_field_errors %}
-        <div class="alert error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
+/* INPUTS */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+    outline: none;
+    background: #334155;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    pointer-events: auto; /* 🔥 asegura que se pueda escribir */
+}
 
-    <form method="POST" class="bank-form">
-        {% csrf_token %}
+/* FOCUS (cuando haces click) */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34,197,94,0.25);
+}
 
-        <div class="form-group">
-            <label>Banco</label>
-            {{ form.banco }}
-            {{ form.banco.errors }}
-        </div>
+/* CHECKBOX */
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+}
 
-        <div class="form-group">
-            <label>Destinatario</label>
-            {{ form.destinatario }}
-            {{ form.destinatario.errors }}
-        </div>
+.form-group.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
 
-        <div class="form-group">
-            <label>Número de cuenta</label>
-            {{ form.numero_cuenta }}
-            {{ form.numero_cuenta.errors }}
-        </div>
+/* BOTONES */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 10px;
+}
 
-        <div class="form-group checkbox">
-            <label>
-                {{ form.activa }} Cuenta activa
-            </label>
-        </div>
+.btn-primary {
+    flex: 1;
+    background: #22c55e;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
 
-        <div class="form-actions">
-            <button type="submit" class="btn-primary">💾 Guardar</button>
+.btn-primary:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+}
 
-            <a href="{% url 'cuentas_bancarias' %}" class="btn-cancel">
-                ↩ Cancelar
-            </a>
-        </div>
+/* BOTÓN SECUNDARIO */
+.btn-secondary {
+    flex: 1;
+    text-align: center;
+    background: #64748b;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
 
-    </form>
+.btn-secondary:hover {
+    background: #475569;
+}
 
-</div>
+/* ALERTAS */
+.alert {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
 
-{% endblock %}
+.alert.success {
+    background: #16a34a;
+}
+
+.alert.error {
+    background: #dc2626;
+}
+
+.alert.warning {
+    background: #f59e0b;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+    .card-form {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}

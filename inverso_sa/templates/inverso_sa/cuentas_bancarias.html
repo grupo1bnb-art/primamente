@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_bancaria.css' %}">
+<link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_form.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,6 +17,7 @@
 
     <div class="card-form">
         <h2><i class="fa-solid fa-wallet"></i> {{ titulo }}</h2>
+        
 
         <!-- MENSAJES -->
         {% if messages %}
