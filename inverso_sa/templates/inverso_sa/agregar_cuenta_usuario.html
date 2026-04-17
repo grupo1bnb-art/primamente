@@ -1,50 +1,48 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
+{% block title %}Cuenta bancaria | Rpublix{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_bancaria.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
-{% block title %}Wallet | PrimaMente{% endblock %}
-
 {% block contenido %}
 
-<div class="wallet-container">
+<div class="bank-wrapper">
 
     <!-- HEADER -->
-    <div class="wallet-header">
-        <h2><i class="fa-solid fa-wallet"></i> Vincular Wallet USDT</h2>
-        <p>Agrega una dirección segura para retiros automáticos</p>
+    <div class="bank-top">
+        <h2><i class="fa-solid fa-building-columns"></i> Cuenta de Retiro</h2>
+        <p>Configura tu cuenta bancaria para recibir tus ganancias</p>
     </div>
 
-    <!-- CARD -->
-    <div class="wallet-card">
+    <!-- CARD PRINCIPAL -->
+    <div class="bank-card">
 
-        <form method="POST">
+        <form method="POST" class="bank-form">
             {% csrf_token %}
 
-            <!-- RED -->
-            <div class="input-group">
-                <label><i class="fa-solid fa-network-wired"></i> Red USDT</label>
-                <input type="text" name="banco" placeholder="Ej: TRC20 / BEP20 / ID Binance" required>
+            <div class="form-row">
+                <div class="input-box">
+                    <label>Banco</label>
+                    <input type="text" name="banco" placeholder="Ej: BAC, Lafise, Banpro" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Titular</label>
+                    <input type="text" name="titular" placeholder="Nombre completo" required>
+                </div>
             </div>
 
-            <!-- TITULAR -->
-            <div class="input-group">
-                <label><i class="fa-solid fa-user"></i> Titular</label>
-                <input type="text" name="titular" placeholder="Nombre del titular" required>
+            <div class="input-box">
+                <label>Número de cuenta</label>
+                <input type="text" name="numero_cuenta" placeholder="Número de cuenta bancaria" required>
             </div>
 
-            <!-- DIRECCION -->
-            <div class="input-group">
-                <label><i class="fa-solid fa-link"></i> Dirección Wallet o ID Binance</label>
-                <input type="text" name="numero_cuenta" placeholder="Dirección USDT" required>
-            </div>
-
-            <!-- BOTON -->
             <button type="submit" class="btn-save">
-                <i class="fa-solid fa-shield-halved"></i> Guardar Cartera
+                Guardar cuenta
             </button>
 
         </form>
@@ -52,14 +50,32 @@
     </div>
 
     <!-- INFO -->
-    <div class="wallet-info">
-        <h4><i class="fa-solid fa-circle-info"></i> Seguridad</h4>
-        <ul>
-            <li>✔ Verifica la red antes de guardar</li>
-            <li>✔ Transacciones irreversibles</li>
-            <li>✔ Protección en tiempo real</li>
-            <li>✔ Validación automática del sistema</li>
-        </ul>
+    <div class="bank-info">
+
+        <div class="info-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <h4>Seguridad</h4>
+                <p>Tus datos están protegidos y encriptados</p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+                <h4>Procesamiento</h4>
+                <p>Los retiros se procesan en pocas horas</p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+                <h4>Validación</h4>
+                <p>Revisamos cada cuenta antes de aprobarla</p>
+            </div>
+        </div>
+
     </div>
 
 </div>

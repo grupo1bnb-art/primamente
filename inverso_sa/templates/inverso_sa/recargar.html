@@ -8,97 +8,77 @@
 
 {% block contenido %}
 
-<div class="deposit-wrapper">
+<div class="energy-deposit">
 
-    <!-- HEADER -->
-    <div class="deposit-header">
-        <h2><i class="fa-solid fa-coins"></i> Depositar USDT</h2>
-        <p>Transfiere fondos y activa tu minería en segundos</p>
+    <!-- HEADER MINIMAL -->
+    <div class="top-bar">
+        <a href="{% url 'inicio' %}" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2>Recargar Energía</h2>
+        <a href="{% url 'mis_recargas' %}" class="nav-btn"><i class="fa-solid fa-clock"></i></a>
     </div>
 
-    <!-- ACCIONES -->
-    <div class="deposit-actions">
-        <a href="{% url 'inicio' %}" class="action-btn back">
-            <i class="fa-solid fa-arrow-left"></i>
-        </a>
+    <!-- PANEL PRINCIPAL -->
+    <div class="split-layout">
 
-        <a href="{% url 'mis_recargas' %}" class="action-btn history">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-        </a>
-    </div>
+        <!-- 🔋 BLOQUE DIRECCIÓN -->
+        <div class="energy-block">
 
-    <!-- ALERTAS -->
-    {% for message in messages %}
-        <div class="alert-box">{{ message }}</div>
-    {% endfor %}
+            <h3><i class="fa-solid fa-bolt"></i> Punto de Energía</h3>
 
-    <!-- GRID PRINCIPAL -->
-    <div class="deposit-grid">
-
-        <!-- CARD DIRECCION -->
-        <div class="deposit-card address-card">
-
-            <h3><i class="fa-solid fa-link"></i> Dirección de Depósito</h3>
-
-            <div class="address-item">
-                <span>Red</span>
+            <div class="data-line">
+                <span>Banco</span>
                 <div>
                     <strong>{{ cuenta.banco }}</strong>
-                    <button onclick="copiar('{{ cuenta.banco }}')">
-                        <i class="fa-regular fa-copy"></i>
-                    </button>
+                    <button onclick="copiar('{{ cuenta.banco }}')">Copiar</button>
                 </div>
             </div>
 
-            <div class="address-item">
-                <span>Destino</span>
+            <div class="data-line">
+                <span>Titular</span>
                 <div>
                     <strong>{{ cuenta.destinatario }}</strong>
-                    <button onclick="copiar('{{ cuenta.destinatario }}')">
-                        <i class="fa-regular fa-copy"></i>
-                    </button>
+                    <button onclick="copiar('{{ cuenta.destinatario }}')">Copiar</button>
                 </div>
             </div>
 
-            <div class="address-item highlight">
-                <span>Dirección Wallet</span>
+            <div class="data-line big">
+                <span>Cuenta</span>
                 <div>
                     <strong>{{ cuenta.numero_cuenta }}</strong>
-                    <button onclick="copiar('{{ cuenta.numero_cuenta }}')">
-                        <i class="fa-regular fa-copy"></i>
-                    </button>
+                    <button onclick="copiar('{{ cuenta.numero_cuenta }}')">Copiar</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- FORM -->
-        <div class="deposit-card form-card">
+        <!-- 💳 FORM PANEL -->
+        <div class="form-panel">
 
-            <h3><i class="fa-solid fa-upload"></i> Enviar comprobante</h3>
+            <h3><i class="fa-solid fa-leaf"></i> Confirmar Recarga</h3>
 
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <label>Monto USDT</label>
-                <input type="number" name="monto" id="monto" required>
-
-                <!-- QUICK -->
-                <div class="quick-grid">
-                    <button type="button" onclick="setMonto(10)">10</button>
-                    <button type="button" onclick="setMonto(25)">25</button>
-                    <button type="button" onclick="setMonto(50)">50</button>
-                    <button type="button" onclick="setMonto(100)">100</button>
-                    <button type="button" onclick="setMonto(250)">250</button>
-                    <button type="button" onclick="setMonto(500)">500</button>
+                <div class="input-box">
+                    <label>Monto en Córdobas</label>
+                    <input type="number" name="monto" id="monto" required>
                 </div>
 
-                <label>Comprobante</label>
-                <input type="file" name="voucher" required>
+                <!-- BOTONES RAPIDOS -->
+                <div class="chips">
+                    <span onclick="setMonto(500)">C$500</span>
+                    <span onclick="setMonto(1000)">C$1000</span>
+                    <span onclick="setMonto(2000)">C$2000</span>
+                    <span onclick="setMonto(5000)">C$5000</span>
+                </div>
 
-                <button class="btn-submit">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    Confirmar Depósito
+                <div class="input-box">
+                    <label>Subir comprobante</label>
+                    <input type="file" name="voucher" required>
+                </div>
+
+                <button class="submit-btn">
+                    Confirmar Recarga
                 </button>
 
             </form>
@@ -107,25 +87,20 @@
 
     </div>
 
-    <!-- INFO -->
-    <div class="deposit-info">
-        <h4><i class="fa-solid fa-shield-halved"></i> Seguridad</h4>
-        <ul>
-            <li>Mínimo: 10 USDT</li>
-            <li>Validación manual</li>
-            <li>Tiempo: 1 - 2 horas</li>
-            <li>Fondos protegidos</li>
-        </ul>
+    <!-- INFO SIMPLE -->
+    <div class="info-strip">
+        ⚡ Procesamiento manual • Tiempo estimado: 1–2 horas • Mínimo: C$500
     </div>
 
 </div>
 
 <script>
-function copiar(texto) {
+function copiar(texto){
     navigator.clipboard.writeText(texto);
+    alert("Copiado correctamente");
 }
 
-function setMonto(valor) {
+function setMonto(valor){
     document.getElementById("monto").value = valor;
 }
 </script>

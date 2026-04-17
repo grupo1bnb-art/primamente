@@ -323,7 +323,7 @@ from decimal import Decimal, InvalidOperation
 @login_required
 def recargar_view(request):
 
-    montos_rapidos = [10, 20, 50, 100, 200, 1000]
+    montos_rapidos = [100, 20, 50, 100, 200, 1000]
 
     cuentas = CuentaBancaria.objects.filter(activa=True)
 
@@ -674,8 +674,8 @@ def retirar_view(request):
             messages.error(request, "Monto inválido")
             return redirect("retirar")
 
-        if monto <= Decimal("5"):
-            messages.error(request, "El monto debe ser mayor a USDT 5")
+        if monto <= Decimal("100"):
+            messages.error(request, "El monto debe ser mayor a 99 cordovas")
             return redirect("retirar")
 
         if monto > usuario.saldo:
@@ -688,7 +688,7 @@ def retirar_view(request):
             usuario=usuario
         )
 
-        comision = monto * Decimal("0.05")
+        comision = monto * Decimal("0.10")
         monto_final = monto - comision
 
         usuario.saldo -= monto
@@ -712,7 +712,7 @@ def retirar_view(request):
 
         messages.success(
             request,
-            f"✅ Retiro enviado. Comisión 5%: C${comision:.2f}. "
+            f"✅ Retiro enviado. Comisión 10%: C${comision:.2f}. "
             f"Recibirás C${monto_final:.2f}"
         )
 
@@ -765,18 +765,26 @@ def procesar_retiro(request, id):
 def equipo_view(request):
     usuario = request.user
 
-    equipo = (
-        ComisionReferido.objects
-        .filter(invitador=usuario)
-        .values("referido__username")
-        .annotate(
-            total_invertido=Sum("monto_base"),
-            total_comision=Sum("comision")
-        )
-        .order_by("-total_comision")
-    )
+    referidos = Usuario.objects.filter(referido_por=usuario)
 
-    link = f"https://primamente.onrender.com/registro/?ref={usuario.codigo_invitacion}"
+    equipo = []
+
+    for ref in referidos:
+        total_invertido = ComisionReferido.objects.filter(
+            referido=ref
+        ).aggregate(total=Sum("monto_base"))['total'] or 0
+
+        total_comision = ComisionReferido.objects.filter(
+            referido=ref
+        ).aggregate(total=Sum("comision"))['total'] or 0
+
+        equipo.append({
+            "username": ref.username,
+            "total_invertido": total_invertido,
+            "total_comision": total_comision
+        })
+
+    link = f"https://www.Republix.com/registro/?ref={usuario.codigo_invitacion}"
 
     return render(request, "inverso_sa/equipo.html", {
         "codigo": usuario.codigo_invitacion,

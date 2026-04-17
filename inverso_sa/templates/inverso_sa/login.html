@@ -4,58 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Prima Mente</title>
+    <title>Login | Rpublix</title>
 
     <link rel="stylesheet" href="{% static 'inverso_sa/css/login.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- FUENTE -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="bg-overlay"></div>
+<div class="container">
 
-<main class="page-container">
+    <!-- FONDO NATURAL -->
+    <div class="bg-overlay"></div>
 
-    <section class="login-card">
+    <!-- PANEL IZQUIERDO (IGUAL QUE REGISTRO) -->
+    <div class="left">
 
-        <div class="brand-header">
-            <img src="{% static 'inverso_sa/img/logo.png' %}" class="logo-img">
-            <h1>PRIMA <span>MENTE</span></h1>
-            <p class="subtitle">Tu nueva app de inversiones</p>
+        <div class="content">
+            <h1>🌱 Energía Inteligente</h1>
+            <p>Invierte en tecnología sostenible y genera ingresos automáticos.</p>
+
+            <div class="features">
+                <div><i class="bi bi-wind"></i> Energía renovable</div>
+                <div><i class="bi bi-cpu"></i> IA optimizada</div>
+                <div><i class="bi bi-shield-check"></i> Seguridad total</div>
+            </div>
         </div>
 
-        {% if error %}
-            <p class="error-msg">{{ error }}</p>
-        {% endif %}
+    </div>
 
-        <form method="POST" id="login-form">
-            {% csrf_token %}
+    <!-- LOGIN -->
+    <div class="right">
 
-            <div class="input-group">
-                <input type="text" name="username" required>
-                <label>Usuario o Teléfono</label>
-            </div>
+        <div class="card">
 
-            <div class="input-group">
-                <input type="password" name="password" required>
-                <label>Contraseña</label>
-            </div>
+            <h2>Iniciar Sesión</h2>
 
-            <button type="submit" id="submit-btn">
-                Iniciar Sesión
-            </button>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
 
-            <p id="wait-msg">⏳ Validando acceso...</p>
+            <form method="POST" id="login-form">
+                {% csrf_token %}
 
-            <div class="form-footer">
-            
-                <a href="{% url 'registro' %}" class="register">Registrarse</a>
-            </div>
-        </form>
+                <div class="input-group">
+                    <i class="bi bi-person"></i>
+                    <input type="text" name="username" required>
+                    <label>Teléfono o usuario</label>
+                </div>
 
-    </section>
+                <div class="input-group">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" name="password" required>
+                    <label>Contraseña</label>
+                </div>
 
-</main>
+                <button type="submit" id="submit-btn">
+                    Ingresar
+                </button>
+
+                <p id="wait-msg">⏳ Validando acceso...</p>
+
+                <p class="login-link">
+                    ¿No tienes cuenta?
+                    <a href="{% url 'registro' %}">Registrarse</a>
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 const form = document.getElementById('login-form');

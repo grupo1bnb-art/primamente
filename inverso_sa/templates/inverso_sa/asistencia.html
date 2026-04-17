@@ -1,112 +1,98 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Soporte | Plataforma de Minería{% endblock %}
+{% block title %}Soporte | Rpublix Energy{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/asistencia.css' %}">
-
-<!-- ICONOS MODERNOS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block contenido %}
 
-<div class="main-content">
+<div class="support-container">
 
-    <div class="support-wrapper">
+    <!-- HERO -->
+    <div class="support-hero">
+        <div class="overlay"></div>
 
-        <h2 class="page-title">
-            <i class="bi bi-headset"></i> Centro de Soporte Cripto
-        </h2>
+        <div class="hero-content">
+            <h1><i class="bi bi-globe"></i> Rpublix Global Support</h1>
+            <p>Asistencia activa en más de <strong>50+ países</strong> impulsando energía digital y minería inteligente</p>
+        </div>
+    </div>
 
-        <div class="support-card">
+    <!-- INFO EMPRESA -->
+    <div class="company-info">
 
-            <p class="support-intro">
-                Bienvenido al centro de soporte de nuestra plataforma de minería de criptomonedas.
-                Aquí encontrarás ayuda sobre depósitos, retiros, seguridad y funcionamiento del sistema.
-            </p>
+        <div class="info-card">
+            <i class="bi bi-lightning-charge"></i>
+            <h3>Energía Inteligente</h3>
+            <p>Operamos nodos energéticos conectados a infraestructura eólica y blockchain.</p>
+        </div>
 
-            <!-- AYUDA GENERAL -->
-            <div class="support-section">
-                <h3><i class="bi bi-info-circle"></i> Ayuda general</h3>
-                <p>
-                    Nuestro sistema está diseñado para ser automático y transparente.
-                    Si tienes dudas, revisa las opciones antes de contactar soporte.
-                </p>
+        <div class="info-card">
+            <i class="bi bi-globe-americas"></i>
+            <h3>Presencia Global</h3>
+            <p>Usuarios activos en América, Europa y Asia con soporte 24/7.</p>
+        </div>
+
+        <div class="info-card">
+            <i class="bi bi-shield-check"></i>
+            <h3>Seguridad Total</h3>
+            <p>Sistemas automatizados con verificación y protección avanzada.</p>
+        </div>
+
+    </div>
+
+    <!-- SOPORTE -->
+    <div class="support-box">
+
+        <h2><i class="bi bi-headset"></i> Centro de Asistencia</h2>
+
+        <div class="support-grid">
+
+            <div class="support-item">
+                <i class="bi bi-cash-coin"></i>
+                <h4>Depósitos</h4>
+                <p>Validación automática en menos de 30 minutos.</p>
             </div>
 
-            <!-- OPCIONES -->
-            <div class="support-options">
-
-                <div class="support-item">
-                    <i class="bi bi-cash-stack"></i>
-                    <div>
-                        <strong>Depósitos</strong>
-                        <p>Se validan entre 10 y 60 minutos.</p>
-                    </div>
-                </div>
-
-                <div class="support-item">
-                    <i class="bi bi-arrow-down-up"></i>
-                    <div>
-                        <strong>Retiros</strong>
-                        <p>Procesados dentro del horario operativo.</p>
-                    </div>
-                </div>
-
-                <div class="support-item">
-                    <i class="bi bi-shield-lock"></i>
-                    <div>
-                        <strong>Seguridad</strong>
-                        <p>No compartas tu cuenta ni claves.</p>
-                    </div>
-                </div>
-
-                <div class="support-item">
-                    <i class="bi bi-people"></i>
-                    <div>
-                        <strong>Referidos</strong>
-                        <p>Bonificaciones por actividad válida.</p>
-                    </div>
-                </div>
-
-                <div class="support-item">
-                    <i class="bi bi-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <p>soporte@crypto-mining.com</p>
-                    </div>
-                </div>
-
+            <div class="support-item">
+                <i class="bi bi-arrow-repeat"></i>
+                <h4>Retiros</h4>
+                <p>Procesamiento seguro dentro del horario operativo.</p>
             </div>
 
-            <!-- TELEGRAM -->
-            <div class="telegram-box">
-                <h3><i class="bi bi-telegram"></i> Soporte por Telegram</h3>
-                <p>
-                    Únete a nuestro canal oficial para recibir soporte rápido,
-                    noticias y actualizaciones en tiempo real.
-                </p>
-
-                <!-- CAMBIA ESTE LINK -->
-                <a href="https://t.me/+tc0nkZfZed42ZTgx"
-                   target="_blank"
-                   class="btn-telegram">
-                    <i class="bi bi-telegram"></i>
-                    Unirme al Telegram
-                </a>
+            <div class="support-item">
+                <i class="bi bi-lock"></i>
+                <h4>Seguridad</h4>
+                <p>Protección en tiempo real con monitoreo constante.</p>
             </div>
 
-            <!-- HORARIO -->
-            <div class="support-footer">
-                <h4><i class="bi bi-clock"></i> Horario de atención</h4>
-                <p>
-                    Lunes a sábado<br>
-                    <strong>8:00 AM — 6:00 PM</strong>
-                </p>
+            <div class="support-item">
+                <i class="bi bi-diagram-3"></i>
+                <h4>Referidos</h4>
+                <p>Genera ingresos pasivos con tu red.</p>
             </div>
 
+        </div>
+
+        <!-- TELEGRAM -->
+        <div class="telegram-section">
+            <h3><i class="bi bi-telegram"></i> Soporte directo</h3>
+
+            <p>Únete a nuestra comunidad oficial para asistencia inmediata y actualizaciones en tiempo real.</p>
+
+            <a href="https://t.me/+tc0nkZfZed42ZTgx" target="_blank" class="btn-telegram">
+                Entrar al soporte
+            </a>
+        </div>
+
+        <!-- HORARIO -->
+        <div class="schedule">
+            <p><strong>Horario:</strong> Lunes a Sábado</p>
+            <span>08:00 AM - 06:00 PM</span>
         </div>
 
     </div>

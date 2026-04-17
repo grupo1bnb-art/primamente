@@ -6,101 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Prima Mente{% endblock %}</title>
 
-    <link rel="icon" type="image/png" href="{% static 'inverso_sa/img/logo.png' %}">
-    
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'inverso_sa/css/dashboard.css' %}">
 
-    <!-- ICONOS LUCIDE (MODERNOS) -->
+    <!-- ICONOS -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- FUENTE -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     {% block extra_css %}{% endblock %}
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-    <div class="nav-left">
-        <h2 class="logo">PRIMA <span>MENTE</span></h2>
-    </div>
+<!-- 🌄 FONDO -->
+<div class="bg"></div>
 
-    <div class="nav-right">
-        <div class="user-box">
-            <i data-lucide="user"></i>
-            <span>{{ request.user.username }}</span>
-        </div>
-    </div>
-</header>
+<div class="layout">
 
-<!-- SIDEBAR (DESKTOP) -->
-<aside class="sidebar">
-    <ul>
-        <li>
+    <!-- SIDEBAR DESKTOP -->
+    <aside class="sidebar">
+
+        <h2 class="logo">R<span>publix</span></h2>
+
+        <nav>
             <a href="{% url 'inicio' %}">
-                <i data-lucide="trending-up"></i>
+                <i data-lucide="sun"></i>
                 <span>Inicio</span>
             </a>
-        </li>
 
-        <li>
             <a href="{% url 'ingreso' %}">
-                <i data-lucide="wallet"></i>
-                <span>Ingreso</span>
+                <i data-lucide="zap"></i>
+                <span>Ganancias</span>
             </a>
-        </li>
 
-        <li>
             <a href="{% url 'equipo' %}">
                 <i data-lucide="users"></i>
                 <span>Equipo</span>
             </a>
-        </li>
 
-        <li>
             <a href="{% url 'mio' %}">
                 <i data-lucide="user"></i>
                 <span>Perfil</span>
             </a>
-        </li>
+        </nav>
 
-        {% if request.user.is_staff %}
-        <li>
-            <a href="{% url 'panel_usuarios' %}">
-                <i data-lucide="shield"></i>
-                <span>Administrar</span>
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-</aside>
+    </aside>
 
-<!-- CONTENIDO -->
-<main class="main-content">
+    <!-- MAIN -->
+    <div class="main">
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert {{ message.tags }}">
-                {{ message }}
+        <!-- NAVBAR -->
+        <header class="navbar">
+            <h2 class="page-title">
+                {% block page_title %}Dashboard{% endblock %}
+            </h2>
+
+            <div class="user">
+                <i data-lucide="leaf"></i>
+                <span>{{ request.user.username }}</span>
             </div>
-        {% endfor %}
-    {% endif %}
+        </header>
 
-    {% block contenido %}
-    {% endblock %}
+        <!-- CONTENIDO -->
+        <main class="content">
 
-</main>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
 
-<!-- NAVBAR MÓVIL -->
+            {% block contenido %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+</div>
+
+<!-- 📱 NAVBAR MÓVIL -->
 <nav class="bottom-nav">
+
     <a href="{% url 'inicio' %}">
-        <i data-lucide="trending-up"></i>
+        <i data-lucide="sun"></i>
         <span>Inicio</span>
     </a>
 
     <a href="{% url 'ingreso' %}">
-        <i data-lucide="wallet"></i>
-        <span>Ingreso</span>
+        <i data-lucide="zap"></i>
+        <span>Ganancias</span>
     </a>
 
     <a href="{% url 'equipo' %}">
@@ -112,12 +109,14 @@
         <i data-lucide="user"></i>
         <span>Perfil</span>
     </a>
+
 </nav>
 
-<!-- ACTIVAR ICONOS -->
 <script>
-    lucide.createIcons();
+lucide.createIcons();
 </script>
+
+{% block extra_js %}{% endblock %}
 
 </body>
 </html>

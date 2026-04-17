@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Mi Equipo | Prima Mente{% endblock %}
+{% block title %}Mi Equipo | Rpublix{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/equipo.css' %}">
@@ -12,124 +12,107 @@
 
 <div class="team-container">
 
-    <!-- HEADER -->
-    <div class="team-header">
-        <h1><i class="fa-solid fa-network-wired"></i> Red de Minería</h1>
-        <p>Expande tu red y genera ingresos automáticos en blockchain</p>
-    </div>
+    <!-- HERO -->
+    <section class="team-hero">
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <h1><i class="fa-solid fa-leaf"></i> RED ENERGÉTICA</h1>
+            <p>Construye tu red de generación renovable y gana comisiones sostenibles</p>
+        </div>
+    </section>
 
     <!-- INVITACIÓN -->
-    <div class="team-card glow">
+    <section class="invite-section">
 
-        <h3><i class="fa-solid fa-user-plus"></i> Invitar Mineros</h3>
+        <div class="invite-card">
+            <h3><i class="fa-solid fa-user-plus"></i> Invitar usuarios</h3>
 
-        <div class="invite-grid">
+            <div class="invite-data">
+                <div>
+                    <span>Código</span>
+                    <strong>{{ codigo }}</strong>
+                </div>
 
-            <div class="invite-box">
-                <span>Código único</span>
-                <strong>{{ codigo }}</strong>
+                <div>
+                    <span>Link</span>
+                    <p id="link">{{ link }}</p>
+                </div>
             </div>
 
-            <div class="invite-box">
-                <span>Link de referido</span>
-                <strong class="link-text">{{ link }}</strong>
-
-                <button onclick="copiarLink('{{ link }}')" class="btn-main">
-                    <i class="fa-solid fa-copy"></i> Copiar enlace
-                </button>
-            </div>
-
+            <button onclick="copiarLink('{{ link }}')" class="btn-invite">
+                <i class="fa-solid fa-copy"></i> Copiar enlace
+            </button>
         </div>
 
-    </div>
+    </section>
 
     <!-- STATS -->
-    <div class="team-stats">
+    <section class="stats">
 
-        <div class="stat-box">
+        <div class="stat-card">
             <i class="fa-solid fa-users"></i>
-            <h4>{{ equipo|length }}</h4>
-            <span>Referidos</span>
+            <h2>{{ equipo|length }}</h2>
+            <p>Usuarios en red</p>
         </div>
 
-        <div class="stat-box">
+        <div class="stat-card">
             <i class="fa-solid fa-coins"></i>
-            <h4>{{ total_comision|default:"0" }}</h4>
-            <span>Comisiones</span>
+            <h2>C$ {{ total_comision|default:"0" }}</h2>
+            <p>Comisiones</p>
         </div>
 
-        <div class="stat-box">
+        <div class="stat-card">
             <i class="fa-solid fa-chart-line"></i>
-            <h4>{{ total_volumen|default:"0" }}</h4>
-            <span>Volumen</span>
+            <h2>C$ {{ total_volumen|default:"0" }}</h2>
+            <p>Volumen generado</p>
         </div>
 
-    </div>
+    </section>
 
-    <!-- TABLA -->
-    <div class="team-card">
+    <!-- LISTA -->
+    <section class="team-list">
 
-        <h3><i class="fa-solid fa-diagram-project"></i> Red de Referidos</h3>
+        {% for m in equipo %}
+        <div class="member-card">
 
-        <div class="table-container">
+            <div class="member-header">
+                <i class="fa-solid fa-user"></i>
+                <h4>{{ m.referido__username }}</h4>
+            </div>
 
-            <table class="team-table">
+            <div class="member-body">
 
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Usuario</th>
-                        <th>Volumen</th>
-                        <th>Ganancia</th>
-                    </tr>
-                </thead>
+                <div class="data">
+                    <span>Inversión</span>
+                    <strong>C$ {{ m.total_invertido }}</strong>
+                </div>
 
-                <tbody>
+                <div class="data">
+                    <span>Ganancia</span>
+                    <strong class="green">+C$ {{ m.total_comision|floatformat:2 }}</strong>
+                </div>
 
-                    {% for m in equipo %}
-                    <tr>
-
-                        <td data-label="#">
-                            {{ forloop.counter }}
-                        </td>
-
-                        <td data-label="Usuario" class="user">
-                            <i class="fa-solid fa-user-astronaut"></i>
-                            {{ m.referido__username }}
-                        </td>
-
-                        <td data-label="Volumen">
-                            {{ m.total_invertido }} USDT
-                        </td>
-
-                        <td data-label="Ganancia" class="profit">
-                            +{{ m.total_comision|floatformat:2 }}
-                        </td>
-
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4" class="empty">
-                            🚀 Aún no tienes red activa.<br>
-                            Invita usuarios y activa tu sistema de minería.
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
+            </div>
 
         </div>
+        {% empty %}
 
-    </div>
+        <div class="empty">
+            🌱 Aún no tienes red activa <br>
+            Invita personas y empieza a generar ingresos
+        </div>
+
+        {% endfor %}
+
+    </section>
 
 </div>
 
 <script>
-function copiarLink(texto) {
+function copiarLink(texto){
     navigator.clipboard.writeText(texto);
-    alert("🚀 Enlace copiado correctamente");
+    alert("✅ Enlace copiado");
 }
 </script>
 

@@ -1,194 +1,162 @@
 :root {
-    --yellow: #fcd535;
-    --bg: #0b0e11;
-    --card: #1e2329;
-    --border: #2b3139;
-    --text: #ffffff;
-    --muted: #848e9c;
-    --green: #0ecb81;
-    --blue: #229ED9;
+    --bg: #020617;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
 }
 
-/* FONDO */
+/* BASE */
 body {
-    background: var(--bg);
+    background: #020617;
     color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* CENTRAR */
-.main-content {
-    display: flex;
-    justify-content: center;
-    padding: 40px 15px;
-}
-
-.support-wrapper {
+/* CONTENEDOR */
+.support-container {
     width: 100%;
-    max-width: 950px;
+}
+
+/* HERO CON IMAGEN EOLICA */
+.support-hero {
+    height: 280px;
+    background: url("https://images.unsplash.com/photo-1509395176047-4a66953fd231") center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+    position: relative;
     text-align: center;
 }
 
-/* TITULO */
-.page-title {
-    font-size: 28px;
-    color: var(--yellow);
-    margin-bottom: 25px;
+.hero-content h1 {
+    font-size: 30px;
+    color: var(--green);
 }
 
-.page-title i {
-    margin-right: 8px;
-}
-
-/* CARD */
-.support-card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 35px;
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    position: relative;
-    overflow: hidden;
-}
-
-/* EFECTO MINADO */
-.support-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(14,203,129,0.1), transparent);
-    animation: shine 4s infinite;
-}
-
-@keyframes shine {
-    100% {
-        left: 100%;
-    }
-}
-
-/* INTRO */
-.support-intro {
+.hero-content p {
     color: var(--muted);
-    margin-bottom: 30px;
 }
 
-/* SECCION */
-.support-section h3 {
-    color: var(--yellow);
-    margin-bottom: 10px;
-}
-
-.support-section p {
-    color: var(--muted);
-    margin-bottom: 25px;
-}
-
-/* GRID */
-.support-options {
+/* INFO EMPRESA */
+.company-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(3,1fr);
     gap: 20px;
-}
-
-/* ITEM */
-.support-item {
-    display: flex;
-    gap: 12px;
-    background: #15191f;
-    padding: 18px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    transition: 0.25s;
-}
-
-.support-item:hover {
-    transform: translateY(-4px);
-    border-color: var(--yellow);
-}
-
-.support-item i {
-    font-size: 26px;
-    color: var(--yellow);
-}
-
-.support-item strong {
-    color: var(--text);
-}
-
-.support-item p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* TELEGRAM BOX */
-.telegram-box {
-    margin-top: 35px;
     padding: 25px;
-    background: rgba(34,158,217,0.1);
-    border-radius: 16px;
-    border: 1px solid var(--blue);
 }
 
-.telegram-box h3 {
+.info-card {
+    background: rgba(255,255,255,0.03);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+}
+
+.info-card i {
+    font-size: 28px;
     color: var(--blue);
     margin-bottom: 10px;
 }
 
-.telegram-box p {
-    color: var(--muted);
-    margin-bottom: 18px;
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(59,130,246,0.3);
 }
 
-/* BOTON TELEGRAM */
+/* SOPORTE BOX */
+.support-box {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+}
+
+.support-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--green);
+}
+
+/* GRID SOPORTE */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.support-item {
+    background: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.support-item i {
+    font-size: 26px;
+    color: var(--green);
+    margin-bottom: 10px;
+}
+
+.support-item:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(59,130,246,0.2));
+}
+
+/* TELEGRAM */
+.telegram-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
 .btn-telegram {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 25px;
     background: var(--blue);
+    border-radius: 30px;
     color: white;
-    padding: 14px 26px;
-    border-radius: 40px;
-    font-weight: 600;
     text-decoration: none;
-    transition: 0.25s;
-    box-shadow: 0 10px 25px rgba(34,158,217,0.3);
+    transition: 0.3s;
 }
 
 .btn-telegram:hover {
     transform: translateY(-3px);
-    background: #1b8ac4;
 }
 
-/* FOOTER */
-.support-footer {
-    margin-top: 35px;
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-}
-
-.support-footer h4 {
-    color: var(--yellow);
-}
-
-.support-footer p {
+/* HORARIO */
+.schedule {
+    margin-top: 25px;
+    text-align: center;
     color: var(--muted);
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
 
-    .support-card {
-        padding: 25px;
+    .company-info {
+        grid-template-columns: 1fr;
     }
 
-    .page-title {
+    .support-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
         font-size: 22px;
     }
 
-    .support-item {
-        flex-direction: column;
-        text-align: center;
-    }
 }

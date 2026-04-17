@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Inicio | Prima Mente{% endblock %}
+{% block title %}Inicio | Rpublix{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/inicio.css' %}">
@@ -11,71 +11,62 @@
 {% block contenido %}
 
 <!-- HERO -->
-<section class="hero-pro">
-    <div class="hero-overlay"></div>
+<section class="hero-ultra">
 
-    <div class="hero-text">
-        <h2><i class="fa-solid fa-microchip"></i> SISTEMA CENTRAL DE MINERIA</h2>
-        <p>Sistema distribuido de generación de activos digitales en tiempo real</p>
+    <div class="hero-info">
+        <h1>⚡ Energía Renovable Inteligente</h1>
+        <p>Invierte en generación sostenible y obtén ingresos automatizados con infraestructura energética real.</p>
 
-        <button class="btn-main" onclick="window.location.href='{% url 'recargar' %}'">
-            <i class="fa-solid fa-bolt"></i> INYECTAR CAPITAL
+        <button onclick="window.location.href='{% url 'recargar' %}'">
+            Invertir ahora
         </button>
     </div>
-</section>
-
-<!-- STATS -->
-<section class="stats-cards">
-
-    <div class="card stat">
-        <i class="fa-solid fa-wallet icon"></i>
-        <span>Balance Total</span>
-        <h3>{{ user.saldo }} USDT</h3>
-    </div>
-
-    <div class="card stat">
-        <i class="fa-solid fa-chart-line icon green"></i>
-        <span>Rendimiento Diario</span>
-        <h3 class="green">+{{ ganancias_hoy }} USDT</h3>
-    </div>
-
-    <div class="card stat">
-        <i class="fa-solid fa-server icon"></i>
-        <span>Nodos Activos</span>
-        <h3>{{ total_proyectos }}</h3>
-    </div>
 
 </section>
 
-<!-- DATA CENTER -->
-<section class="machines">
+<!-- RESUMEN -->
+<section class="kpi-grid">
 
-    <h3><i class="fa-solid fa-database"></i> DATA CENTER</h3>
+    <div class="kpi">
+        <span>Balance disponible</span>
+        <h2>C$ {{ user.saldo }}</h2>
+    </div>
 
-    <div class="machines-grid">
+    <div class="kpi">
+        <span>Generación hoy</span>
+        <h2 class="green">+C$ {{ ganancias_hoy }}</h2>
+    </div>
 
-        <div class="machine-card">
-            <i class="fa-brands fa-bitcoin machine-icon btc"></i>
-            <h4>NÚCLEO ASIC BTC</h4>
-            <p>Hashrate: 120 TH/s</p>
-            <p>Temp: 68°C</p>
-            <span class="status online">ONLINE</span>
+    <div class="kpi">
+        <span>Plantas activas</span>
+        <h2>{{ total_proyectos }}</h2>
+    </div>
+
+</section>
+
+<!-- ENERGÍA -->
+<section class="energy-section">
+
+    <h3>Producción energética</h3>
+
+    <div class="energy-grid">
+
+        <div class="energy-card">
+            <i class="fa-solid fa-wind"></i>
+            <h4>Eólica</h4>
+            <div class="bar"><div style="width:75%"></div></div>
         </div>
 
-        <div class="machine-card">
-            <i class="fa-solid fa-cube machine-icon"></i>
-            <h4>NODO BNB</h4>
-            <p>Sync: 99.98%</p>
-            <p>Latency: 10ms</p>
-            <span class="status online">STABLE</span>
+        <div class="energy-card">
+            <i class="fa-solid fa-sun"></i>
+            <h4>Solar</h4>
+            <div class="bar"><div style="width:60%"></div></div>
         </div>
 
-        <div class="machine-card">
-            <i class="fa-solid fa-bolt machine-icon xrp"></i>
-            <h4>Validador XRP</h4>
-            <p>Nodes: 24</p>
-            <p>Load: 32%</p>
-            <span class="status online">ACTIVE</span>
+        <div class="energy-card">
+            <i class="fa-solid fa-bolt"></i>
+            <h4>Hidro</h4>
+            <div class="bar"><div style="width:85%"></div></div>
         </div>
 
     </div>
@@ -83,43 +74,30 @@
 </section>
 
 <!-- PLANES -->
-<section class="products-pro">
+<section class="plans-ultra">
 
-    <div class="products-header">
-        <h3><i class="fa-solid fa-layer-group"></i> PLANES DE MINERÍA</h3>
-        <span class="badge-live">LIVE</span>
-    </div>
+    <h3>Planes de inversión</h3>
 
-    <div class="products-grid">
+    <div class="plans-grid">
 
         {% for producto in productos %}
-        <div class="product-card {% if forloop.counter == 2 %}pro{% endif %}">
+        <div class="plan">
 
-            {% if forloop.counter == 2 %}
-            <div class="tag">TOP</div>
-            {% endif %}
-
-            <div class="product-img">
-                <img src="{{ producto.imagen.url }}">
-            </div>
+            <img src="{{ producto.imagen.url }}">
 
             <h4>{{ producto.nombre }}</h4>
 
-            <p class="hash">
-                <i class="fa-solid fa-bolt"></i> {{ producto.duracion }}
-            </p>
+            <p>{{ producto.duracion }}</p>
 
             <div class="profit">
-                +{{ producto.ingreso_diario }} USDT / día
+                +C$ {{ producto.ingreso_diario }}
             </div>
 
-            <small class="price">{{ producto.precio }} USDT</small>
+            <span class="price">C$ {{ producto.precio }}</span>
 
             <form method="POST" action="{% url 'invertir_producto' producto.id %}">
                 {% csrf_token %}
-                <button class="btn-mine">
-                    <i class="fa-solid fa-play"></i> ACTIVAR
-                </button>
+                <button>Activar plan</button>
             </form>
 
         </div>

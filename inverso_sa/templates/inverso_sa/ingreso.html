@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Centro de Minado | Prima Mente{% endblock %}
+{% block title %}Centro Energético | Rpublix{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/ingreso.css' %}">
@@ -10,84 +10,77 @@
 
 {% block contenido %}
 
-<div class="investment-container">
+<div class="panel-energy">
 
-    <h2 class="main-title">
-        <i class="fa-solid fa-satellite-dish"></i> SISTEMA CENTRAL DE MINERIA
-    </h2>
+    <!-- HEADER -->
+    <div class="panel-top">
 
-    <!-- RESUMEN -->
-    <div class="investment-summary">
-
-        <div class="summary-card glow">
-            <i class="fa-solid fa-wallet icon"></i>
-            <span>Balance</span>
-            <h3>{{ saldo }} USDT</h3>
+        <div class="panel-left">
+            <h1>⚡ Control Energético</h1>
+            <p>Sistema de monitoreo y generación en tiempo real</p>
         </div>
 
-        <div class="summary-card glow">
-            <i class="fa-solid fa-microchip icon"></i>
-            <span>Nodos activos</span>
-            <h3>{{ total_proyectos }}</h3>
+        <div class="panel-right">
+            <div class="balance-box">
+                <span>Balance</span>
+                <h2>C$ {{ saldo }}</h2>
+            </div>
+
+            <div class="plant-box">
+                <span>Plantas</span>
+                <h2>{{ total_proyectos }}</h2>
+            </div>
         </div>
 
     </div>
 
-    <h3 class="sub-title">
-        <i class="fa-solid fa-server"></i> Operaciones activas
-    </h3>
-
-    <div class="investment-list">
+    <!-- LISTA -->
+    <div class="energy-rows">
 
         {% if inversiones_activas %}
         {% for inv in inversiones_activas %}
 
-        <div class="investment-card">
+        <div class="energy-row">
 
-            <div class="card-header">
-                <h4><i class="fa-solid fa-cube"></i> {{ inv.producto.nombre }}</h4>
-                <span class="badge">ONLINE</span>
+            <!-- NOMBRE -->
+            <div class="col name">
+                <i class="fa-solid fa-bolt"></i>
+                <div>
+                    <strong>{{ inv.producto.nombre }}</strong>
+                    <small>Activo</small>
+                </div>
             </div>
 
-            <div class="card-body">
+            <!-- CAPITAL -->
+            <div class="col">
+                <span>Capital</span>
+                <strong>C$ {{ inv.producto.precio }}</strong>
+            </div>
 
-                <div class="row">
-                    <span>Capital</span>
-                    <strong>{{ inv.producto.precio }} USDT</strong>
+            <!-- DIARIO -->
+            <div class="col">
+                <span>Diario</span>
+                <strong class="green counter" data-value="{{ inv.producto.ingreso_diario }}">0</strong>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="col">
+                <span>Total</span>
+                <strong class="green counter" data-value="{{ inv.ganancia_total }}">0</strong>
+            </div>
+
+            <!-- PROGRESO -->
+            <div class="col progress-col">
+                <div class="line">
+                    <div class="line-fill"></div>
                 </div>
-
-                <div class="row">
-                    <span>Yield diario</span>
-                    <strong class="green counter" data-value="{{ inv.producto.ingreso_diario }}">0</strong>
-                </div>
-
-                <div class="row">
-                    <span>Tiempo activo</span>
-                    <strong>{{ inv.dias_pagados }} días</strong>
-                </div>
-
-                <div class="row">
-                    <span>Ganancia total</span>
-                    <strong class="green counter" data-value="{{ inv.ganancia_total }}">0</strong>
-                </div>
-
-                <!-- BARRA -->
-                <div class="mining-progress">
-                    <div class="progress-bar"></div>
-                </div>
-
-                <!-- STATUS -->
-                <div class="mining-status">
-                    <i class="fa-solid fa-bolt"></i> Procesando bloques...
-                </div>
-
             </div>
 
         </div>
 
         {% endfor %}
         {% else %}
-            <p class="empty-text">⚠️ No hay nodos activos</p>
+            <p class="empty">No tienes energía activa</p>
         {% endif %}
 
     </div>
@@ -104,10 +97,10 @@ document.querySelectorAll('.counter').forEach(counter => {
     function update() {
         count += speed;
         if (count < target) {
-            counter.innerText = count.toFixed(2);
+            counter.innerText = "C$ " + count.toFixed(2);
             requestAnimationFrame(update);
         } else {
-            counter.innerText = target.toFixed(2);
+            counter.innerText = "C$ " + target.toFixed(2);
         }
     }
 

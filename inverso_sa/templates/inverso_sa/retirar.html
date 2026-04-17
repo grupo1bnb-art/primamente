@@ -1,56 +1,107 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Retirar coins{% endblock %}
+{% block title %}Retirar fondos{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/retirar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block contenido %}
 
-<div class="container-retiro">
+<div class="retiro-wrap">
 
-    <h2>Solicitar retiro USDT</h2>
+    <!-- HEADER PRO -->
+    <div class="retiro-top">
+        <div>
+            <h2><i class="fa-solid fa-money-bill-transfer"></i> Retiro de Fondos</h2>
+            <p>Transfiere tus ganancias generadas por energía renovable</p>
+        </div>
 
-    <p class="saldo-disponible">
-        <strong>USDT disponibles:</strong>
-        {{ request.user.saldo }}
-    </p>
-    <form method="POST" class="retiro-form">
-        {% csrf_token %}
+        <div class="saldo-box">
+            <span>Disponible</span>
+            <h3>C$ {{ request.user.saldo }}</h3>
+        </div>
+    </div>
 
-        <label>Cantidad de USDT a retirar</label>
-        <input 
-            type="number"
-            name="monto"
-            step="1"
-            min="1"
-            max="{{ request.user.saldo }}"
-            required
-        >
+    <!-- GRID -->
+    <div class="retiro-grid">
 
-        <label>DIRECCION WALLET</label>
-        <select name="cuenta" required>
-            {% for cuenta in cuentas %}
-            <option value="{{ cuenta.id }}">
-                {{ cuenta.banco }} - {{ cuenta.numero_cuenta }}
-            </option>
-            {% empty %}
-            <option disabled>
-                No tienes cuentas bancarias registradas
-            </option>
-            {% endfor %}
-        </select>
+        <!-- FORM PRINCIPAL -->
+        <div class="retiro-main">
 
-        <button type="submit" class="btn-retirar">
-            Solicitar retiro</button>
-    </form>
+            <form method="POST" class="form-retiro">
+                {% csrf_token %}
 
-    <a href="{% url 'historial_retiros' %}" class="btn-historial">
-        📄 Historial de retiros 
-    </a>
+                <label>Monto a retirar</label>
+                <input type="number"
+                       name="monto"
+                       min="1"
+                       max="{{ request.user.saldo }}"
+                       placeholder="Ej: 500"
+                       required>
+
+                <!-- BOTONES RAPIDOS -->
+                <div class="quick-amounts">
+                    <button type="button" onclick="setMonto(100)">C$100</button>
+                    <button type="button" onclick="setMonto(500)">C$500</button>
+                    <button type="button" onclick="setMonto(1000)">C$1000</button>
+                    <button type="button" onclick="setMonto(5000)">C$5000</button>
+                </div>
+
+                <label>Cuenta destino</label>
+                <select name="cuenta" required>
+                    {% for cuenta in cuentas %}
+                    <option value="{{ cuenta.id }}">
+                        {{ cuenta.banco }} - {{ cuenta.numero_cuenta }}
+                    </option>
+                    {% empty %}
+                    <option disabled>No hay cuentas registradas</option>
+                    {% endfor %}
+                </select>
+
+                <button class="btn-confirmar">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Procesar Retiro
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- PANEL DERECHO -->
+        <div class="retiro-side">
+
+            <div class="info-box">
+                <h4><i class="fa-solid fa-bolt"></i> Procesamiento</h4>
+                <p>Los retiros son validados manualmente por el sistema.</p>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fa-solid fa-clock"></i> Tiempo</h4>
+                <p>Tiempo estimado: 1 a 3 horas.</p>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fa-solid fa-shield-halved"></i> Seguridad</h4>
+                <p>Transacciones protegidas y monitoreadas.</p>
+            </div>
+
+            <a href="{% url 'historial_retiros' %}" class="btn-history">
+                Ver historial
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
+
+<script>
+function setMonto(valor){
+    document.querySelector('input[name="monto"]').value = valor;
+}
+</script>
 
 {% endblock %}
