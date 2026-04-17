@@ -1,211 +1,135 @@
-/* =====================================
-   CONTENEDOR GENERAL
-===================================== */
-
-.card {
-    background: #ffffff;
-    padding: 28px;
-    border-radius: 18px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+.container-cuentas {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding: 20px;
 }
 
-/* =====================================
-   HEADER
-===================================== */
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.card-header h2 {
-    font-size: 22px;
-    font-weight: 800;
-    color: #111827;
-}
-
-/* BOTÓN AGREGAR */
-
-.btn-primary {
-    background: #2563eb;
-    color: #ffffff;
-    padding: 11px 18px;
+/* ===================== */
+/* CARD FORM */
+/* ===================== */
+.card-form {
+    background: #fff;
+    padding: 20px;
     border-radius: 12px;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    transition: 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-form h2 {
+    margin-bottom: 15px;
+}
+
+/* ===================== */
+/* FORM */
+/* ===================== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===================== */
+/* BUTTON */
+/* ===================== */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
-    background: #1d4ed8;
-    transform: translateY(-1px);
+    background: #45a049;
 }
 
-/* =====================================
-   ALERTAS DJANGO
-===================================== */
-
+/* ===================== */
+/* ALERTS */
+/* ===================== */
 .alert {
-    padding: 12px 16px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
 .alert.success {
-    background: #dcfce7;
-    color: #166534;
+    background: #d4edda;
+    color: #155724;
 }
 
 .alert.error {
-    background: #fee2e2;
-    color: #991b1b;
+    background: #f8d7da;
+    color: #721c24;
 }
 
 .alert.warning {
-    background: #fef3c7;
-    color: #92400e;
+    background: #fff3cd;
+    color: #856404;
 }
 
-/* =====================================
-   TABLA
-===================================== */
-
-.table-container {
-    overflow-x: auto;
+/* ===================== */
+/* LISTADO */
+/* ===================== */
+.card-list {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.styled-table {
+.card-list h2 {
+    margin-bottom: 15px;
+}
+
+table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 14px;
-    min-width: 720px;
+    border-collapse: collapse;
 }
 
-/* HEADER */
-
-.styled-table thead th {
-    background: #f9fafb;
-    color: #374151;
-    font-weight: 700;
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
     text-align: left;
-    padding: 14px 16px;
-    border-bottom: 1px solid #e5e7eb;
 }
 
-/* FILAS */
-
-.styled-table tbody tr {
-    transition: background 0.2s ease;
+table th {
+    background: #f5f5f5;
 }
 
-.styled-table tbody tr:hover {
-    background: #f9fafb;
+/* ===================== */
+/* ESTADOS */
+/* ===================== */
+.activa {
+    color: green;
+    font-weight: bold;
 }
 
-/* CELDAS */
-
-.styled-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid #f1f5f9;
-    color: #374151;
+.inactiva {
+    color: red;
+    font-weight: bold;
 }
 
-/* =====================================
-   BADGES
-===================================== */
-
-.badge {
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    display: inline-block;
-}
-
-.badge.success {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.badge.danger {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
-/* =====================================
-   ACCIONES
-===================================== */
-
-.actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-/* BOTONES */
-
-.btn-sm {
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: 0.2s ease;
-    white-space: nowrap;
-}
-
-/* EDITAR */
-
-.btn-sm.edit {
-    background: #e0ecff;
-    color: #2563eb;
-}
-
-.btn-sm.edit:hover {
-    background: #c7dbff;
-}
-
-/* ELIMINAR / DESACTIVAR */
-
-.btn-sm.delete {
-    background: #fee2e2;
-    color: #dc2626;
-}
-
-.btn-sm.delete:hover {
-    background: #fecaca;
-}
-
-/* =====================================
-   RESPONSIVE
-===================================== */
-
-@media (max-width: 768px) {
-
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .btn-primary {
-        width: 100%;
-        text-align: center;
-    }
-
-    .actions {
-        flex-direction: column;
-    }
-
-    .btn-sm {
-        width: 100%;
-        text-align: center;
-    }
+.empty {
+    text-align: center;
+    color: #888;
 }

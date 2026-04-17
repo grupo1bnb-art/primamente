@@ -73,8 +73,7 @@ urlpatterns = [
 
     # 🏦 CUENTAS SISTEMA
     path('cuentas/bancarias/', views.cuentas_bancarias, name='cuentas_bancarias'),
-    path('cuentas/bancarias/nueva/', views.crear_cuenta_bancaria, name='crear_cuenta_bancaria'),
-    path('cuentas/bancarias/editar/<int:id>/', views.editar_cuenta_bancaria, name='editar_cuenta_bancaria'),
+   
     path('cuentas/bancarias/eliminar/<int:id>/', views.eliminar_cuenta_bancaria, name='eliminar_cuenta_bancaria'),
 
     path('finanzas/', views.ingresos_egresos, name='ingresos_egresos'),

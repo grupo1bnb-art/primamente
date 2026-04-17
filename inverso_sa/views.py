@@ -375,47 +375,48 @@ def mis_recargas_view(request):
 
 @login_required
 def cuentas_bancarias(request):
+
     cuentas = CuentaBancaria.objects.all().order_by('-fecha_creacion')
-    return render(request, 'inverso_sa/cuentas_bancarias.html', {
-        'cuentas': cuentas
-    })
 
+    cuenta_id = request.GET.get("editar")
+    cuenta = None
 
-@login_required
-def crear_cuenta_bancaria(request):
-    if request.method == 'POST':
-        form = CuentaBancariaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '✅ Cuenta bancaria agregada correctamente')
-            return redirect('cuentas_bancarias')
-    else:
-        form = CuentaBancariaForm()
-
-    return render(request, 'inverso_sa/cuenta_form.html', {
-        'form': form,
-        'titulo': 'Agregar Cuenta Bancaria'
-    })
-
-
-@login_required
-def editar_cuenta_bancaria(request, id):
-    cuenta = get_object_or_404(CuentaBancaria, id=id)
+    # 👉 Si viene ?editar=ID
+    if cuenta_id:
+        cuenta = get_object_or_404(CuentaBancaria, id=cuenta_id)
 
     if request.method == 'POST':
-        form = CuentaBancariaForm(request.POST, instance=cuenta)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '✏ Cuenta bancaria actualizada')
-            return redirect('cuentas_bancarias')
+
+        # 👉 EDITAR
+        if "editar_id" in request.POST:
+            cuenta = get_object_or_404(CuentaBancaria, id=request.POST.get("editar_id"))
+            form = CuentaBancariaForm(request.POST, instance=cuenta)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, "✏ Cuenta actualizada")
+                return redirect('cuentas_bancarias')
+
+        # 👉 CREAR
+        else:
+            form = CuentaBancariaForm(request.POST)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, "✅ Cuenta agregada")
+                return redirect('cuentas_bancarias')
+            else:
+                messages.error(request, "❌ Error en el formulario")
+
     else:
         form = CuentaBancariaForm(instance=cuenta)
 
     return render(request, 'inverso_sa/cuenta_form.html', {
+        'cuentas': cuentas,
         'form': form,
-        'titulo': 'Editar Cuenta Bancaria'
+        'editando': cuenta is not None,
+        'cuenta': cuenta
     })
-
 
 @login_required
 def eliminar_cuenta_bancaria(request, id):

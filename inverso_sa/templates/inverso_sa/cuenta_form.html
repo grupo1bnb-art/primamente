@@ -1,67 +1,118 @@
 {% extends "inverso_sa/panel.html" %}
 {% load static %}
+
+{% block title %}Cuentas Bancarias{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/cuentabancaria.css' %}">
 {% endblock %}
 
-
-{% block title %}{{ titulo }}{% endblock %}
-{% block page_title %}{{ titulo }}{% endblock %}
-
 {% block content %}
 
-<div class="form-card">
+<div class="container-cuentas">
 
-    {% if messages %}
+    <!-- ===================== -->
+    <!-- FORMULARIO -->
+    <!-- ===================== -->
+    <div class="card-form">
+        <h2>
+            {% if editando %}
+                Editar Cuenta
+            {% else %}
+                Agregar Cuenta
+            {% endif %}
+        </h2>
+
         {% for message in messages %}
-            <div class="alert {{ message.tags }}">
-                {{ message }}
-            </div>
+            <div class="alert {{ message.tags }}">{{ message }}</div>
         {% endfor %}
-    {% endif %}
 
-    {% if form.non_field_errors %}
-        <div class="alert error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
+        <form method="POST">
+            {% csrf_token %}
 
-    <form method="POST" class="bank-form">
-        {% csrf_token %}
+            {% if editando %}
+                <input type="hidden" name="editar_id" value="{{ cuenta.id }}">
+            {% endif %}
 
-        <div class="form-group">
-            <label>Banco</label>
-            {{ form.banco }}
-            {{ form.banco.errors }}
-        </div>
+            <div class="form-group">
+                <label>Banco</label>
+                {{ form.banco }}
+            </div>
 
-        <div class="form-group">
-            <label>Destinatario</label>
-            {{ form.destinatario }}
-            {{ form.destinatario.errors }}
-        </div>
+            <div class="form-group">
+                <label>Destinatario</label>
+                {{ form.destinatario }}
+            </div>
 
-        <div class="form-group">
-            <label>Número de cuenta</label>
-            {{ form.numero_cuenta }}
-            {{ form.numero_cuenta.errors }}
-        </div>
+            <div class="form-group">
+                <label>Número de cuenta</label>
+                {{ form.numero_cuenta }}
+            </div>
 
-        <div class="form-group checkbox">
-            <label>
-                {{ form.activa }} Cuenta activa
-            </label>
-        </div>
+            <div class="form-group checkbox">
+                {{ form.activa }} Activa
+            </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn-primary">💾 Guardar</button>
+            <button class="btn-primary">
+                {% if editando %}
+                    Actualizar
+                {% else %}
+                    Guardar
+                {% endif %}
+            </button>
+        </form>
+    </div>
 
-            <a href="{% url 'cuentas_bancarias' %}" class="btn-cancel">
-                ↩ Cancelar
-            </a>
-        </div>
+    <!-- ===================== -->
+    <!-- TABLA -->
+    <!-- ===================== -->
+    <div class="card-list">
+        <h2>Listado</h2>
 
-    </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Banco</th>
+                    <th>Titular</th>
+                    <th>Número</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for cuenta in cuentas %}
+                <tr>
+                    <td>{{ cuenta.banco }}</td>
+                    <td>{{ cuenta.destinatario }}</td>
+                    <td>{{ cuenta.numero_cuenta }}</td>
+                    <td>
+                        {% if cuenta.activa %}
+                            <span class="activa">Activa</span>
+                        {% else %}
+                            <span class="inactiva">Inactiva</span>
+                        {% endif %}
+                    </td>
+
+                    <td class="acciones">
+
+                        <!-- EDITAR -->
+                        <a href="?editar={{ cuenta.id }}" class="btn-edit">
+                            ✏
+                        </a>
+
+                        <!-- DESACTIVAR -->
+                        <a href="{% url 'eliminar_cuenta_bancaria' cuenta.id %}" class="btn-delete">
+                            ⛔
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
 
 </div>
 
