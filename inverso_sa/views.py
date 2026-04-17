@@ -961,7 +961,7 @@ def ingresos_egresos(request):
             'fecha': r.fecha,
             'usuario': r.usuario.username,
             'detalle': f"Recarga ({r.cuenta.banco})",
-            'referencia': r.referencia,
+           
             'tipo': 'ingreso',
             'monto': r.monto
         })
