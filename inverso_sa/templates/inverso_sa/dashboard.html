@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,103 +21,110 @@
 
 <body>
 
-<!-- 🌄 FONDO -->
-<div class="bg"></div>
+    <!-- 🌄 FONDO -->
+    <div class="bg"></div>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- SIDEBAR DESKTOP -->
-    <aside class="sidebar">
+        <!-- SIDEBAR DESKTOP -->
+        <aside class="sidebar">
 
-        <h2 class="logo">R<span>publix</span></h2>
+            <h2 class="logo">R<span>publix</span></h2>
 
-        <nav>
-            <a href="{% url 'inicio' %}">
-                <i data-lucide="sun"></i>
-                <span>Inicio</span>
-            </a>
+            <nav>
+                <a href="{% url 'inicio' %}">
+                    <i data-lucide="sun"></i>
+                    <span>Inicio</span>
+                </a>
 
-            <a href="{% url 'ingreso' %}">
-                <i data-lucide="zap"></i>
-                <span>Ganancias</span>
-            </a>
+                <a href="{% url 'ingreso' %}">
+                    <i data-lucide="zap"></i>
+                    <span>Ganancias</span>
+                </a>
 
-            <a href="{% url 'equipo' %}">
-                <i data-lucide="users"></i>
-                <span>Equipo</span>
-            </a>
+                <a href="{% url 'equipo' %}">
+                    <i data-lucide="users"></i>
+                    <span>Equipo</span>
+                </a>
 
-            <a href="{% url 'mio' %}">
-                <i data-lucide="user"></i>
-                <span>Perfil</span>
-            </a>
-        </nav>
+                <a href="{% url 'mio' %}">
+                    <i data-lucide="user"></i>
+                    <span>Perfil</span>
+                </a>
+                {% if user.is_superuser %}
+                <a href="{% url 'panel_usuarios' %}">
+                    <i data-lucide="user"></i>
+                    <span>Perfil</span>
+                </a>
+                {% endif %}
+            </nav>
 
-    </aside>
+        </aside>
 
-    <!-- MAIN -->
-    <div class="main">
+        <!-- MAIN -->
+        <div class="main">
 
-        <!-- NAVBAR -->
-        <header class="navbar">
-            <h2 class="page-title">
-                {% block page_title %}Dashboard{% endblock %}
-            </h2>
+            <!-- NAVBAR -->
+            <header class="navbar">
+                <h2 class="page-title">
+                    {% block page_title %}Dashboard{% endblock %}
+                </h2>
 
-            <div class="user">
-                <i data-lucide="leaf"></i>
-                <span>{{ request.user.username }}</span>
-            </div>
-        </header>
+                <div class="user">
+                    <i data-lucide="leaf"></i>
+                    <span>{{ request.user.username }}</span>
+                </div>
+            </header>
 
-        <!-- CONTENIDO -->
-        <main class="content">
+            <!-- CONTENIDO -->
+            <main class="content">
 
-            {% if messages %}
+                {% if messages %}
                 {% for message in messages %}
-                    <div class="alert">{{ message }}</div>
+                <div class="alert">{{ message }}</div>
                 {% endfor %}
-            {% endif %}
+                {% endif %}
 
-            {% block contenido %}
-            {% endblock %}
+                {% block contenido %}
+                {% endblock %}
 
-        </main>
+            </main>
+
+        </div>
 
     </div>
 
-</div>
+    <!-- 📱 NAVBAR MÓVIL -->
+    <nav class="bottom-nav">
 
-<!-- 📱 NAVBAR MÓVIL -->
-<nav class="bottom-nav">
+        <a href="{% url 'inicio' %}">
+            <i data-lucide="sun"></i>
+            <span>Inicio</span>
+        </a>
 
-    <a href="{% url 'inicio' %}">
-        <i data-lucide="sun"></i>
-        <span>Inicio</span>
-    </a>
+        <a href="{% url 'ingreso' %}">
+            <i data-lucide="zap"></i>
+            <span>Ganancias</span>
+        </a>
 
-    <a href="{% url 'ingreso' %}">
-        <i data-lucide="zap"></i>
-        <span>Ganancias</span>
-    </a>
+        <a href="{% url 'equipo' %}">
+            <i data-lucide="users"></i>
+            <span>Equipo</span>
+        </a>
 
-    <a href="{% url 'equipo' %}">
-        <i data-lucide="users"></i>
-        <span>Equipo</span>
-    </a>
+        <a href="{% url 'mio' %}">
+            <i data-lucide="user"></i>
+            <span>Perfil</span>
+        </a>
 
-    <a href="{% url 'mio' %}">
-        <i data-lucide="user"></i>
-        <span>Perfil</span>
-    </a>
+    </nav>
 
-</nav>
+    <script>
+        lucide.createIcons();
+    </script>
 
-<script>
-lucide.createIcons();
-</script>
-
-{% block extra_js %}{% endblock %}
+    {% block extra_js %}{% endblock %}
 
 </body>
+
 </html>
