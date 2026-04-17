@@ -134,7 +134,7 @@ def registro_view(request):
             email=email,
             first_name=first_name,
             last_name=last_name,
-            saldo=0.5,
+            saldo=10,
             password=make_password(password1)
         )
 
