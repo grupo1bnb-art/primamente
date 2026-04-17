@@ -1,125 +1,69 @@
+{% extends "inverso_sa/panel.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}PrimaMente Admin{% endblock %}</title>
+{% block title %}{{ titulo }}{% endblock %}
 
-    <!-- CSS BASE -->
-    <link rel="stylesheet" href="{% static 'inverso_sa/css/panel.css' %}">
+{% block page_title %}
+{{ titulo }}
+{% endblock %}
 
-    <!-- ICONOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% block css %}
+<link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_bancaria.css' %}">
+{% endblock %}
 
-    {% block css %}{% endblock %}
-</head>
+{% block content %}
 
-<body>
+<div class="form-container">
 
-<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <div class="card-form">
+        <h2><i class="fa-solid fa-wallet"></i> {{ titulo }}</h2>
 
-<div class="container">
+        <!-- MENSAJES -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
+        <form method="POST">
+            {% csrf_token %}
 
-        <div class="sidebar-header">
-            <img src="{% static 'primamente/img/logo.jpeg' %}" class="logo">
-            <span class="brand-name">PRIMAMENTE</span>
-        </div>
-
-        <nav>
-            <ul class="nav-menu">
-
-                <li class="nav-item active">
-                    <a href="{% url 'solicitudes_recarga' %}">
-                        <i class="fa-solid fa-coins"></i> Recargas
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'panel_usuarios' %}">
-                        <i class="fa-solid fa-users"></i> Usuarios
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'agregar_producto' %}">
-                        <i class="fa-solid fa-box"></i> Crear Plan
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'ver_productos' %}">
-                        <i class="fa-solid fa-layer-group"></i> Planes
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'cuentas_bancarias' %}">
-                        <i class="fa-solid fa-wallet"></i> Wallets
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'ingresos_egresos' %}">
-                        <i class="fa-solid fa-chart-line"></i> Finanzas
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{% url 'solicitudes_retiro' %}">
-                        <i class="fa-solid fa-arrow-up-right-dots"></i> Retiros
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-
-        <a href="{% url 'logout' %}" class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i> Salir
-        </a>
-
-    </aside>
-
-    <!-- MAIN -->
-    <div class="main-wrapper">
-
-        <header class="header">
-
-            <button class="menu-btn" onclick="toggleSidebar()">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-
-            <div class="header-info">
-                <h1>{% block page_title %}Panel Admin{% endblock %}</h1>
-                <p>Bienvenido {{ request.user.username }}</p>
+            <div class="form-group">
+                <label>Banco</label>
+                {{ form.banco }}
             </div>
 
-        </header>
+            <div class="form-group">
+                <label>Nombre del Destinatario</label>
+                {{ form.destinatario }}
+            </div>
 
-        <main class="main-content">
-            {% block content %}{% endblock %}
-        </main>
+            <div class="form-group">
+                <label>Número de Cuenta / Wallet</label>
+                {{ form.numero_cuenta }}
+            </div>
 
-        <footer class="footer">
-            © 2026 PRIMAMENTE — Sistema Inteligente 🚀
-        </footer>
+            <div class="form-group checkbox">
+                <label>
+                    {{ form.activa }} Cuenta activa
+                </label>
+            </div>
 
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                    <i class="fa-solid fa-save"></i> Guardar
+                </button>
+
+                <a href="{% url 'cuentas_bancarias' %}" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Volver
+                </a>
+            </div>
+
+        </form>
     </div>
 
 </div>
 
-<script>
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("open");
-    document.getElementById("overlay").classList.toggle("show");
-}
-</script>
-
-{% block js %}{% endblock %}
-
-</body>
-</html>
+{% endblock %}
