@@ -10,9 +10,24 @@
 
 {% block contenido %}
 
+<!-- OVERLAY TELEGRAM -->
+<div id="telegram-overlay">
+    <div class="telegram-box">
+        <h2>🚀 Únete a nuestro Telegram</h2>
+        <p>No te pierdas actualizaciones, ganancias y soporte en tiempo real.</p>
+
+        <a href="https://t.me/+2wjhO6ry9a8wYmMx" target="_blank" class="btn-join">
+            Unirme ahora
+        </a>
+
+        <button onclick="cerrarOverlay()" class="btn-close">
+            Continuar al sitio
+        </button>
+    </div>
+</div>
+
 <!-- HERO -->
 <section class="hero-ultra">
-
     <div class="hero-info">
         <h1>⚡ Energía Renovable Inteligente</h1>
         <p>Invierte en generación sostenible y obtén ingresos automatizados con infraestructura energética real.</p>
@@ -21,12 +36,10 @@
             Invertir ahora
         </button>
     </div>
-
 </section>
 
 <!-- RESUMEN -->
 <section class="kpi-grid">
-
     <div class="kpi">
         <span>Balance disponible</span>
         <h2>C$ {{ user.saldo }}</h2>
@@ -41,16 +54,13 @@
         <span>Plantas activas</span>
         <h2>{{ total_proyectos }}</h2>
     </div>
-
 </section>
 
 <!-- ENERGÍA -->
 <section class="energy-section">
-
     <h3>Producción energética</h3>
 
     <div class="energy-grid">
-
         <div class="energy-card">
             <i class="fa-solid fa-wind"></i>
             <h4>Eólica</h4>
@@ -68,25 +78,18 @@
             <h4>Hidro</h4>
             <div class="bar"><div style="width:85%"></div></div>
         </div>
-
     </div>
-
 </section>
 
 <!-- PLANES -->
 <section class="plans-ultra">
-
     <h3>Planes de inversión</h3>
 
     <div class="plans-grid">
-
         {% for producto in productos %}
         <div class="plan">
-
             <img src="{{ producto.imagen.url }}">
-
             <h4>{{ producto.nombre }}</h4>
-
             <p>{{ producto.duracion }}</p>
 
             <div class="profit">
@@ -99,12 +102,25 @@
                 {% csrf_token %}
                 <button>Activar plan</button>
             </form>
-
         </div>
         {% endfor %}
-
     </div>
-
 </section>
+
+<!-- SCRIPT -->
+<script>
+window.onload = function() {
+    if (!localStorage.getItem("telegram_visto")) {
+        document.getElementById("telegram-overlay").style.display = "flex";
+    } else {
+        document.getElementById("telegram-overlay").style.display = "none";
+    }
+}
+
+function cerrarOverlay() {
+    localStorage.setItem("telegram_visto", "true");
+    document.getElementById("telegram-overlay").style.display = "none";
+}
+</script>
 
 {% endblock %}

@@ -5,6 +5,57 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+/* OVERLAY */
+#telegram-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 6, 23, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.telegram-box {
+    background: #020617;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.telegram-box h2 {
+    margin-bottom: 10px;
+}
+
+.telegram-box p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.btn-join {
+    display: block;
+    background: #229ED9;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.btn-close {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 /* HERO */
 .hero-ultra {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
@@ -56,19 +107,11 @@ body {
     color: #94a3b8;
 }
 
-.kpi h2 {
-    margin-top: 10px;
-}
-
 .green {
     color: #22c55e;
 }
 
 /* ENERGY */
-.energy-section {
-    margin-bottom: 40px;
-}
-
 .energy-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
@@ -82,12 +125,6 @@ body {
     text-align: center;
 }
 
-.energy-card i {
-    font-size: 28px;
-    color: #22c55e;
-}
-
-/* BARRAS */
 .bar {
     margin-top: 10px;
     height: 8px;
@@ -131,11 +168,6 @@ body {
     font-weight: bold;
 }
 
-.price {
-    display: block;
-    margin-bottom: 10px;
-}
-
 .plan button {
     width: 100%;
     padding: 10px;
@@ -143,16 +175,4 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-
-    .hero-ultra {
-        padding: 30px;
-    }
-
-    .hero-info h1 {
-        font-size: 22px;
-    }
 }
