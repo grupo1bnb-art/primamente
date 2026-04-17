@@ -784,7 +784,7 @@ def equipo_view(request):
             "total_comision": total_comision
         })
 
-    link = f"https://www.Republix.com/registro/?ref={usuario.codigo_invitacion}"
+    link = f"https://rpublix-21ey.onrender.com/registro/?ref={usuario.codigo_invitacion}"
 
     return render(request, "inverso_sa/equipo.html", {
         "codigo": usuario.codigo_invitacion,
