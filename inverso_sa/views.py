@@ -343,8 +343,8 @@ def recargar_view(request):
         voucher = request.FILES.get("voucher")
 
         # ✅ VALIDACIÓN MÍNIMA
-        if monto < 10:
-            messages.error(request, "⚠ El monto mínimo de recarga es USDT 10")
+        if monto < 499:
+            messages.error(request, "⚠ El monto mínimo de recarga es 500 NIO")
             return redirect("recargar")
 
         # ❌ voucher obligatorio
@@ -675,8 +675,8 @@ def retirar_view(request):
             messages.error(request, "Monto inválido")
             return redirect("retirar")
 
-        if monto <= Decimal("100"):
-            messages.error(request, "El monto debe ser mayor a 99 cordovas")
+        if monto <= Decimal("199"):
+            messages.error(request, "El monto debe ser mayor a 200 cordovas")
             return redirect("retirar")
 
         if monto > usuario.saldo:
