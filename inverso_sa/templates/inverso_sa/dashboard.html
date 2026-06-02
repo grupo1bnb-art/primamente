@@ -5,40 +5,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Prima Mente{% endblock %}</title>
+    <title>{% block title %}Rddit{% endblock %}</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'inverso_sa/css/dashboard.css' %}">
 
-    <!-- ICONOS -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- FUENTE -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     {% block extra_css %}{% endblock %}
 </head>
 
 <body>
 
-    <!-- 🌄 FONDO -->
-    <div class="bg"></div>
-
     <div class="layout">
 
-        <!-- SIDEBAR DESKTOP -->
+        <!-- SIDEBAR -->
         <aside class="sidebar">
 
-            <h2 class="logo">R<span>publix</span></h2>
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i data-lucide="message-circle"></i>
+                </div>
 
-            <nav>
+                <div class="logo-text">
+                    <h2>Rddit</h2>
+                    <span>Community</span>
+                </div>
+            </div>
+
+            <nav class="menu">
+
                 <a href="{% url 'inicio' %}">
-                    <i data-lucide="sun"></i>
+                    <i data-lucide="house"></i>
                     <span>Inicio</span>
                 </a>
 
                 <a href="{% url 'ingreso' %}">
-                    <i data-lucide="zap"></i>
+                    <i data-lucide="wallet"></i>
                     <span>Ganancias</span>
                 </a>
 
@@ -48,40 +53,72 @@
                 </a>
 
                 <a href="{% url 'mio' %}">
-                    <i data-lucide="user"></i>
+                    <i data-lucide="user-circle"></i>
                     <span>Perfil</span>
                 </a>
+
                 {% if user.is_superuser %}
                 <a href="{% url 'panel_usuarios' %}">
-                    <i data-lucide="user"></i>
-                    <span>Perfil</span>
+                    <i data-lucide="shield"></i>
+                    <span>Administración</span>
                 </a>
                 {% endif %}
+
             </nav>
+
+            <div class="sidebar-user">
+
+                <div class="avatar">
+                    {{ request.user.username|slice:":1"|upper }}
+                </div>
+
+                <div class="user-info">
+                    <strong>{{ request.user.username }}</strong>
+                    <small>Miembro activo</small>
+                </div>
+
+            </div>
 
         </aside>
 
-        <!-- MAIN -->
+        <!-- CONTENIDO -->
         <div class="main">
 
-            <!-- NAVBAR -->
+            <!-- TOPBAR -->
             <header class="navbar">
-                <h2 class="page-title">
-                    {% block page_title %}Dashboard{% endblock %}
-                </h2>
 
-                <div class="user">
-                    <i data-lucide="leaf"></i>
-                    <span>{{ request.user.username }}</span>
+                <div class="navbar-left">
+
+                    <h2 class="page-title">
+                        {% block page_title %}Dashboard{% endblock %}
+                    </h2>
+
                 </div>
+
+                <div class="navbar-right">
+
+                    <div class="user-chip">
+
+                        <i data-lucide="user"></i>
+
+                        <span>
+                            {{ request.user.username }}
+                        </span>
+
+                    </div>
+
+                </div>
+
             </header>
 
-            <!-- CONTENIDO -->
+            <!-- CONTENIDO PRINCIPAL -->
             <main class="content">
 
                 {% if messages %}
                 {% for message in messages %}
-                <div class="alert">{{ message }}</div>
+                <div class="alert">
+                    {{ message }}
+                </div>
                 {% endfor %}
                 {% endif %}
 
@@ -94,16 +131,17 @@
 
     </div>
 
-    <!-- 📱 NAVBAR MÓVIL -->
+    <!-- NAVBAR MOVIL -->
+
     <nav class="bottom-nav">
 
         <a href="{% url 'inicio' %}">
-            <i data-lucide="sun"></i>
+            <i data-lucide="house"></i>
             <span>Inicio</span>
         </a>
 
         <a href="{% url 'ingreso' %}">
-            <i data-lucide="zap"></i>
+            <i data-lucide="wallet"></i>
             <span>Ganancias</span>
         </a>
 
@@ -113,7 +151,7 @@
         </a>
 
         <a href="{% url 'mio' %}">
-            <i data-lucide="user"></i>
+            <i data-lucide="user-circle"></i>
             <span>Perfil</span>
         </a>
 

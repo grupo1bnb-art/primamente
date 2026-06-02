@@ -1,126 +1,266 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Inicio | Rpublix{% endblock %}
+{% block title %}Inicio | Rddit{% endblock %}
 
 {% block extra_css %}
+
 <link rel="stylesheet" href="{% static 'inverso_sa/css/inicio.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block contenido %}
 
-<!-- OVERLAY TELEGRAM -->
+<!-- OVERLAY COMUNIDAD -->
+
 <div id="telegram-overlay">
-    <div class="telegram-box">
-        <h2>🚀 Únete a nuestro Telegram</h2>
-        <p>No te pierdas actualizaciones, ganancias y soporte en tiempo real.</p>
 
-        <a href="https://t.me/+2wjhO6ry9a8wYmMx" target="_blank" class="btn-join">
-            Unirme ahora
-        </a>
+<div class="telegram-box">
 
-        <button onclick="cerrarOverlay()" class="btn-close">
-            Continuar al sitio
-        </button>
+    <div class="telegram-icon">
+        <i class="fa-brands fa-reddit-alien"></i>
     </div>
+
+    <h2>Únete a nuestra Comunidad</h2>
+
+    <p>
+        Descubre publicaciones destacadas, tendencias,
+        debates y contenido compartido por miles de usuarios.
+    </p>
+
+    <a href="https://www.reddit.com"
+       target="_blank"
+       class="btn-join">
+
+        <i class="fa-brands fa-reddit-alien"></i>
+        Explorar comunidad
+
+    </a>
+
+    <button onclick="cerrarOverlay()" class="btn-close">
+        Continuar
+    </button>
+
+</div>
+
 </div>
 
 <!-- HERO -->
-<section class="hero-ultra">
-    <div class="hero-info">
-        <h1>⚡ Energía Renovable Inteligente</h1>
-        <p>Invierte en generación sostenible y obtén ingresos automatizados con infraestructura energética real.</p>
 
-        <button onclick="window.location.href='{% url 'recargar' %}'">
-            Invertir ahora
-        </button>
-    </div>
+<section class="hero-ultra">
+
+<div class="hero-info">
+
+    <span class="hero-badge">
+        🔥 Tendencias más populares del día
+    </span>
+
+    <h1>
+        Descubre comunidades que te interesan
+    </h1>
+
+    <p>
+        Participa en conversaciones, comparte contenido,
+        descubre noticias y conecta con personas de todo el mundo.
+    </p>
+
+    <button onclick="window.location.href='{% url 'recargar' %}'">
+
+        <i class="fa-solid fa-fire"></i>
+        Recargar ahora
+
+    </button>
+
+</div>
+
 </section>
 
 <!-- RESUMEN -->
+
 <section class="kpi-grid">
-    <div class="kpi">
-        <span>Balance disponible</span>
-        <h2>C$ {{ user.saldo }}</h2>
-    </div>
 
-    <div class="kpi">
-        <span>Generación hoy</span>
-        <h2 class="green">+C$ {{ ganancias_hoy }}</h2>
-    </div>
+<div class="kpi">
 
-    <div class="kpi">
-        <span>Plantas activas</span>
-        <h2>{{ total_proyectos }}</h2>
-    </div>
+    <i class="fa-solid fa-users"></i>
+
+    <span>Mis Saldos</span>
+
+    <h2>C${{ user.saldo }}</h2>
+
+</div>
+
+<div class="kpi">
+
+    <i class="fa-solid fa-arrow-trend-up"></i>
+
+    <span>Publicaciones hoy</span>
+
+    <h2 class="green">
+        {{ ganancias_hoy }}
+    </h2>
+
+</div>
+
+<div class="kpi">
+
+    <i class="fa-solid fa-comments"></i>
+
+    <span>Comunidades activas</span>
+
+    <h2>{{ total_proyectos }}</h2>
+
+</div>
+
 </section>
 
-<!-- ENERGÍA -->
+<!-- CATEGORIAS -->
+
 <section class="energy-section">
-    <h3>Producción energética</h3>
 
-    <div class="energy-grid">
-        <div class="energy-card">
-            <i class="fa-solid fa-wind"></i>
-            <h4>Eólica</h4>
-            <div class="bar"><div style="width:75%"></div></div>
+<div class="section-header">
+
+    <h3>Categorías Populares</h3>
+
+    <span>Actualizado en tiempo real</span>
+
+</div>
+
+<div class="energy-grid">
+
+    <div class="energy-card">
+
+        <i class="fa-solid fa-gamepad"></i>
+
+        <h4>Gaming</h4>
+
+        <div class="bar">
+            <div style="width:75%"></div>
         </div>
 
-        <div class="energy-card">
-            <i class="fa-solid fa-sun"></i>
-            <h4>Solar</h4>
-            <div class="bar"><div style="width:60%"></div></div>
-        </div>
+        <small>75% de actividad</small>
 
-        <div class="energy-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h4>Hidro</h4>
-            <div class="bar"><div style="width:85%"></div></div>
-        </div>
     </div>
+
+    <div class="energy-card">
+
+        <i class="fa-solid fa-laptop"></i>
+
+        <h4>Tecnología</h4>
+
+        <div class="bar">
+            <div style="width:60%"></div>
+        </div>
+
+        <small>60% de actividad</small>
+
+    </div>
+
+    <div class="energy-card">
+
+        <i class="fa-solid fa-film"></i>
+
+        <h4>Entretenimiento</h4>
+
+        <div class="bar">
+            <div style="width:85%"></div>
+        </div>
+
+        <small>85% de actividad</small>
+
+    </div>
+
+</div>
+
 </section>
 
-<!-- PLANES -->
-<section class="plans-ultra">
-    <h3>Planes de inversión</h3>
+<!-- COMUNIDADES -->
 
-    <div class="plans-grid">
-        {% for producto in productos %}
-        <div class="plan">
-            <img src="{{ producto.imagen.url }}">
-            <h4>{{ producto.nombre }}</h4>
+<section class="plans-ultra">
+
+<div class="section-header">
+
+    <h3>Comunidades Destacadas</h3>
+
+    <span>{{ productos|length }} disponibles</span>
+
+</div>
+
+<div class="plans-grid">
+
+    {% for producto in productos %}
+
+    <div class="plan">
+
+        <div class="plan-image">
+
+            <img src="{{ producto.imagen.url }}"
+                 alt="{{ producto.nombre }}"
+                 loading="lazy">
+
+        </div>
+
+        <div class="plan-body">
+
+            <h4>r/{{ producto.nombre }}</h4>
+
             <p>{{ producto.duracion }}</p>
 
             <div class="profit">
-                +C$ {{ producto.ingreso_diario }}
+                {{ producto.ingreso_diario }} NIO
             </div>
 
-            <span class="price">C$ {{ producto.precio }}</span>
+            <span class="price">
+                Costo: {{ producto.precio }} NIO
+            </span>
 
-            <form method="POST" action="{% url 'invertir_producto' producto.id %}">
+            <form method="POST"
+                  action="{% url 'invertir_producto' producto.id %}">
+
                 {% csrf_token %}
-                <button>Activar plan</button>
+
+                <button class="btn-plan">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Unirse
+
+                </button>
+
             </form>
+
         </div>
-        {% endfor %}
+
     </div>
+
+    {% endfor %}
+
+</div>
+
 </section>
 
-<!-- SCRIPT -->
 <script>
+
 window.onload = function() {
+
     if (!localStorage.getItem("telegram_visto")) {
-        document.getElementById("telegram-overlay").style.display = "flex";
+
+        document.getElementById("telegram-overlay")
+            .style.display = "flex";
+
     } else {
-        document.getElementById("telegram-overlay").style.display = "none";
+
+        document.getElementById("telegram-overlay")
+            .style.display = "none";
     }
 }
 
 function cerrarOverlay() {
+
     localStorage.setItem("telegram_visto", "true");
-    document.getElementById("telegram-overlay").style.display = "none";
+
+    document.getElementById("telegram-overlay")
+        .style.display = "none";
 }
+
 </script>
 
 {% endblock %}

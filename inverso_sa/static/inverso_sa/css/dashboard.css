@@ -1,196 +1,470 @@
-:root {
-    --green: #22c55e;
-    --green2: #00ffa6;
-    --bg-dark: #020617;
-    --card: rgba(255,255,255,0.05);
-    --border: rgba(255,255,255,0.1);
-    --text: #ffffff;
-    --muted: #94a3b8;
+:root{
+    --reddit-orange:#FF4500;
+    --reddit-orange-hover:#FF5E1F;
+
+    --bg:#030303;
+    --sidebar:#1A1A1B;
+    --navbar:#1A1A1B;
+    --card:#1A1A1B;
+
+    --border:#343536;
+    --text:#D7DADC;
+    --muted:#818384;
+
+    --hover:#272729;
+    --success:#46D160;
 }
 
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-/* BODY */
-body {
-    background: var(--bg-dark);
-    color: var(--text);
+html{
+    scroll-behavior:smooth;
 }
 
-/* 🌄 FONDO */
-.bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://images.unsplash.com/photo-1509395176047-4a66953fd231") center/cover no-repeat;
-    filter: brightness(0.25);
-    z-index: -1;
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    min-height:100vh;
 }
 
-/* LAYOUT */
-.layout {
-    display: flex;
-    min-height: 100vh;
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:8px;
 }
 
-/* SIDEBAR */
-.sidebar {
-    width: 240px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(20px);
-    padding: 25px;
+::-webkit-scrollbar-track{
+    background:#111;
 }
 
-/* LOGO */
-.logo {
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 30px;
+::-webkit-scrollbar-thumb{
+    background:#444;
+    border-radius:20px;
 }
 
-.logo span {
-    color: var(--green);
+::-webkit-scrollbar-thumb:hover{
+    background:#666;
 }
 
-/* NAV */
-.sidebar nav a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 10px;
-    color: var(--muted);
-    text-decoration: none;
-    margin-bottom: 10px;
-    transition: 0.3s;
+/* ==========================
+   LAYOUT
+========================== */
+
+.layout{
+    display:flex;
+    min-height:100vh;
 }
 
-.sidebar nav a:hover {
-    background: rgba(34,197,94,0.2);
-    color: white;
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    width:270px;
+    min-width:270px;
+    background:var(--sidebar);
+    border-right:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    height:100vh;
 }
 
-/* MAIN */
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+/* ==========================
+   LOGO
+========================== */
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:18px;
+    border-bottom:1px solid var(--border);
 }
 
-/* NAVBAR */
-.navbar {
-    height: 60px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--reddit-orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
 }
 
-/* TITLE */
-.page-title {
-    font-size: 18px;
+.logo-text h2{
+    font-size:22px;
+    font-weight:800;
+    color:#fff;
 }
 
-/* USER */
-.user {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.logo-text span{
+    font-size:12px;
+    color:var(--muted);
 }
 
-/* CONTENIDO */
-.content {
-    padding: 25px;
-    overflow-y: auto;
+/* ==========================
+   MENU
+========================== */
+
+.menu{
+    padding:12px;
+    flex:1;
 }
 
-/* ALERT */
-.alert {
-    background: rgba(34,197,94,0.2);
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--text);
+    padding:12px 16px;
+    border-radius:999px;
+    transition:.25s;
+    margin-bottom:4px;
+    font-size:14px;
+    font-weight:500;
 }
 
-/* ===================== */
-/* 📱 NAVBAR INFERIOR */
-/* ===================== */
-
-.bottom-nav {
-    display: none;
+.menu a:hover{
+    background:var(--hover);
 }
 
-/* ===================== */
-/* 📱 MOBILE */
-/* ===================== */
+.menu a svg{
+    width:20px;
+    height:20px;
+}
 
-@media (max-width: 768px) {
+/* ==========================
+   USER SIDEBAR
+========================== */
 
-    /* ocultar sidebar */
-    .sidebar {
-        display: none;
+.sidebar-user{
+    border-top:1px solid var(--border);
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--reddit-orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#fff;
+}
+
+.user-info{
+    overflow:hidden;
+}
+
+.user-info strong{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.user-info small{
+    color:var(--muted);
+}
+
+/* ==========================
+   MAIN
+========================== */
+
+.main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar{
+    height:56px;
+    background:var(--navbar);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.page-title{
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+}
+
+/* ==========================
+   USER CHIP
+========================== */
+
+.user-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:999px;
+    background:var(--hover);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.user-chip:hover{
+    background:#323436;
+}
+
+.user-chip svg{
+    width:18px;
+    height:18px;
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.content{
+    padding:20px;
+    flex:1;
+    width:100%;
+}
+
+/* ==========================
+   ALERTAS
+========================== */
+
+.alert{
+    background:rgba(255,69,0,.12);
+    border:1px solid rgba(255,69,0,.3);
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+/* ==========================
+   TARJETAS REDDIT
+========================== */
+
+.card,
+.post-card,
+.widget,
+.feed-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:16px;
+    transition:.2s;
+}
+
+.card:hover,
+.post-card:hover,
+.widget:hover,
+.feed-card:hover{
+    border-color:#818384;
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+button,
+.btn,
+.btn-primary{
+    background:var(--reddit-orange);
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover{
+    background:var(--reddit-orange-hover);
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+input,
+textarea,
+select{
+    width:100%;
+    background:#272729;
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:12px 14px;
+    border-radius:20px;
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:var(--reddit-orange);
+}
+
+/* ==========================
+   BOTTOM NAV
+========================== */
+
+.bottom-nav{
+    display:none;
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:1024px){
+
+    .sidebar{
+        width:220px;
+        min-width:220px;
     }
 
-    /* layout columna */
-    .layout {
-        flex-direction: column;
+    .content{
+        padding:16px;
     }
 
-    /* navbar fijo */
-    .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-    }
-
-    /* contenido */
-    .content {
-        margin-top: 60px;
-        padding: 15px;
-        padding-bottom: 80px;
-    }
-
-    /* NAV ABAJO */
-    .bottom-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 65px;
-        background: rgba(0,0,0,0.85);
-        backdrop-filter: blur(12px);
-        border-top: 1px solid var(--border);
-        justify-content: space-around;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    .bottom-nav a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 11px;
-        color: var(--muted);
-        text-decoration: none;
-        gap: 3px;
-        transition: 0.3s;
-    }
-
-    .bottom-nav a i {
-        font-size: 20px;
-    }
-
-    .bottom-nav a:hover {
-        color: var(--green);
-        transform: translateY(-2px);
+    .navbar{
+        padding:0 16px;
     }
 }
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .layout{
+        display:block;
+    }
+
+    .navbar{
+        height:56px;
+        width:100%;
+    }
+
+    .content{
+        padding:12px;
+        padding-bottom:85px;
+    }
+
+    .bottom-nav{
+        display:flex;
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:65px;
+        background:#1A1A1B;
+        border-top:1px solid var(--border);
+        justify-content:space-around;
+        align-items:center;
+        z-index:9999;
+    }
+
+    .bottom-nav a{
+        color:var(--muted);
+        text-decoration:none;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:4px;
+        font-size:11px;
+        transition:.2s;
+    }
+
+    .bottom-nav a:hover{
+        color:var(--reddit-orange);
+    }
+
+    .bottom-nav svg{
+        width:20px;
+        height:20px;
+    }
+}
+
+/* ==========================
+   MOBILE SMALL
+========================== */
+
+@media(max-width:480px){
+
+    .page-title{
+        font-size:16px;
+    }
+
+    .content{
+        padding:10px;
+    }
+
+    .card,
+    .post-card,
+    .widget,
+    .feed-card{
+        padding:14px;
+    }
+
+    .user-chip{
+        font-size:12px;
+    }
+}
+
+/* ==========================
+   MOBILE EXTRA SMALL
+========================== */
+
+@media(max-width:360px){
+
+    .page-title{
+        font-size:14px;
+    }
+
+    .bottom-nav a{
+        font-size:10px;
+    }
+}
+

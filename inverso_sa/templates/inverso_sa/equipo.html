@@ -1,9 +1,10 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Mi Equipo | Rpublix{% endblock %}
+{% block title %}Mi Comunidad | Rddit {% endblock %}
 
 {% block extra_css %}
+
 <link rel="stylesheet" href="{% static 'inverso_sa/css/equipo.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
@@ -12,108 +13,162 @@
 
 <div class="team-container">
 
-    <!-- HERO -->
-    <section class="team-hero">
-        <div class="overlay"></div>
+<!-- HERO -->
+<section class="team-hero">
 
-        <div class="hero-content">
-            <h1><i class="fa-solid fa-leaf"></i> RED ENERGÉTICA</h1>
-            <p>Construye tu red de generación renovable y gana comisiones sostenibles</p>
-        </div>
-    </section>
+    <div class="overlay"></div>
 
-    <!-- INVITACIÓN -->
-    <section class="invite-section">
+    <div class="hero-content">
 
-        <div class="invite-card">
-            <h3><i class="fa-solid fa-user-plus"></i> Invitar usuarios</h3>
+        <h1>
+            <i class="fa-brands fa-reddit-alien"></i>
+            MI COMUNIDAD
+        </h1>
 
-            <div class="invite-data">
-                <div>
-                    <span>Código</span>
-                    <strong>{{ codigo }}</strong>
-                </div>
+        <p>
+            Invita nuevos usuarios, comparte contenido y aumenta tu red dentro de Rddit.
+        </p>
 
-                <div>
-                    <span>Link</span>
-                    <p id="link">{{ link }}</p>
-                </div>
+    </div>
+
+</section>
+
+<!-- INVITACIÓN -->
+<section class="invite-section">
+
+    <div class="invite-card">
+
+        <h3>
+            <i class="fa-solid fa-user-plus"></i>
+            Invitar amigos
+        </h3>
+
+        <div class="invite-data">
+
+            <div>
+                <span>Código de invitación</span>
+                <strong>{{ codigo }}</strong>
             </div>
 
-            <button onclick="copiarLink('{{ link }}')" class="btn-invite">
-                <i class="fa-solid fa-copy"></i> Copiar enlace
-            </button>
-        </div>
-
-    </section>
-
-    <!-- STATS -->
-    <section class="stats">
-
-        <div class="stat-card">
-            <i class="fa-solid fa-users"></i>
-            <h2>{{ equipo|length }}</h2>
-            <p>Usuarios en red</p>
-        </div>
-
-        <div class="stat-card">
-            <i class="fa-solid fa-coins"></i>
-            <h2>C$ {{ total_comision|default:"0" }}</h2>
-            <p>Comisiones</p>
-        </div>
-
-        <div class="stat-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h2>C$ {{ total_volumen|default:"0" }}</h2>
-            <p>Volumen generado</p>
-        </div>
-
-    </section>
-
-    <!-- LISTA -->
-    <section class="team-list">
-
-        {% for m in equipo %}
-        <div class="member-card">
-
-            <div class="member-header">
-                <i class="fa-solid fa-user"></i>
-                <h4>{{ m.referido__username }}</h4>
-            </div>
-
-            <div class="member-body">
-
-                <div class="data">
-                    <span>Inversión</span>
-                    <strong>C$ {{ m.total_invertido }}</strong>
-                </div>
-
-                <div class="data">
-                    <span>Ganancia</span>
-                    <strong class="green">+C$ {{ m.total_comision|floatformat:2 }}</strong>
-                </div>
-
+            <div>
+                <span>Enlace personal</span>
+                <p id="link">{{ link }}</p>
             </div>
 
         </div>
-        {% empty %}
 
-        <div class="empty">
-            🌱 Aún no tienes red activa <br>
-            Invita personas y empieza a generar ingresos
+        <button onclick="copiarLink('{{ link }}')" class="btn-invite">
+
+            <i class="fa-solid fa-copy"></i>
+            Copiar enlace
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <h2>{{ equipo|length }}</h2>
+
+        <p>Miembros referidos</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-arrow-trend-up"></i>
+
+        <h2>C$ {{ total_comision|default:"0" }}</h2>
+
+        <p>Bonificaciones obtenidas</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-fire"></i>
+
+        <h2>C$ {{ total_volumen|default:"0" }}</h2>
+
+        <p>Actividad generada</p>
+
+    </div>
+
+</section>
+
+<!-- LISTA -->
+<section class="team-list">
+
+    {% for m in equipo %}
+
+    <div class="member-card">
+
+        <div class="member-header">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            <h4>{{ m.referido__username }}</h4>
+
         </div>
 
-        {% endfor %}
+        <div class="member-body">
 
-    </section>
+            <div class="data">
 
+                <span>Actividad</span>
+
+                <strong>C$ {{ m.total_invertido }}</strong>
+
+            </div>
+
+            <div class="data">
+
+                <span>Bonificación</span>
+
+                <strong class="orange">
+                    +C$ {{ m.total_comision|floatformat:2 }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty">
+
+        🚀 Todavía no tienes miembros en tu comunidad.
+
+        <br><br>
+
+        Comparte tu enlace de invitación para comenzar a crecer.
+
+    </div>
+
+    {% endfor %}
+
+</section>
 </div>
 
 <script>
+
 function copiarLink(texto){
+
     navigator.clipboard.writeText(texto);
+
     alert("✅ Enlace copiado");
+
 }
+
 </script>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Mi Cuenta | Rpublix{% endblock %}
+{% block title %}Mi Perfil | Rddit{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/mio.css' %}">
@@ -12,87 +12,123 @@
 
 <div class="wallet-container">
 
-    <!-- 💰 PANEL SUPERIOR -->
+    <!-- PERFIL -->
     <section class="wallet-top">
 
         <div class="user-data">
-            <h2>{{ usuario.username }}</h2>
+
+            <h2>u/{{ usuario.username }}</h2>
+
             <p>{{ usuario.email }}</p>
+
         </div>
 
         <div class="ref-box">
-            <span>ID:</span>
-            <strong id="codigo">{{ usuario.codigo_invitacion }}</strong>
+
+            <span>Reddit ID</span>
+
+            <strong id="codigo">
+                {{ usuario.codigo_invitacion }}
+            </strong>
+
             <button onclick="copiarCodigo()">
                 <i class="fa-solid fa-copy"></i>
             </button>
+
         </div>
 
     </section>
 
-    <!-- 💵 BALANCE CENTRAL -->
+    <!-- KARMA -->
+
     <section class="wallet-balance">
 
-        <span>Saldo disponible</span>
-        <h1>C$ {{ saldo }}</h1>
+        <span>Nio Total</span>
+
+        <h1>{{ saldo }}</h1>
 
         <div class="mini-info">
+
             <div>
-                <p>Ganancia hoy</p>
-                <strong>C$ {{ ganancias_hoy }}</strong>
+                <p>Ingreso hoy</p>
+                <strong>{{ ganancias_hoy }}</strong>
             </div>
 
             <div>
                 <p>Estado</p>
-                <strong class="online">Operativo</strong>
+                <strong class="online">En línea</strong>
             </div>
+
         </div>
 
     </section>
 
-    <!-- ⚡ ACCIONES FLOAT -->
+    <!-- ACCIONES -->
+
     <section class="actions-bar">
 
-        <a href="{% url 'recargar' %}" class="circle-btn deposit">
+        <a href="{% url 'recargar' %}" class="action-btn deposit">
             <i class="fa-solid fa-plus"></i>
+            <span>Recargar</span>
         </a>
 
-        <a href="{% url 'retirar' %}" class="circle-btn withdraw">
-            <i class="fa-solid fa-arrow-up"></i>
+        <a href="{% url 'retirar' %}" class="action-btn withdraw">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Retirar</span>
         </a>
 
     </section>
 
-    <!-- 📋 LISTA FUNCIONES (NO CARDS) -->
+    <!-- MENÚ -->
+
     <section class="menu-list">
 
         <a href="{% url 'agregar_cuenta_usuario' %}" class="menu-item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Cuenta de retiro</span>
+
+            <i class="fa-solid fa-user-gear"></i>
+
+            <span>Cuenta Bancaria</span>
+
             <i class="fa-solid fa-chevron-right"></i>
+
         </a>
 
         <a href="{% url 'equipo' %}" class="menu-item">
+
             <i class="fa-solid fa-users"></i>
-            <span>Mi equipo</span>
+
+            <span>Mis afiliados</span>
+
             <i class="fa-solid fa-chevron-right"></i>
+
         </a>
 
         <a href="{% url 'asistencia' %}" class="menu-item">
+
             <i class="fa-solid fa-headset"></i>
-            <span>Soporte</span>
+
+            <span>Centro de ayuda</span>
+
             <i class="fa-solid fa-chevron-right"></i>
+
         </a>
 
         <a href="{% static 'inverso_sa/app/primamente.apk' %}" class="menu-item download" download>
-            <i class="fa-solid fa-download"></i>
-            <span>Descargar App</span>
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            <span>Descargar aplicación</span>
+
             <i class="fa-solid fa-chevron-right"></i>
+
         </a>
 
         <a href="{% url 'logout' %}" class="menu-item logout">
-            <i class="fa-solid fa-power-off"></i>
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
             <span>Cerrar sesión</span>
+
         </a>
 
     </section>
@@ -100,11 +136,11 @@
 </div>
 
 <script>
-function copiarCodigo() {
-    const texto = document.getElementById("codigo").innerText;
-    navigator.clipboard.writeText(texto);
-    alert("Código copiado 🚀");
-}
+    function copiarCodigo() {
+        const texto = document.getElementById("codigo").innerText;
+        navigator.clipboard.writeText(texto);
+        alert("ID copiado");
+    }
 </script>
 
 {% endblock %}

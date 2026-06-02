@@ -1,185 +1,264 @@
-:root {
-    --green: #00ffa6;
-    --green-soft: #22c55e;
-    --dark: #020617;
-    --card: rgba(255,255,255,0.04);
-    --border: rgba(255,255,255,0.08);
-    --text: #ffffff;
-    --muted: #94a3b8;
+:root{
+    --reddit:#ff4500;
+    --reddit-dark:#d93a00;
+    --bg:#1a1a1b;
+    --card:#272729;
+    --card-hover:#2d2d2f;
+    --border:#343536;
+    --text:#d7dadc;
+    --muted:#818384;
+    --upvote:#ff4500;
 }
 
-/* FONDO GLOBAL */
-body {
-    background: radial-gradient(circle at top, #020617, #000);
-    color: var(--text);
+/* BASE */
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Poppins',sans-serif;
 }
 
 /* CONTENEDOR */
-.team-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+.team-container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
 }
 
 /* HERO */
-.team-hero {
-    position: relative;
-    background: url("https://images.unsplash.com/photo-1509395176047-4a66953fd231") center/cover;
-    border-radius: 20px;
-    padding: 60px 30px;
-    overflow: hidden;
-    margin-bottom: 25px;
+.team-hero{
+    position:relative;
+    background:
+    linear-gradient(
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.75)
+    ),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3")
+    center/cover;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:60px 30px;
+    overflow:hidden;
+    margin-bottom:25px;
 }
 
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,255,150,0.2));
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.hero-content h1{
+    font-size:34px;
+    font-weight:800;
+    color:white;
+    margin-bottom:10px;
 }
 
-.hero-content h1 {
-    font-size: 30px;
+.hero-content i{
+    color:var(--reddit);
 }
 
-.hero-content p {
-    color: #d1fae5;
+.hero-content p{
+    color:var(--text);
+    max-width:650px;
 }
 
-/* INVITE */
-.invite-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(20px);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
+/* INVITACION */
+.invite-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:20px;
+    border-radius:16px;
+    margin-bottom:20px;
 }
 
-.invite-data {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+.invite-card h3{
+    color:white;
+    margin-bottom:15px;
 }
 
-#link {
-    font-size: 13px;
-    color: var(--muted);
-    word-break: break-all;
+.invite-data{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.invite-data span{
+    color:var(--muted);
+    display:block;
+    margin-bottom:5px;
+}
+
+#link{
+    color:var(--text);
+    font-size:13px;
+    word-break:break-all;
 }
 
 /* BOTON */
-.btn-invite {
-    margin-top: 15px;
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(135deg, var(--green), var(--green-soft));
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
+.btn-invite{
+    width:100%;
+    margin-top:18px;
+    height:48px;
+    border:none;
+    border-radius:999px;
+    background:var(--reddit);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-invite:hover{
+    background:var(--reddit-dark);
 }
 
 /* STATS */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:20px;
 }
 
-.stat-card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    border: 1px solid var(--border);
-    transition: 0.3s;
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    transition:.3s;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0,255,150,0.3);
+.stat-card:hover{
+    background:var(--card-hover);
+    transform:translateY(-3px);
 }
 
-.stat-card i {
-    font-size: 24px;
-    color: var(--green);
+.stat-card i{
+    color:var(--reddit);
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.stat-card h2{
+    color:white;
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+.stat-card p{
+    color:var(--muted);
 }
 
 /* LISTA */
-.team-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 15px;
+.team-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
 }
 
-/* CARD MIEMBRO */
-.member-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 15px;
-    transition: 0.3s;
+/* MIEMBROS */
+.member-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    transition:.3s;
 }
 
-.member-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0,255,150,0.3);
+.member-card:hover{
+    background:var(--card-hover);
 }
 
-.member-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+.member-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
 }
 
-.member-header i {
-    color: var(--green);
+.member-header i{
+    color:var(--reddit);
+    font-size:20px;
 }
 
-.member-body {
-    display: flex;
-    justify-content: space-between;
+.member-header h4{
+    color:white;
 }
 
-.data span {
-    color: var(--muted);
-    font-size: 13px;
+.member-body{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
-.green {
-    color: var(--green);
+.data{
+    flex:1;
+}
+
+.data span{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.data strong{
+    color:white;
+}
+
+.orange{
+    color:var(--upvote);
 }
 
 /* EMPTY */
-.empty {
-    text-align: center;
-    color: var(--muted);
-    padding: 30px;
+.empty{
+    grid-column:1/-1;
+    background:var(--card);
+    border:1px dashed var(--border);
+    border-radius:16px;
+    padding:40px;
+    text-align:center;
+    color:var(--muted);
+    font-size:16px;
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
+@media(max-width:768px){
 
-    .hero-content h1 {
-        font-size: 22px;
+    .team-container{
+        padding:15px;
     }
 
-    .invite-data {
-        flex-direction: column;
-        gap: 10px;
+    .hero-content h1{
+        font-size:26px;
     }
 
-    .member-body {
-        flex-direction: column;
-        gap: 10px;
+    .invite-data{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .member-body{
+        flex-direction:column;
+    }
+
+    .stat-card{
+        padding:18px;
+    }
+}
+
+@media(max-width:480px){
+
+    .hero-content h1{
+        font-size:22px;
+    }
+
+    .team-hero{
+        padding:40px 20px;
+    }
+
+    .team-list{
+        grid-template-columns:1fr;
     }
 }

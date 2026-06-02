@@ -1,193 +1,331 @@
-:root {
-    --bg: #020617;
-    --card: rgba(255,255,255,0.03);
-    --border: rgba(255,255,255,0.08);
+:root{
+    --reddit:#FF4500;
+    --reddit-dark:#D93A00;
 
-    --green: #22c55e;
-    --blue: #3b82f6;
-    --yellow: #facc15;
-    --red: #ef4444;
+    --bg:#0f1113;
+    --card:#1a1c1f;
+    --card-hover:#22252a;
+    --border:#343536;
 
-    --text: #e2e8f0;
-    --muted: #94a3b8;
+    --text:#ffffff;
+    --muted:#818384;
+
+    --success:#46d160;
+    --warning:#ffd635;
+    --danger:#ff585b;
 }
 
-/* FONDO */
-body {
-    background: radial-gradient(circle at top, #0f172a, #020617);
-    color: var(--text);
-    font-family: 'Segoe UI', sans-serif;
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-/* WRAPPER */
-.history-wrapper {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px;
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* CONTENEDOR */
+
+.history-wrapper{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:25px;
 }
 
 /* HEADER */
-.history-header {
-    margin-bottom: 25px;
+
+.history-header{
+    margin-bottom:25px;
 }
 
-.history-header h2 {
-    color: var(--green);
-    font-size: 26px;
+.history-header h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:8px;
 }
 
-.history-header p {
-    color: var(--muted);
-    font-size: 14px;
+.history-header i{
+    color:var(--reddit);
+}
+
+.history-header p{
+    color:var(--muted);
+    line-height:1.6;
 }
 
 /* STATS */
-.history-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-    gap: 15px;
-    margin-bottom: 25px;
+
+.history-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
 }
 
-.stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 18px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    transition:.25s;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(34,197,94,0.2);
+.stat-card:hover{
+    background:var(--card-hover);
+    transform:translateY(-3px);
 }
 
-.stat-card span {
-    font-size: 13px;
-    color: var(--muted);
+.stat-card span{
+    color:var(--muted);
+    font-size:.85rem;
 }
 
-.stat-card h3 {
-    margin-top: 5px;
+.stat-card h3{
+    margin-top:8px;
+    font-size:1.6rem;
+    font-weight:700;
 }
 
-.green { color: var(--green); }
-.yellow { color: var(--yellow); }
-
-/* TABLE CARD */
-.table-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    overflow: hidden;
+.green{
+    color:var(--success);
 }
 
-/* HEADER */
-.table-header {
-    padding: 15px;
-    border-bottom: 1px solid var(--border);
+.yellow{
+    color:var(--warning);
+}
+
+/* TABLA */
+
+.table-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.table-header{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+}
+
+.table-header h3{
+    font-size:1.2rem;
+    font-weight:700;
+}
+
+/* WRAPPER */
+
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
 }
 
 /* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
+
+table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-thead {
-    background: rgba(255,255,255,0.05);
+thead{
+    background:#202226;
 }
 
-th {
-    text-align: left;
-    padding: 14px;
-    font-size: 13px;
-    color: var(--muted);
+th{
+    text-align:left;
+    padding:16px;
+    color:var(--muted);
+    font-size:.9rem;
+    font-weight:600;
 }
 
-td {
-    padding: 14px;
-    border-bottom: 1px solid var(--border);
+th i{
+    color:var(--reddit);
 }
 
-/* HOVER */
-tbody tr:hover {
-    background: rgba(255,255,255,0.03);
+td{
+    padding:18px 16px;
+    border-top:1px solid var(--border);
 }
 
-/* AMOUNT */
-.amount {
-    color: var(--green);
-    font-weight: bold;
+tbody tr{
+    transition:.2s;
+}
+
+tbody tr:hover{
+    background:var(--card-hover);
+}
+
+/* MONTO */
+
+.amount{
+    color:var(--success);
+    font-weight:700;
 }
 
 /* ESTADOS */
-.estado {
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+
+.estado{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:700;
 }
 
 /* APROBADO */
-.estado.aprobado {
-    background: rgba(34,197,94,0.15);
-    color: var(--green);
-    box-shadow: 0 0 10px rgba(34,197,94,0.4);
+
+.estado.aprobado{
+    background:rgba(70,209,96,.15);
+    color:var(--success);
 }
 
 /* PENDIENTE */
-.estado.pendiente {
-    background: rgba(250,204,21,0.15);
-    color: var(--yellow);
+
+.estado.pendiente{
+    background:rgba(255,214,53,.15);
+    color:var(--warning);
 }
 
 /* RECHAZADO */
-.estado.rechazado {
-    background: rgba(239,68,68,0.15);
-    color: var(--red);
+
+.estado.rechazado{
+    background:rgba(255,88,91,.15);
+    color:var(--danger);
 }
 
 /* EMPTY */
-.empty {
-    text-align: center;
-    padding: 30px;
-    color: var(--muted);
+
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+    font-size:1rem;
+}
+
+.empty i{
+    font-size:40px;
+    margin-bottom:10px;
+    color:var(--reddit);
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111315;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#444;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--reddit);
+}
+
+/* TABLET */
+
+@media (max-width:900px){
+
+    .history-stats{
+        grid-template-columns:1fr;
+    }
+
 }
 
 /* MOBILE */
-@media (max-width: 768px) {
 
-    table thead {
-        display: none;
+@media (max-width:768px){
+
+    .history-wrapper{
+        padding:15px;
+    }
+
+    .history-header h2{
+        font-size:1.5rem;
+    }
+
+    .table-card{
+        background:none;
+        border:none;
+    }
+
+    table thead{
+        display:none;
     }
 
     table,
-    tbody,
-    tr,
-    td {
-        display: block;
-        width: 100%;
+    tbody{
+        display:block;
     }
 
-    tr {
-        margin-bottom: 12px;
-        background: var(--card);
-        border-radius: 10px;
-        padding: 10px;
+    tr{
+        display:block;
+        background:var(--card);
+        border:1px solid var(--border);
+        border-radius:18px;
+        padding:15px;
+        margin-bottom:15px;
     }
 
-    td {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px;
-        border: none;
+    td{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:10px;
+        border:none;
+        padding:10px 0;
+        text-align:right;
     }
 
-    td::before {
-        content: attr(data-label);
-        color: var(--muted);
-        font-size: 12px;
+    td::before{
+        content:attr(data-label);
+        color:var(--muted);
+        font-size:.85rem;
+        font-weight:600;
+        text-align:left;
     }
+
+    .estado{
+        margin-left:auto;
+    }
+
+}
+
+/* TELEFONOS PEQUEÑOS */
+
+@media (max-width:480px){
+
+    .history-header h2{
+        font-size:1.3rem;
+    }
+
+    .stat-card h3{
+        font-size:1.3rem;
+    }
+
+    td{
+        font-size:.9rem;
+    }
+
 }

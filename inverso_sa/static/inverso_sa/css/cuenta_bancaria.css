@@ -1,133 +1,253 @@
-:root {
-    --bg: #020617;
-    --card: rgba(255,255,255,0.04);
-    --border: rgba(255,255,255,0.08);
+:root{
+    --reddit:#FF4500;
+    --reddit-dark:#D93A00;
 
-    --green: #22c55e;
-    --blue: #3b82f6;
+    --bg:#0f1113;
+    --card:#1a1c1f;
+    --card-hover:#22252a;
+    --border:#343536;
 
-    --text: #e2e8f0;
-    --muted: #94a3b8;
+    --text:#ffffff;
+    --muted:#818384;
 }
 
-/* FONDO */
-body {
-    background: radial-gradient(circle at top, #020617, #000);
-    color: var(--text);
-    font-family: 'Poppins', sans-serif;
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-/* WRAPPER */
-.bank-wrapper {
-    max-width: 900px;
-    margin: auto;
-    padding: 25px;
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* CONTENEDOR */
+
+.bank-wrapper{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:25px;
 }
 
 /* HEADER */
-.bank-top {
-    margin-bottom: 25px;
+
+.bank-top{
+    margin-bottom:25px;
 }
 
-.bank-top h2 {
-    color: var(--green);
+.bank-top h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:10px;
 }
 
-.bank-top p {
-    color: var(--muted);
+.bank-top h2 i{
+    color:var(--reddit);
+}
+
+.bank-top p{
+    color:var(--muted);
+    line-height:1.6;
 }
 
 /* CARD */
-.bank-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 25px;
+
+.bank-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
 }
 
-/* FORM */
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+/* FORMULARIO */
+
+.bank-form{
+    width:100%;
 }
 
-.input-box {
-    margin-bottom: 15px;
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.input-box label {
-    display: block;
-    margin-bottom: 6px;
-    color: var(--muted);
-    font-size: 13px;
+.input-box{
+    margin-bottom:18px;
 }
 
-.input-box input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: #020617;
-    color: white;
+.input-box label{
+    display:block;
+    margin-bottom:8px;
+    font-size:.9rem;
+    color:var(--muted);
+    font-weight:500;
 }
 
-.input-box input:focus {
-    border-color: var(--green);
+.input-box input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:#111315;
+    color:var(--text);
+    font-size:.95rem;
+    outline:none;
+    transition:.25s;
+}
+
+.input-box input::placeholder{
+    color:#666;
+}
+
+.input-box input:focus{
+    border-color:var(--reddit);
+    box-shadow:0 0 0 3px rgba(255,69,0,.15);
 }
 
 /* BOTON */
-.btn-save {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: none;
-    background: linear-gradient(90deg, var(--green), var(--blue));
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+
+.btn-save{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:var(--reddit);
+    color:#fff;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.btn-save:hover {
-    transform: scale(1.05);
+.btn-save:hover{
+    background:var(--reddit-dark);
+    transform:translateY(-2px);
 }
 
-/* INFO */
-.bank-info {
-    display: grid;
-    gap: 15px;
+.btn-save i{
+    margin-right:8px;
 }
 
-.info-item {
-    display: flex;
-    gap: 12px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 15px;
-    border-radius: 12px;
+/* INFORMACION */
+
+.bank-info{
+    display:grid;
+    gap:15px;
 }
 
-.info-item i {
-    font-size: 20px;
-    color: var(--green);
+.info-item{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    transition:.25s;
 }
 
-.info-item h4 {
-    margin: 0;
+.info-item:hover{
+    background:var(--card-hover);
 }
 
-.info-item p {
-    margin: 0;
-    font-size: 13px;
-    color: var(--muted);
+.info-item i{
+    color:var(--reddit);
+    font-size:22px;
+    min-width:22px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+.info-item h4{
+    margin-bottom:5px;
+    font-size:1rem;
+}
 
-    .form-row {
-        grid-template-columns: 1fr;
+.info-item p{
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.5;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111315;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#444;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--reddit);
+}
+
+/* TABLET */
+
+@media (max-width:768px){
+
+    .bank-wrapper{
+        padding:15px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .bank-top h2{
+        font-size:1.6rem;
+    }
+
+    .bank-card{
+        padding:20px;
+    }
+
+}
+
+/* MOVILES */
+
+@media (max-width:480px){
+
+    .bank-wrapper{
+        padding:10px;
+    }
+
+    .bank-top h2{
+        font-size:1.3rem;
+    }
+
+    .bank-card{
+        padding:15px;
+        border-radius:16px;
+    }
+
+    .input-box input{
+        padding:12px;
+    }
+
+    .btn-save{
+        padding:14px;
+        font-size:.95rem;
+    }
+
+    .info-item{
+        padding:15px;
     }
 
 }

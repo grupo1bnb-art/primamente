@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Cuenta bancaria | Rpublix{% endblock %}
+{% block title %}Configuración | Rddit{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/cuenta_bancaria.css' %}">
@@ -14,8 +14,15 @@
 
     <!-- HEADER -->
     <div class="bank-top">
-        <h2><i class="fa-solid fa-building-columns"></i> Cuenta de Retiro</h2>
-        <p>Configura tu cuenta bancaria para recibir tus ganancias</p>
+
+        <h2>
+            <i class="fa-solid fa-user-gear"></i>
+            Configuración de cuenta
+
+        <p>
+            Personaliza la información asociada a tu cuenta.
+        </p>
+
     </div>
 
     <!-- CARD PRINCIPAL -->
@@ -25,24 +32,48 @@
             {% csrf_token %}
 
             <div class="form-row">
+
                 <div class="input-box">
-                    <label>Banco</label>
-                    <input type="text" name="banco" placeholder="Ej: BAC, Lafise, Banpro" required>
+                    <label> Banco "lafice"</label>
+
+                    <input
+                        type="text"
+                        name="banco"
+                        placeholder="LAfice Digital "
+                        required>
                 </div>
 
                 <div class="input-box">
-                    <label>Titular</label>
-                    <input type="text" name="titular" placeholder="Nombre completo" required>
+
+                    <label>Nombre</label>
+
+                    <input
+                        type="text"
+                        name="titular"
+                        placeholder="Nombre público"
+                        required>
+
                 </div>
+
             </div>
 
             <div class="input-box">
-                <label>Número de cuenta</label>
-                <input type="text" name="numero_cuenta" placeholder="Número de cuenta bancaria" required>
+
+                <label>Numero de cuenta</label>
+
+                <input
+                    type="text"
+                    name="numero_cuenta"
+                    placeholder="cuenta"
+                    required>
+
             </div>
 
             <button type="submit" class="btn-save">
-                Guardar cuenta
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Guardar cambios
+
             </button>
 
         </form>
@@ -53,27 +84,51 @@
     <div class="bank-info">
 
         <div class="info-item">
+
             <i class="fa-solid fa-shield-halved"></i>
+
             <div>
-                <h4>Seguridad</h4>
-                <p>Tus datos están protegidos y encriptados</p>
+
+                <h4>Privacidad</h4>
+
+                <p>
+                    Tu información personal permanece protegida.
+                </p>
+
             </div>
+
         </div>
 
         <div class="info-item">
-            <i class="fa-solid fa-clock"></i>
+
+            <i class="fa-solid fa-bolt"></i>
+
             <div>
-                <h4>Procesamiento</h4>
-                <p>Los retiros se procesan en pocas horas</p>
+
+                <h4>Actualización Instantánea</h4>
+
+                <p>
+                    Los cambios se reflejan inmediatamente.
+                </p>
+
             </div>
+
         </div>
 
         <div class="info-item">
+
             <i class="fa-solid fa-circle-check"></i>
+
             <div>
-                <h4>Validación</h4>
-                <p>Revisamos cada cuenta antes de aprobarla</p>
+
+                <h4>Cuenta Verificada</h4>
+
+                <p>
+                    Mantén tu perfil actualizado para una mejor experiencia.
+                </p>
+
             </div>
+
         </div>
 
     </div>

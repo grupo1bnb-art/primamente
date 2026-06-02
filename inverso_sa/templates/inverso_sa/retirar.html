@@ -1,7 +1,7 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Retirar fondos{% endblock %}
+{% block title %}Retirar Karma | Rddit{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/retirar.css' %}">
@@ -12,84 +12,155 @@
 
 <div class="retiro-wrap">
 
-    <!-- HEADER PRO -->
+    <!-- HEADER -->
     <div class="retiro-top">
+
         <div>
-            <h2><i class="fa-solid fa-money-bill-transfer"></i> Retiro de Fondos</h2>
-            <p>Transfiere tus ganancias generadas por energía renovable</p>
+
+            <h2>
+                <i class="fa-brands fa-reddit-alien"></i>
+                Canjear Recompensas
+            </h2>
+
+            <p>
+                Solicita el retiro de las recompensas acumuladas en tu actividad.
+            </p>
+
         </div>
 
         <div class="saldo-box">
-            <span>Disponible</span>
+
+            <span>Karma Disponible</span>
+
             <h3>C$ {{ request.user.saldo }}</h3>
+
         </div>
+
     </div>
 
     <!-- GRID -->
     <div class="retiro-grid">
 
-        <!-- FORM PRINCIPAL -->
+        <!-- FORMULARIO -->
         <div class="retiro-main">
 
             <form method="POST" class="form-retiro">
+
                 {% csrf_token %}
 
-                <label>Monto a retirar</label>
-                <input type="number"
-                       name="monto"
-                       min="1"
-                       max="{{ request.user.saldo }}"
-                       placeholder="Ej: 500"
-                       required>
+                <label>Cantidad a retirar</label>
+
+                <input
+                    type="number"
+                    name="monto"
+                    min="1"
+                    max="{{ request.user.saldo }}"
+                    placeholder="Ej: 500"
+                    required>
 
                 <!-- BOTONES RAPIDOS -->
+
                 <div class="quick-amounts">
-                    <button type="button" onclick="setMonto(100)">C$100</button>
-                    <button type="button" onclick="setMonto(500)">C$500</button>
-                    <button type="button" onclick="setMonto(1000)">C$1000</button>
-                    <button type="button" onclick="setMonto(5000)">C$5000</button>
+
+                    <button type="button" onclick="setMonto(200)">
+                        C$200
+                    </button>
+
+                    <button type="button" onclick="setMonto(500)">
+                        C$500
+                    </button>
+
+                    <button type="button" onclick="setMonto(1000)">
+                        C$1000
+                    </button>
+
+                    <button type="button" onclick="setMonto(5000)">
+                        C$5000
+                    </button>
+
                 </div>
 
-                <label>Cuenta destino</label>
+                <label>Método registrado</label>
+
                 <select name="cuenta" required>
+
                     {% for cuenta in cuentas %}
+
                     <option value="{{ cuenta.id }}">
                         {{ cuenta.banco }} - {{ cuenta.numero_cuenta }}
                     </option>
+
                     {% empty %}
-                    <option disabled>No hay cuentas registradas</option>
+
+                    <option disabled>
+                        No hay métodos registrados
+                    </option>
+
                     {% endfor %}
+
                 </select>
 
                 <button class="btn-confirmar">
+
                     <i class="fa-solid fa-paper-plane"></i>
-                    Procesar Retiro
+
+                    Solicitar retiro
+
                 </button>
 
             </form>
 
         </div>
 
-        <!-- PANEL DERECHO -->
+        <!-- LATERAL -->
+
         <div class="retiro-side">
 
             <div class="info-box">
-                <h4><i class="fa-solid fa-bolt"></i> Procesamiento</h4>
-                <p>Los retiros son validados manualmente por el sistema.</p>
+
+                <h4>
+                    <i class="fa-solid fa-fire"></i>
+                    Estado
+                </h4>
+
+                <p>
+                    Las solicitudes son revisadas automáticamente. minimo 200 NIO
+                </p>
+
             </div>
 
             <div class="info-box">
-                <h4><i class="fa-solid fa-clock"></i> Tiempo</h4>
-                <p>Tiempo estimado: 1 a 3 horas.</p>
+
+                <h4>
+                    <i class="fa-solid fa-clock"></i>
+                    Tiempo estimado
+                </h4>
+
+                <p>
+                    Normalmente se completan en pocas horas.
+                </p>
+
             </div>
 
             <div class="info-box">
-                <h4><i class="fa-solid fa-shield-halved"></i> Seguridad</h4>
-                <p>Transacciones protegidas y monitoreadas.</p>
+
+                <h4>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Protección
+                </h4>
+
+                <p>
+                    Tu cuenta y actividad están protegidas.
+                </p>
+
             </div>
 
             <a href="{% url 'historial_retiros' %}" class="btn-history">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
                 Ver historial
+
             </a>
 
         </div>
@@ -99,9 +170,15 @@
 </div>
 
 <script>
+
 function setMonto(valor){
-    document.querySelector('input[name="monto"]').value = valor;
+
+    document.querySelector(
+        'input[name="monto"]'
+    ).value = valor;
+
 }
+
 </script>
 
 {% endblock %}

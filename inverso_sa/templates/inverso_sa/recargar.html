@@ -1,6 +1,8 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
+{% block title %}Recargar Saldo | Rddit{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'inverso_sa/css/recarga.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -10,75 +12,176 @@
 
 <div class="energy-deposit">
 
-    <!-- HEADER MINIMAL -->
+    <!-- HEADER -->
+
     <div class="top-bar">
-        <a href="{% url 'inicio' %}" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
-        <h2>Recargar Energía</h2>
-        <a href="{% url 'mis_recargas' %}" class="nav-btn"><i class="fa-solid fa-clock"></i></a>
+
+        <a href="{% url 'inicio' %}" class="nav-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <h2>
+            <i class="fa-brands fa-reddit-alien"></i>
+            Recargar Saldo
+        </h2>
+
+        <a href="{% url 'mis_recargas' %}" class="nav-btn">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </a>
+
     </div>
 
-    <!-- PANEL PRINCIPAL -->
+    <!-- GRID -->
+
     <div class="split-layout">
 
-        <!-- 🔋 BLOQUE DIRECCIÓN -->
+        <!-- DATOS DE PAGO -->
+
         <div class="energy-block">
 
-            <h3><i class="fa-solid fa-bolt"></i> Punto de Energía</h3>
+            <h3>
+                <i class="fa-solid fa-building-columns"></i>
+                Información de Pago
+            </h3>
 
             <div class="data-line">
+
                 <span>Banco</span>
+
                 <div>
+
                     <strong>{{ cuenta.banco }}</strong>
-                    <button onclick="copiar('{{ cuenta.banco }}')">Copiar</button>
+
+                    <button type="button"
+                            onclick="copiar('{{ cuenta.banco }}')">
+
+                        Copiar
+
+                    </button>
+
                 </div>
+
             </div>
 
             <div class="data-line">
+
                 <span>Titular</span>
+
                 <div>
+
                     <strong>{{ cuenta.destinatario }}</strong>
-                    <button onclick="copiar('{{ cuenta.destinatario }}')">Copiar</button>
+
+                    <button type="button"
+                            onclick="copiar('{{ cuenta.destinatario }}')">
+
+                        Copiar
+
+                    </button>
+
                 </div>
+
             </div>
 
-            <div class="data-line big">
+            <div class="data-line">
+
                 <span>Cuenta</span>
+
                 <div>
+
                     <strong>{{ cuenta.numero_cuenta }}</strong>
-                    <button onclick="copiar('{{ cuenta.numero_cuenta }}')">Copiar</button>
+
+                    <button type="button"
+                            onclick="copiar('{{ cuenta.numero_cuenta }}')">
+
+                        Copiar
+
+                    </button>
+
                 </div>
+
+            </div>
+
+            <div class="info-strip">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Realiza la transferencia y luego sube tu comprobante.
+
             </div>
 
         </div>
 
-        <!-- 💳 FORM PANEL -->
+        <!-- FORMULARIO -->
+
         <div class="form-panel">
 
-            <h3><i class="fa-solid fa-leaf"></i> Confirmar Recarga</h3>
+            <h3>
+                <i class="fa-solid fa-wallet"></i>
+                Solicitar Recarga
+            </h3>
 
             <form method="POST" enctype="multipart/form-data">
+
                 {% csrf_token %}
 
                 <div class="input-box">
-                    <label>Monto en Córdobas</label>
-                    <input type="number" name="monto" id="monto" required>
+
+                    <label>
+                        Monto a recargar
+                    </label>
+
+                    <input
+                        type="number"
+                        name="monto"
+                        id="monto"
+                        min="1"
+                        placeholder="Ingrese el monto"
+                        required>
+
                 </div>
 
-                <!-- BOTONES RAPIDOS -->
+                <!-- MONTOS RAPIDOS -->
+
                 <div class="chips">
-                    <span onclick="setMonto(500)">C$500</span>
-                    <span onclick="setMonto(1000)">C$1000</span>
-                    <span onclick="setMonto(2000)">C$2000</span>
-                    <span onclick="setMonto(5000)">C$5000</span>
+
+                    <span onclick="setMonto(500)">
+                        C$ 500
+                    </span>
+
+                    <span onclick="setMonto(1000)">
+                        C$ 1,000
+                    </span>
+
+                    <span onclick="setMonto(2000)">
+                        C$ 2,000
+                    </span>
+
+                    <span onclick="setMonto(5000)">
+                        C$ 5,000
+                    </span>
+
                 </div>
 
                 <div class="input-box">
-                    <label>Subir comprobante</label>
-                    <input type="file" name="voucher" required>
+
+                    <label>
+                        Comprobante de pago
+                    </label>
+
+                    <input
+                        type="file"
+                        name="voucher"
+                        accept="image/*,.pdf"
+                        required>
+
                 </div>
 
-                <button class="submit-btn">
+                <button type="submit" class="submit-btn">
+
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+
                     Confirmar Recarga
+
                 </button>
 
             </form>
@@ -87,22 +190,34 @@
 
     </div>
 
-    <!-- INFO SIMPLE -->
+    <!-- INFO -->
+
     <div class="info-strip">
-        ⚡ Procesamiento manual • Tiempo estimado: 1–2 horas • Mínimo: C$500
+
+        ⚡ Las recargas son verificadas manualmente.
+        <br>
+        Tiempo estimado de aprobación: 1 a 2 horas.
+
     </div>
 
 </div>
 
 <script>
+
 function copiar(texto){
+
     navigator.clipboard.writeText(texto);
-    alert("Copiado correctamente");
+
+    alert("✅ Copiado correctamente");
+
 }
 
 function setMonto(valor){
+
     document.getElementById("monto").value = valor;
+
 }
+
 </script>
 
 {% endblock %}

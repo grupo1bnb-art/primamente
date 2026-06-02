@@ -1,9 +1,10 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Centro Energético | Rpublix{% endblock %}
+{% block title %}Actividad | Rddit{% endblock %}
 
 {% block extra_css %}
+
 <link rel="stylesheet" href="{% static 'inverso_sa/css/ingreso.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
@@ -12,100 +13,165 @@
 
 <div class="panel-energy">
 
-    <!-- HEADER -->
-    <div class="panel-top">
+<!-- HEADER -->
+<div class="panel-top">
 
-        <div class="panel-left">
-            <h1>⚡ Control Energético</h1>
-            <p>Sistema de monitoreo y generación en tiempo real</p>
-        </div>
+    <div class="panel-left">
 
-        <div class="panel-right">
-            <div class="balance-box">
-                <span>Balance</span>
-                <h2>C$ {{ saldo }}</h2>
-            </div>
+        <h1>
+            <i class="fa-brands fa-reddit-alien"></i>
+            Centro de Actividad
+        </h1>
 
-            <div class="plant-box">
-                <span>Plantas</span>
-                <h2>{{ total_proyectos }}</h2>
-            </div>
-        </div>
+        <p>
+            Monitorea tus publicaciones, actividad y recompensas dentro de la comunidad.
+        </p>
 
     </div>
 
-    <!-- LISTA -->
-    <div class="energy-rows">
+    <div class="panel-right">
 
-        {% if inversiones_activas %}
-        {% for inv in inversiones_activas %}
+        <div class="balance-box">
 
-        <div class="energy-row">
+            <span>Karma acumulado</span>
 
-            <!-- NOMBRE -->
-            <div class="col name">
-                <i class="fa-solid fa-bolt"></i>
-                <div>
-                    <strong>{{ inv.producto.nombre }}</strong>
-                    <small>Activo</small>
-                </div>
-            </div>
-
-            <!-- CAPITAL -->
-            <div class="col">
-                <span>Capital</span>
-                <strong>C$ {{ inv.producto.precio }}</strong>
-            </div>
-
-            <!-- DIARIO -->
-            <div class="col">
-                <span>Diario</span>
-                <strong class="green counter" data-value="{{ inv.producto.ingreso_diario }}">0</strong>
-            </div>
-
-            <!-- TOTAL -->
-            <div class="col">
-                <span>Total</span>
-                <strong class="green counter" data-value="{{ inv.ganancia_total }}">0</strong>
-            </div>
-
-            <!-- PROGRESO -->
-            <div class="col progress-col">
-                <div class="line">
-                    <div class="line-fill"></div>
-                </div>
-            </div>
+            <h2>C$ {{ saldo }}</h2>
 
         </div>
 
-        {% endfor %}
-        {% else %}
-            <p class="empty">No tienes energía activa</p>
-        {% endif %}
+        <div class="plant-box">
+
+            <span>Publicaciones activas</span>
+
+            <h2>{{ total_proyectos }}</h2>
+
+        </div>
 
     </div>
 
 </div>
 
-<!-- SCRIPT -->
+<!-- LISTADO -->
+<div class="energy-rows">
+
+    {% if inversiones_activas %}
+    {% for inv in inversiones_activas %}
+
+    <div class="energy-row">
+
+        <!-- PUBLICACIÓN -->
+        <div class="col name">
+
+            <i class="fa-solid fa-fire"></i>
+
+            <div>
+
+                <strong>{{ inv.producto.nombre }}</strong>
+
+                <small>En tendencia</small>
+
+            </div>
+
+        </div>
+
+        <!-- PUNTOS -->
+        <div class="col">
+
+            <span>Puntos</span>
+
+            <strong>C$ {{ inv.producto.precio }}</strong>
+
+        </div>
+
+        <!-- HOY -->
+        <div class="col">
+
+            <span>Ingreso Diario</span>
+
+            <strong class="orange counter"
+                    data-value="{{ inv.producto.ingreso_diario }}">
+                0
+            </strong>
+
+        </div>
+
+        <!-- TOTAL -->
+        <div class="col">
+
+            <span>Total</span>
+
+            <strong class="orange counter"
+                    data-value="{{ inv.ganancia_total }}">
+                0
+            </strong>
+
+        </div>
+
+        <!-- POPULARIDAD -->
+        <div class="col progress-col">
+
+            <div class="line">
+                <div class="line-fill"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+    <p class="empty">
+
+        🚀 Aún no tienes actividad registrada.
+
+        <br><br>
+
+        Participa en la comunidad para comenzar a generar interacción.
+
+    </p>
+
+    {% endif %}
+
+</div>
+
+</div>
+
 <script>
+
 document.querySelectorAll('.counter').forEach(counter => {
+
     let target = parseFloat(counter.dataset.value);
+
     let count = 0;
+
     let speed = target / 40;
 
     function update() {
+
         count += speed;
+
         if (count < target) {
-            counter.innerText = "C$ " + count.toFixed(2);
+
+            counter.innerText =
+                "C$ " + count.toFixed(2);
+
             requestAnimationFrame(update);
+
         } else {
-            counter.innerText = "C$ " + target.toFixed(2);
+
+            counter.innerText =
+                "C$ " + target.toFixed(2);
+
         }
+
     }
 
     update();
+
 });
+
 </script>
 
 {% endblock %}
