@@ -28,10 +28,7 @@ body{
 .team-hero{
     position:relative;
     background:
-    linear-gradient(
-        rgba(0,0,0,.65),
-        rgba(0,0,0,.75)
-    ),
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
     url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3")
     center/cover;
     border:1px solid var(--border);
@@ -148,6 +145,58 @@ body{
 
 .stat-card p{
     color:var(--muted);
+}
+
+/* =========================
+   💰 SALARIO POR REFERIDOS
+========================= */
+
+.salary-section{
+    margin-bottom:25px;
+}
+
+.section-title{
+    color:white;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.salary-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.salary-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.salary-card:hover{
+    background:var(--card-hover);
+    transform:translateY(-3px);
+}
+
+.salary-card h3{
+    color:var(--text);
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.salary-card .amount{
+    color:var(--reddit);
+    font-size:22px;
+    font-weight:800;
+}
+
+.salary-card.highlight{
+    border:1px solid var(--reddit);
+    box-shadow:0 0 15px rgba(255,69,0,.25);
 }
 
 /* LISTA */

@@ -7,167 +7,184 @@
 
 <link rel="stylesheet" href="{% static 'inverso_sa/css/equipo.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 {% endblock %}
 
 {% block contenido %}
 
 <div class="team-container">
 
-<!-- HERO -->
-<section class="team-hero">
+    <!-- HERO -->
+    <section class="team-hero">
 
-    <div class="overlay"></div>
+        <div class="overlay"></div>
 
-    <div class="hero-content">
+        <div class="hero-content">
 
-        <h1>
-            <i class="fa-brands fa-reddit-alien"></i>
-            MI COMUNIDAD
-        </h1>
+            <h1>
+                <i class="fa-brands fa-reddit-alien"></i>
+                MI COMUNIDAD
+            </h1>
 
-        <p>
-            Invita nuevos usuarios, comparte contenido y aumenta tu red dentro de Rddit.
-        </p>
+            <p>
+                Invita nuevos usuarios, comparte contenido y aumenta tu red dentro de Rddit.
+            </p>
 
-    </div>
+        </div>
 
-</section>
+    </section>
 
-<!-- INVITACIÓN -->
-<section class="invite-section">
+    <!-- INVITACIÓN -->
+    <section class="invite-section">
 
-    <div class="invite-card">
+        <div class="invite-card">
 
-        <h3>
-            <i class="fa-solid fa-user-plus"></i>
-            Invitar amigos
-        </h3>
+            <h3>
+                <i class="fa-solid fa-user-plus"></i>
+                Invitar amigos
+            </h3>
 
-        <div class="invite-data">
+            <div class="invite-data">
 
-            <div>
-                <span>Código de invitación</span>
-                <strong>{{ codigo }}</strong>
+                <div>
+                    <span>Código de invitación</span>
+                    <strong>{{ codigo }}</strong>
+                </div>
+
+                <div>
+                    <span>Enlace personal</span>
+                    <p id="link">{{ link }}</p>
+                </div>
+
             </div>
 
-            <div>
-                <span>Enlace personal</span>
-                <p id="link">{{ link }}</p>
+            <button onclick="copiarLink('{{ link }}')" class="btn-invite">
+                <i class="fa-solid fa-copy"></i>
+                Copiar enlace
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <i class="fa-solid fa-users"></i>
+            <h2>{{ equipo|length }}</h2>
+            <p>Miembros referidos</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <h2>C$ {{ total_comision|default:"0" }}</h2>
+            <p>Bonificaciones obtenidas</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-fire"></i>
+            <h2>C$ {{ total_volumen|default:"0" }}</h2>
+            <p>Actividad generada</p>
+        </div>
+
+    </section>
+
+    <!-- 🔥 SALARIO POR REFERIDOS -->
+    <section class="salary-section">
+
+        <h2 class="section-title">
+            💰 Salario mensual por referidos
+        </h2>
+
+        <div class="salary-grid">
+
+            <div class="salary-card">
+                <h3>20 Referidos</h3>
+                <p class="amount">C$ 3,200</p>
+            </div>
+
+            <div class="salary-card">
+                <h3>40 Referidos</h3>
+                <p class="amount">C$ 7,000</p>
+            </div>
+
+            <div class="salary-card">
+                <h3>60 Referidos</h3>
+                <p class="amount">C$ 14,000</p>
+            </div>
+
+            <div class="salary-card highlight">
+                <h3>100 Referidos</h3>
+                <p class="amount">C$ 20,000</p>
             </div>
 
         </div>
 
-        <button onclick="copiarLink('{{ link }}')" class="btn-invite">
+    </section>
 
-            <i class="fa-solid fa-copy"></i>
-            Copiar enlace
+    <!-- LISTA -->
+    <section class="team-list">
 
-        </button>
+        {% for m in equipo %}
 
-    </div>
+        <div class="member-card">
 
-</section>
+            <div class="member-header">
 
-<!-- ESTADÍSTICAS -->
-<section class="stats">
+                <i class="fa-solid fa-user-circle"></i>
 
-    <div class="stat-card">
-
-        <i class="fa-solid fa-users"></i>
-
-        <h2>{{ equipo|length }}</h2>
-
-        <p>Miembros referidos</p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <i class="fa-solid fa-arrow-trend-up"></i>
-
-        <h2>C$ {{ total_comision|default:"0" }}</h2>
-
-        <p>Bonificaciones obtenidas</p>
-
-    </div>
-
-    <div class="stat-card">
-
-        <i class="fa-solid fa-fire"></i>
-
-        <h2>C$ {{ total_volumen|default:"0" }}</h2>
-
-        <p>Actividad generada</p>
-
-    </div>
-
-</section>
-
-<!-- LISTA -->
-<section class="team-list">
-
-    {% for m in equipo %}
-
-    <div class="member-card">
-
-        <div class="member-header">
-
-            <i class="fa-solid fa-user-circle"></i>
-
-            <h4>{{ m.referido__username }}</h4>
-
-        </div>
-
-        <div class="member-body">
-
-            <div class="data">
-
-                <span>Actividad</span>
-
-                <strong>C$ {{ m.total_invertido }}</strong>
+                <h4>{{ m.referido__username }}</h4>
 
             </div>
 
-            <div class="data">
+            <div class="member-body">
 
-                <span>Bonificación</span>
+                <div class="data">
 
-                <strong class="orange">
-                    +C$ {{ m.total_comision|floatformat:2 }}
-                </strong>
+                    <span>Actividad</span>
+                    <strong>C$ {{ m.total_invertido }}</strong>
+
+                </div>
+
+                <div class="data">
+
+                    <span>Bonificación</span>
+
+                    <strong class="orange">
+                        +C$ {{ m.total_comision|floatformat:2 }}
+                    </strong>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+        {% empty %}
 
-    {% empty %}
+        <div class="empty">
 
-    <div class="empty">
+            🚀 Todavía no tienes miembros en tu comunidad.
 
-        🚀 Todavía no tienes miembros en tu comunidad.
+            <br><br>
 
-        <br><br>
+            Comparte tu enlace de invitación para comenzar a crecer.
 
-        Comparte tu enlace de invitación para comenzar a crecer.
+        </div>
 
-    </div>
+        {% endfor %}
 
-    {% endfor %}
+    </section>
 
-</section>
 </div>
 
 <script>
 
-function copiarLink(texto){
-
-    navigator.clipboard.writeText(texto);
-
-    alert("✅ Enlace copiado");
-
-}
+    function copiarLink(texto) {
+        navigator.clipboard.writeText(texto);
+        alert("✅ Enlace copiado");
+    }
 
 </script>
 
