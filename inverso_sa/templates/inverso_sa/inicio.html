@@ -4,7 +4,6 @@
 {% block title %}Inicio | Rddit{% endblock %}
 
 {% block extra_css %}
-
 <link rel="stylesheet" href="{% static 'inverso_sa/css/inicio.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
@@ -15,33 +14,33 @@
 
 <div id="telegram-overlay">
 
-<div class="telegram-box">
+    <div class="telegram-box">
 
-    <div class="telegram-icon">
-        <i class="fa-brands fa-reddit-alien"></i>
+        <div class="telegram-icon">
+            <i class="fa-brands fa-reddit-alien"></i>
+        </div>
+
+        <h2>Únete a nuestra Comunidad</h2>
+
+        <p>
+            Descubre publicaciones destacadas, tendencias,
+            debates y contenido compartido por miles de usuarios.
+        </p>
+
+        <a href="https://whatsapp.com/channel/0029VbChnfk6GcG6XhmvZc2C"
+           target="_blank"
+           class="btn-join">
+
+            <i class="fa-brands fa-reddit-alien"></i>
+            Explorar comunidad
+
+        </a>
+
+        <button type="button" onclick="cerrarOverlay()" class="btn-close">
+            Continuar
+        </button>
+
     </div>
-
-    <h2>Únete a nuestra Comunidad</h2>
-
-    <p>
-        Descubre publicaciones destacadas, tendencias,
-        debates y contenido compartido por miles de usuarios.
-    </p>
-
-    <a href="https://whatsapp.com/channel/0029VbChnfk6GcG6XhmvZc2C"
-       target="_blank"
-       class="btn-join">
-
-        <i class="fa-brands fa-reddit-alien"></i>
-        Explorar comunidad
-
-    </a>
-
-    <button onclick="cerrarOverlay()" class="btn-close">
-        Continuar
-    </button>
-
-</div>
 
 </div>
 
@@ -49,29 +48,29 @@
 
 <section class="hero-ultra">
 
-<div class="hero-info">
+    <div class="hero-info">
 
-    <span class="hero-badge">
-        🔥 Tendencias más populares del día
-    </span>
+        <span class="hero-badge">
+            🔥 Tendencias más populares del día
+        </span>
 
-    <h1>
-        Descubre comunidades que te interesan
-    </h1>
+        <h1>
+            Descubre comunidades que te interesan
+        </h1>
 
-    <p>
-        Participa en conversaciones, comparte contenido,
-        descubre noticias y conecta con personas de todo el mundo.
-    </p>
+        <p>
+            Participa en conversaciones, comparte contenido,
+            descubre noticias y conecta con personas de todo el mundo.
+        </p>
 
-    <button onclick="window.location.href='{% url 'recargar' %}'">
+        <button onclick="window.location.href='{% url 'recargar' %}'">
 
-        <i class="fa-solid fa-fire"></i>
-        Recargar ahora
+            <i class="fa-solid fa-fire"></i>
+            Recargar ahora
 
-    </button>
+        </button>
 
-</div>
+    </div>
 
 </section>
 
@@ -79,37 +78,37 @@
 
 <section class="kpi-grid">
 
-<div class="kpi">
+    <div class="kpi">
 
-    <i class="fa-solid fa-users"></i>
+        <i class="fa-solid fa-wallet"></i>
 
-    <span>Mis Saldos</span>
+        <span>Mi saldo</span>
 
-    <h2>C${{ user.saldo }}</h2>
+        <h2>C${{ user.saldo }}</h2>
 
-</div>
+    </div>
 
-<div class="kpi">
+    <div class="kpi">
 
-    <i class="fa-solid fa-arrow-trend-up"></i>
+        <i class="fa-solid fa-arrow-trend-up"></i>
 
-    <span>Publicaciones hoy</span>
+        <span>Publicaciones hoy</span>
 
-    <h2 class="green">
-        {{ ganancias_hoy }}
-    </h2>
+        <h2 class="green">
+            {{ ganancias_hoy }}
+        </h2>
 
-</div>
+    </div>
 
-<div class="kpi">
+    <div class="kpi">
 
-    <i class="fa-solid fa-comments"></i>
+        <i class="fa-solid fa-comments"></i>
 
-    <span>Comunidades activas</span>
+        <span>Comunidades activas</span>
 
-    <h2>{{ total_proyectos }}</h2>
+        <h2>{{ total_proyectos }}</h2>
 
-</div>
+    </div>
 
 </section>
 
@@ -117,59 +116,59 @@
 
 <section class="energy-section">
 
-<div class="section-header">
+    <div class="section-header">
 
-    <h3>Categorías Populares</h3>
+        <h3>Categorías Populares</h3>
 
-    <span>Actualizado en tiempo real</span>
-
-</div>
-
-<div class="energy-grid">
-
-    <div class="energy-card">
-
-        <i class="fa-solid fa-gamepad"></i>
-
-        <h4>Gaming</h4>
-
-        <div class="bar">
-            <div style="width:75%"></div>
-        </div>
-
-        <small>75% de actividad</small>
+        <span>Actualizado en tiempo real</span>
 
     </div>
 
-    <div class="energy-card">
+    <div class="energy-grid">
 
-        <i class="fa-solid fa-laptop"></i>
+        <div class="energy-card">
 
-        <h4>Tecnología</h4>
+            <i class="fa-solid fa-gamepad"></i>
 
-        <div class="bar">
-            <div style="width:60%"></div>
+            <h4>Gaming</h4>
+
+            <div class="bar">
+                <div style="width:75%"></div>
+            </div>
+
+            <small>75% de actividad</small>
+
         </div>
 
-        <small>60% de actividad</small>
+        <div class="energy-card">
 
-    </div>
+            <i class="fa-solid fa-laptop"></i>
 
-    <div class="energy-card">
+            <h4>Tecnología</h4>
 
-        <i class="fa-solid fa-film"></i>
+            <div class="bar">
+                <div style="width:60%"></div>
+            </div>
 
-        <h4>Entretenimiento</h4>
+            <small>60% de actividad</small>
 
-        <div class="bar">
-            <div style="width:85%"></div>
         </div>
 
-        <small>85% de actividad</small>
+        <div class="energy-card">
+
+            <i class="fa-solid fa-film"></i>
+
+            <h4>Entretenimiento</h4>
+
+            <div class="bar">
+                <div style="width:85%"></div>
+            </div>
+
+            <small>85% de actividad</small>
+
+        </div>
 
     </div>
-
-</div>
 
 </section>
 
@@ -177,88 +176,105 @@
 
 <section class="plans-ultra">
 
-<div class="section-header">
+    <div class="section-header">
 
-    <h3>Comunidades Destacadas</h3>
+        <h3>Comunidades Destacadas</h3>
 
-    <span>{{ productos|length }} disponibles</span>
-
-</div>
-
-<div class="plans-grid">
-
-    {% for producto in productos %}
-
-    <div class="plan">
-
-        <div class="plan-image">
-
-            <img src="{{ producto.imagen.url }}"
-                 alt="{{ producto.nombre }}"
-                 loading="lazy">
-
-        </div>
-
-        <div class="plan-body">
-
-            <h4>r/{{ producto.nombre }}</h4>
-
-            <p>{{ producto.duracion }}</p>
-
-            <div class="profit">
-                {{ producto.ingreso_diario }} NIO
-            </div>
-
-            <span class="price">
-                Costo: {{ producto.precio }} NIO
-            </span>
-
-            <form method="POST"
-                  action="{% url 'invertir_producto' producto.id %}">
-
-                {% csrf_token %}
-
-                <button class="btn-plan">
-
-                    <i class="fa-solid fa-plus"></i>
-                    Unirse
-
-                </button>
-
-            </form>
-
-        </div>
+        <span>{{ productos|length }} disponibles</span>
 
     </div>
 
-    {% endfor %}
+    <div class="plans-grid">
 
-</div>
+        {% for producto in productos %}
+
+        <div class="plan">
+
+            <div class="plan-image">
+
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}"
+                     alt="{{ producto.nombre }}"
+                     loading="lazy">
+                {% endif %}
+
+            </div>
+
+            <div class="plan-body">
+
+                <h4>r/{{ producto.nombre }}</h4>
+
+                <p>{{ producto.duracion }}</p>
+
+                <div class="profit">
+                    {{ producto.ingreso_diario }} NIO
+                </div>
+
+                <span class="price">
+                    Costo: {{ producto.precio }} NIO
+                </span>
+
+                <form method="POST"
+                      action="{% url 'invertir_producto' producto.id %}">
+
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn-plan">
+
+                        <i class="fa-solid fa-plus"></i>
+                        Unirse
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="plan">
+            <div class="plan-body">
+                <h4>No hay comunidades disponibles</h4>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
 
 </section>
 
 <script>
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    if (!localStorage.getItem("telegram_visto")) {
+    const overlay = document.getElementById("telegram-overlay");
 
-        document.getElementById("telegram-overlay")
-            .style.display = "flex";
-
-    } else {
-
-        document.getElementById("telegram-overlay")
-            .style.display = "none";
+    if (!overlay) {
+        console.error("No existe #telegram-overlay");
+        return;
     }
-}
+
+    if (localStorage.getItem("telegram_visto") !== "true") {
+        overlay.style.display = "flex";
+    } else {
+        overlay.style.display = "none";
+    }
+
+});
 
 function cerrarOverlay() {
 
     localStorage.setItem("telegram_visto", "true");
 
-    document.getElementById("telegram-overlay")
-        .style.display = "none";
+    const overlay = document.getElementById("telegram-overlay");
+
+    if (overlay) {
+        overlay.style.display = "none";
+    }
+
 }
 
 </script>

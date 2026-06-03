@@ -1,467 +1,506 @@
-/* =========================================
-   REDDIT STYLE - INICIO.CSS
-   ========================================= */
-
-:root{
-    --reddit-orange:#FF4500;
-    --reddit-orange-hover:#e03d00;
-    --reddit-bg:#030303;
-    --reddit-card:#1a1a1b;
-    --reddit-card-hover:#272729;
-    --reddit-border:#343536;
-    --reddit-text:#d7dadc;
-    --reddit-muted:#818384;
-    --reddit-blue:#0079d3;
-    --reddit-success:#46d160;
+:root {
+    --reddit-orange: #FF4500;
+    --reddit-orange-hover: #e03d00;
+    --reddit-bg: #030303;
+    --reddit-card: #1a1a1b;
+    --reddit-card-hover: #272729;
+    --reddit-border: #343536;
+    --reddit-text: #d7dadc;
+    --reddit-muted: #818384;
+    --reddit-blue: #0079d3;
+    --reddit-success: #46d160;
 }
 
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:var(--reddit-bg);
-    color:var(--reddit-text);
-    font-family:Inter,Segoe UI,Arial,sans-serif;
+body {
+    background: var(--reddit-bg);
+    color: var(--reddit-text);
+    font-family: Inter, Segoe UI, Arial, sans-serif;
 }
 
-/* ==========================
-   OVERLAY
-========================== */
+/* OVERLAY */
 
-#telegram-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    backdrop-filter:blur(8px);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-    padding:20px;
+#telegram-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+
+    background: rgba(0, 0, 0, .90);
+    backdrop-filter: blur(8px);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999 !important;
+    padding: 20px;
+
+
 }
 
-.telegram-box{
-    width:100%;
-    max-width:430px;
-    background:var(--reddit-card);
-    border:1px solid var(--reddit-border);
-    border-radius:20px;
-    padding:35px;
-    text-align:center;
-    animation:fadeIn .4s ease;
+.telegram-box {
+    width: 100%;
+    max-width: 430px;
+
+
+    background: var(--reddit-card);
+    border: 1px solid var(--reddit-border);
+
+    border-radius: 20px;
+    padding: 35px;
+
+    text-align: center;
+
+    animation: fadeIn .4s ease;
+
+    box-shadow:
+        0 0 25px rgba(0, 0, 0, .5),
+        0 0 40px rgba(255, 69, 0, .15);
+
+
 }
 
-.telegram-icon{
-    width:80px;
-    height:80px;
-    margin:auto;
-    margin-bottom:20px;
-    border-radius:50%;
-    background:var(--reddit-orange);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-    color:#fff;
+.telegram-icon {
+    width: 80px;
+    height: 80px;
+
+
+    margin: auto;
+    margin-bottom: 20px;
+
+    border-radius: 50%;
+
+    background: var(--reddit-orange);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+    color: #fff;
+
 }
 
-.telegram-box h2{
-    font-size:28px;
-    margin-bottom:15px;
-    color:#fff;
+.telegram-box h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #fff;
 }
 
-.telegram-box p{
-    color:var(--reddit-muted);
-    line-height:1.6;
-    margin-bottom:25px;
+.telegram-box p {
+    color: var(--reddit-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
 }
 
-.btn-join{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    width:100%;
-    background:var(--reddit-orange);
-    color:white;
-    text-decoration:none;
-    padding:14px;
-    border-radius:999px;
-    font-weight:700;
-    margin-bottom:12px;
-    transition:.25s;
+.btn-join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+
+    width: 100%;
+
+    background: var(--reddit-orange);
+    color: #fff;
+
+    text-decoration: none;
+
+    padding: 14px;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+    transition: .25s;
 }
 
-.btn-join:hover{
-    background:var(--reddit-orange-hover);
+.btn-join:hover {
+    background: var(--reddit-orange-hover);
 }
 
-.btn-close{
-    width:100%;
-    padding:14px;
-    border-radius:999px;
-    border:1px solid var(--reddit-border);
-    background:transparent;
-    color:white;
-    cursor:pointer;
-    transition:.25s;
+.btn-close {
+    width: 100%;
+    padding: 14px;
+
+    border-radius: 999px;
+
+    border: 1px solid var(--reddit-border);
+
+    background: transparent;
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: .25s;
+
 }
 
-.btn-close:hover{
-    background:#242526;
-}
+.btn-close:hover
+/* HERO */
 
-/* ==========================
-   HERO
-========================== */
-
-.hero-ultra{
+.hero-ultra {
     background:
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.65)
-    ),
-    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1800");
-    background-size:cover;
-    background-position:center;
-    border:1px solid var(--reddit-border);
-    border-radius:20px;
-    padding:70px;
-    margin-bottom:25px;
+        linear-gradient(rgba(0, 0, 0, .55),
+            rgba(0, 0, 0, .65)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1800");
+
+    background-size: cover;
+    background-position: center;
+
+    border: 1px solid var(--reddit-border);
+    border-radius: 20px;
+
+    padding: 70px;
+
+    margin-bottom: 25px;
+
 }
 
-.hero-badge{
-    display:inline-block;
-    background:rgba(255,69,0,.15);
-    color:var(--reddit-orange);
-    border:1px solid rgba(255,69,0,.3);
-    padding:8px 14px;
-    border-radius:999px;
-    margin-bottom:20px;
-    font-size:14px;
-    font-weight:600;
+.hero-badge {
+    display: inline-block;
+
+    background: rgba(255, 69, 0, .15);
+    color: var(--reddit-orange);
+
+    border: 1px solid rgba(255, 69, 0, .3);
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+
 }
 
-.hero-info h1{
-    font-size:52px;
-    font-weight:800;
-    color:white;
-    margin-bottom:15px;
+.hero-info h1 {
+    font-size: 52px;
+    font-weight: 800;
+
+    color: #fff;
+
+    margin-bottom: 15px;
+
 }
 
-.hero-info p{
-    max-width:650px;
-    line-height:1.8;
-    color:#d7dadc;
-    margin-bottom:25px;
+.hero-info p {
+    max-width: 650px;
+
+
+    line-height: 1.8;
+
+    color: #d7dadc;
+
+    margin-bottom: 25px;
+
+
 }
 
-.hero-info button{
-    background:var(--reddit-orange);
-    color:white;
-    border:none;
-    padding:14px 28px;
-    border-radius:999px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
+.hero-info button {
+    background: var(--reddit-orange);
+    color: #fff;
+
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s;
+
 }
 
-.hero-info button:hover{
-    background:var(--reddit-orange-hover);
+.hero-info button:hover {
+    background: var(--reddit-orange-hover);
 }
 
-/* ==========================
-   KPI
-========================== */
+/* KPI */
 
-.kpi-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:18px;
-    margin-bottom:25px;
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
-.kpi{
-    background:var(--reddit-card);
-    border:1px solid var(--reddit-border);
-    border-radius:16px;
-    padding:25px;
-    transition:.25s;
+.kpi {
+    background: var(--reddit-card);
+    border: 1px solid var(--reddit-border);
+    border-radius: 16px;
+    padding: 25px;
+    transition: .25s;
 }
 
-.kpi:hover{
-    background:var(--reddit-card-hover);
+.kpi:hover {
+    background: var(--reddit-card-hover);
 }
 
-.kpi i{
-    font-size:28px;
-    color:var(--reddit-orange);
-    margin-bottom:15px;
+.kpi i {
+    font-size: 28px;
+    color: var(--reddit-orange);
+    margin-bottom: 15px;
 }
 
-.kpi span{
-    display:block;
-    color:var(--reddit-muted);
-    margin-bottom:8px;
+.kpi span {
+    display: block;
+    color: var(--reddit-muted);
+    margin-bottom: 8px;
 }
 
-.kpi h2{
-    color:white;
-    font-size:30px;
+.kpi h2 {
+    color: #fff;
+    font-size: 30px;
 }
 
-.green{
-    color:var(--reddit-success) !important;
+.green {
+    color: var(--reddit-success) !important;
 }
 
-/* ==========================
-   SECTIONS
-========================== */
+/* SECTIONS */
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
 }
 
-.section-header h3{
-    color:white;
-    font-size:26px;
+.section-header h3 {
+    color: #fff;
+    font-size: 26px;
 }
 
-.section-header span{
-    color:var(--reddit-muted);
+.section-header span {
+    color: var(--reddit-muted);
 }
 
-/* ==========================
-   CATEGORIAS
-========================== */
+/* CATEGORIAS */
 
-.energy-section{
-    margin-bottom:30px;
+.energy-section {
+    margin-bottom: 30px;
 }
 
-.energy-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
+.energy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
 }
 
-.energy-card{
-    background:var(--reddit-card);
-    border:1px solid var(--reddit-border);
-    border-radius:16px;
-    padding:25px;
-    text-align:center;
-    transition:.25s;
+.energy-card {
+    background: var(--reddit-card);
+    border: 1px solid var(--reddit-border);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    transition: .25s;
 }
 
-.energy-card:hover{
-    transform:translateY(-4px);
-    background:var(--reddit-card-hover);
+.energy-card:hover {
+    transform: translateY(-4px);
+    background: var(--reddit-card-hover);
 }
 
-.energy-card i{
-    font-size:40px;
-    color:var(--reddit-orange);
-    margin-bottom:15px;
+.energy-card i {
+    font-size: 40px;
+    color: var(--reddit-orange);
+    margin-bottom: 15px;
 }
 
-.energy-card h4{
-    color:white;
-    margin-bottom:15px;
+.energy-card h4 {
+    color: #fff;
+    margin-bottom: 15px;
 }
 
-.energy-card small{
-    color:var(--reddit-muted);
+.energy-card small {
+    color: var(--reddit-muted);
 }
 
-.bar{
-    width:100%;
-    height:10px;
-    background:#2f3133;
-    border-radius:999px;
-    overflow:hidden;
-    margin-bottom:10px;
+.bar {
+    width: 100%;
+    height: 10px;
+    background: #2f3133;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-.bar div{
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        var(--reddit-orange),
-        #ff6a33
-    );
+.bar div {
+    height: 100%;
+    background: linear-gradient(90deg,
+            var(--reddit-orange),
+            #ff6a33);
 }
 
-/* ==========================
-   COMUNIDADES
-========================== */
+/* PLANES */
 
-.plans-ultra{
-    margin-top:10px;
+.plans-ultra {
+    margin-top: 10px;
 }
 
-.plans-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-    gap:20px;
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.plan{
-    background:var(--reddit-card);
-    border:1px solid var(--reddit-border);
-    border-radius:18px;
-    overflow:hidden;
-    transition:.25s;
+.plan {
+    background: var(--reddit-card);
+    border: 1px solid var(--reddit-border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .25s;
 }
 
-.plan:hover{
-    background:var(--reddit-card-hover);
-    transform:translateY(-5px);
+.plan:hover {
+    background: var(--reddit-card-hover);
+    transform: translateY(-5px);
 }
 
-.plan-image{
-    height:170px;
-    overflow:hidden;
-    background:#111;
+.plan-image {
+    height: 170px;
+    overflow: hidden;
+    background: #111;
 }
 
-.plan-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.plan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.plan-body{
-    padding:20px;
+.plan-body {
+    padding: 20px;
 }
 
-.plan-body h4{
-    color:white;
-    font-size:20px;
-    margin-bottom:8px;
+.plan-body h4 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
-.plan-body p{
-    color:var(--reddit-muted);
-    margin-bottom:15px;
+.plan-body p {
+    color: var(--reddit-muted);
+    margin-bottom: 15px;
 }
 
-.profit{
-    color:var(--reddit-success);
-    font-weight:700;
-    margin-bottom:10px;
+.profit {
+    color: var(--reddit-success);
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-.price{
-    display:block;
-    color:#d7dadc;
-    margin-bottom:15px;
+.price {
+    display: block;
+    color: #d7dadc;
+    margin-bottom: 15px;
 }
 
-.btn-plan{
-    width:100%;
-    border:none;
-    background:var(--reddit-orange);
-    color:white;
-    padding:12px;
-    border-radius:999px;
-    cursor:pointer;
-    font-weight:700;
-    transition:.25s;
+.btn-plan {
+    width: 100%;
+    border: none;
+    background: var(--reddit-orange);
+    color: #fff;
+    padding: 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .25s;
 }
 
-.btn-plan:hover{
-    background:var(--reddit-orange-hover);
+.btn-plan:hover {
+    background: var(--reddit-orange-hover);
 }
 
-/* ==========================
-   ANIMACIONES
-========================== */
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* ==========================
-   RESPONSIVE
-========================== */
-
-@media(max-width:992px){
-
-    .hero-ultra{
-        padding:40px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    .hero-info h1{
-        font-size:38px;
-    }
-
-}
-
-@media(max-width:768px){
-
-    .hero-ultra{
-        padding:30px 20px;
-    }
-
-    .hero-info h1{
-        font-size:32px;
-    }
-
-    .hero-info p{
-        font-size:15px;
-    }
-
-    .section-header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:5px;
-    }
-
-    .plans-grid{
-        grid-template-columns:1fr;
-    }
-
-    .kpi-grid{
-        grid-template-columns:1fr;
-    }
-
-    .energy-grid{
-        grid-template-columns:1fr;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media(max-width:480px){
+@media(max-width:992px) {
 
-    .telegram-box{
-        padding:25px;
+
+    .hero-ultra {
+        padding: 40px;
     }
 
-    .hero-info h1{
-        font-size:28px;
+    .hero-info h1 {
+        font-size: 38px;
     }
 
-    .kpi h2{
-        font-size:24px;
-    }
 
-    .plan-body{
-        padding:15px;
+
+    @media(max-width:768px) {
+
+
+        .hero-ultra {
+            padding: 30px 20px;
+        }
+
+        .hero-info h1 {
+            font-size: 32px;
+        }
+
+        .hero-info p {
+            font-size: 15px;
+        }
+
+        .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .plans-grid,
+        .kpi-grid,
+        .energy-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        @media(max-width:480px) {
+
+
+            .telegram-box {
+                padding: 25px;
+            }
+
+            .hero-info h1 {
+                font-size: 28px;
+            }
+
+            .kpi h2 {
+                font-size: 24px;
+            }
+
+            .plan-body {
+                padding: 15px;
+            }
+        }
     }
 }
