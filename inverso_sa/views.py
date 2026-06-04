@@ -662,7 +662,6 @@ def retirar_view(request):
         messages.warning(request, "Primero debes agregar una cuenta bancaria")
         return redirect("agregar_cuenta_usuario")
 
-    # SOLO bloquear cuando intenta enviar
     if request.method == "POST":
 
         if Retiro.objects.filter(usuario=usuario, estado='pendiente').exists():
@@ -675,8 +674,8 @@ def retirar_view(request):
             messages.error(request, "Monto inválido")
             return redirect("retirar")
 
-        if monto <= Decimal("199"):
-            messages.error(request, "El monto debe ser mayor a 200 cordovas")
+        if monto < Decimal("200"):
+            messages.error(request, "El retiro mínimo es C$200")
             return redirect("retirar")
 
         if monto > usuario.saldo:
@@ -695,7 +694,7 @@ def retirar_view(request):
         usuario.saldo -= monto
         usuario.save()
 
-        retiro = Retiro.objects.create(
+        Retiro.objects.create(
             usuario=usuario,
             cuenta=cuenta,
             monto=monto,
@@ -707,22 +706,19 @@ def retirar_view(request):
         Transaccion.objects.create(
             usuario=usuario,
             monto=monto,
-            tipo="egreso",
-            
+            tipo="egreso"
         )
 
         messages.success(
             request,
-            f"✅ Retiro enviado. Comisión 10%: C${comision:.2f}. "
-            f"Recibirás C${monto_final:.2f}"
+            f"Retiro enviado. Recibirás C${monto_final:.2f}"
         )
 
         return redirect("historial_retiros")
 
-    # 👇 AHORA SÍ ENTRA AQUÍ
     return render(request, "inverso_sa/retirar.html", {
         "cuentas": cuentas,
-        "saldo": usuario.saldo
+        "saldo": usuario.saldo,
     })
 
 
