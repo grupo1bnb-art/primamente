@@ -50,15 +50,11 @@
 
                 <label>Cantidad a retirar</label>
 
-                <input
-                    type="number"
-                    name="monto"
-                    min="200"
-                    max="{{ request.user.saldo }}"
-                    placeholder="Ej: 500"
-                    required>
-
-                <!-- BOTONES RAPIDOS -->
+                <input type="number" name="monto" min="200" {% if request.user.saldo> 200 %}
+                max="{{ request.user.saldo }}"
+                {% endif %}
+                placeholder="Ej: 500"
+                required>
 
                 <div class="quick-amounts">
 
@@ -171,13 +167,13 @@
 
 <script>
 
-function setMonto(valor){
+    function setMonto(valor) {
 
-    document.querySelector(
-        'input[name="monto"]'
-    ).value = valor;
+        document.querySelector(
+            'input[name="monto"]'
+        ).value = valor;
 
-}
+    }
 
 </script>
 
