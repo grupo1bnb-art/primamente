@@ -1,5 +1,5 @@
 /* ======================================
-VARIABLES MUNDIAL 2026
+        VARIABLES MUNDIAL 2026
 ====================================== */
 
 :root {
@@ -11,31 +11,28 @@ VARIABLES MUNDIAL 2026
     --fifa-white: #ffffff;
     --fifa-text: #dfe6e9;
 
-    --glass-bg: rgba(255, 255, 255, .12);
-    --glass-border: rgba(255, 255, 255, .25);
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.25);
 
-    --shadow:
-        0 10px 35px rgba(0, 0, 0, .55);
+    --shadow: 0 15px 40px rgba(0, 0, 0, .6);
 
-    --radius: 22px;
+    --radius: 25px;
 
 }
 
+
 /* ======================================
-CONFIGURACIÓN GENERAL
+        CONFIGURACIÓN GENERAL
 ====================================== */
 
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
-body {
 
-    color: var(--fifa-white);
+body {
 
     font-family:
         "Inter",
@@ -43,11 +40,12 @@ body {
         Arial,
         sans-serif;
 
+    color: var(--fifa-white);
+
 
     background:
         linear-gradient(rgba(0, 0, 0, .65),
-            rgba(0, 30, 10, .85)),
-
+            rgba(0, 35, 12, .88)),
         url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2000");
 
 
@@ -55,13 +53,13 @@ body {
     background-position: center;
     background-attachment: fixed;
 
-
     min-height: 100vh;
 
 }
 
+
 /* ======================================
-ANIMACIONES
+        ANIMACIONES
 ====================================== */
 
 @keyframes fadeUp {
@@ -73,7 +71,6 @@ ANIMACIONES
 
     }
 
-
     to {
 
         opacity: 1;
@@ -81,42 +78,36 @@ ANIMACIONES
 
     }
 
-
 }
 
-@keyframes pulseTrophy {
+
+@keyframes trophyPulse {
 
     0% {
-
         transform: scale(1);
-
     }
 
 
     50% {
-
-        transform: scale(1.08);
-
+        transform: scale(1.1);
     }
 
 
     100% {
-
         transform: scale(1);
-
     }
-
 
 }
 
+
 /* ======================================
-OVERLAY COMUNIDAD
+        OVERLAY COMUNIDAD
 ====================================== */
+
 
 #telegram-overlay {
 
     position: fixed;
-
     inset: 0;
 
     display: none;
@@ -124,66 +115,62 @@ OVERLAY COMUNIDAD
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, .82);
+    z-index: 999999;
+
+    background: rgba(0, 0, 0, .85);
 
     backdrop-filter: blur(12px);
-
-    z-index: 999999;
 
     padding: 20px;
 
 }
 
-/* Caja principal tipo estadio */
+
+/* Caja estilo estadio */
 
 .stadium-overlay {
 
+
     width: 100%;
-    max-width: 450px;
+    max-width: 460px;
 
     padding: 35px;
 
-    border-radius: 30px;
-
     text-align: center;
+
+    border-radius: 30px;
 
 
     background:
         linear-gradient(135deg,
-            rgba(0, 90, 30, .9),
-            rgba(0, 25, 8, .95));
+            rgba(0, 100, 40, .95),
+            rgba(0, 25, 10, .95));
 
 
-    border:
-        2px solid var(--fifa-gold);
+    border: 2px solid var(--fifa-gold);
 
 
     box-shadow:
-        0 0 30px rgba(255, 215, 0, .5),
+        0 0 35px rgba(255, 215, 0, .55),
         var(--shadow);
 
 
-    animation:
-        fadeUp .6s ease;
+    animation: fadeUp .5s ease;
 
 }
 
-/* Trofeo */
+
+/* Copa */
 
 .trophy-circle {
 
-    width: 95px;
-    height: 95px;
+
+    width: 100px;
+    height: 100px;
 
     margin: auto auto 25px;
 
     border-radius: 50%;
-
-
-    background:
-        linear-gradient(45deg,
-            #ffe66d,
-            #d4a017);
 
 
     display: flex;
@@ -191,42 +178,57 @@ OVERLAY COMUNIDAD
     align-items: center;
 
 
+    background:
+        linear-gradient(45deg,
+            #fff08a,
+            #d79c00);
+
+
     color: #111;
 
-    font-size: 42px;
+    font-size: 45px;
 
 
     animation:
-        pulseTrophy 2s infinite;
+        trophyPulse 2s infinite;
+
 
 }
 
-/* Texto overlay */
+
+/* Título y texto */
 
 .stadium-overlay h2 {
 
-    font-size: 32px;
+
+    font-size: 30px;
+
+    font-weight: 900;
 
     margin-bottom: 15px;
 
-    font-weight: 800;
 
 }
 
+
 .stadium-overlay p {
 
-    color: #f1f1f1;
+
+    color: var(--fifa-text);
 
     line-height: 1.7;
 
     margin-bottom: 25px;
 
+
 }
 
-/* Botones */
+
+/* Botones overlay */
 
 .btn-join,
 .btn-close {
+
 
     width: 100%;
 
@@ -234,11 +236,7 @@ OVERLAY COMUNIDAD
 
     border-radius: 50px;
 
-    border: none;
-
-    font-size: 15px;
-
-    font-weight: 700;
+    font-weight: 800;
 
     cursor: pointer;
 
@@ -246,7 +244,9 @@ OVERLAY COMUNIDAD
 
 }
 
+
 .btn-join {
+
 
     display: flex;
 
@@ -261,28 +261,34 @@ OVERLAY COMUNIDAD
     background:
         linear-gradient(90deg,
             var(--fifa-gold),
-            #ff9500);
+            #ff9100);
 
 
     color: #111;
 
     margin-bottom: 12px;
 
+
 }
+
 
 .btn-join:hover {
 
-    transform: translateY(-4px);
+
+    transform: translateY(-5px);
+
 
     box-shadow:
-        0 10px 25px rgba(255, 215, 0, .5);
+        0 10px 25px rgba(255, 215, 0, .6);
+
 
 }
 
+
 .btn-close {
 
-    background:
-        rgba(255, 255, 255, .12);
+
+    background: transparent;
 
     color: white;
 
@@ -290,38 +296,45 @@ OVERLAY COMUNIDAD
     border:
         1px solid rgba(255, 255, 255, .35);
 
+
 }
+
 
 .btn-close:hover {
 
+
     background: white;
 
-    color: #111;
+    color: black;
+
 
 }
 
+
 /* ======================================
-HERO ESTADIO MUNDIAL
+        HERO ESTADIO MUNDIAL
 ====================================== */
+
 
 .hero-worldcup {
 
+
     position: relative;
 
+    overflow: hidden;
 
-    padding:
-        90px 65px;
+
+    padding: 90px 70px;
 
 
     border-radius:
         var(--radius);
 
 
-    overflow: hidden;
+    margin-bottom: 35px;
 
 
     background:
-
         linear-gradient(rgba(0, 0, 0, .45),
             rgba(0, 0, 0, .75)),
 
@@ -337,17 +350,17 @@ HERO ESTADIO MUNDIAL
         var(--shadow);
 
 
-    margin-bottom: 28px;
-
-
     animation:
         fadeUp .7s ease;
 
+
 }
 
-/* Efecto de iluminación */
+
+/* Luz superior */
 
 .hero-worldcup::before {
+
 
     content: "";
 
@@ -358,14 +371,17 @@ HERO ESTADIO MUNDIAL
 
     background:
         radial-gradient(circle at top,
-            rgba(255, 215, 0, .25),
+            rgba(255, 215, 0, .30),
             transparent 60%);
+
 
 }
 
-/* Contenido encima de la luz */
+
+/* Contenido visible */
 
 .hero-content {
+
 
     position: relative;
 
@@ -373,93 +389,722 @@ HERO ESTADIO MUNDIAL
 
     max-width: 700px;
 
+
 }
+
+
+/* Etiqueta */
 
 .hero-badge {
 
+
     display: inline-block;
 
-    padding: 9px 18px;
+
+    padding: 10px 18px;
+
 
     border-radius: 50px;
 
 
+    color: var(--fifa-gold);
+
+
+    border: 1px solid var(--fifa-gold);
+
+
     background:
-        rgba(255, 215, 0, .22);
-
-
-    border:
-        1px solid var(--fifa-gold);
-
-
-    color:
-        var(--fifa-gold);
+        rgba(255, 215, 0, .15);
 
 
     font-weight: 700;
 
+
 }
 
-/* Título principal */
+
+/* Título */
 
 .hero-content h1 {
+
 
     font-size: 58px;
 
     font-weight: 900;
 
+
     margin:
-        22px 0 15px;
+        25px 0 15px;
+
 
 }
+
+
+/* Descripción */
 
 .hero-content p {
 
+
     font-size: 18px;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
 
     color: var(--fifa-text);
 
+
+    line-height: 1.8;
+
+
+    margin-bottom: 25px;
+
+
 }
 
-/* Botón del hero */
+
+/* Botón principal */
 
 .hero-content button {
 
-    padding: 15px 32px;
-
-    border-radius: 50px;
 
     border: none;
 
-    cursor: pointer;
 
-    font-weight: 800;
+    padding: 15px 32px;
+
+
+    border-radius: 50px;
+
 
     font-size: 15px;
 
 
-    background:
-        linear-gradient(90deg,
-            var(--fifa-gold),
-            #ff9100);
+    font-weight: 800;
+
+
+    cursor: pointer;
 
 
     color: #111;
 
 
+    background:
+        linear-gradient(90deg,
+            var(--fifa-gold),
+            #ff9500);
+
+
+    transition: .35s;
+
+
+}
+
+
+.hero-content button:hover {
+
+
+    transform: translateY(-5px);
+
+
+    box-shadow:
+        0 12px 30px rgba(255, 215, 0, .55);
+
+
+}
+
+/* ======================================
+        SCOREBOARD - MARCADOR FIFA
+====================================== */
+
+.scoreboard {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 22px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.score-card {
+
+    position: relative;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(16px);
+
+    border:
+        1px solid var(--glass-border);
+
+    border-radius:
+        var(--radius);
+
+    padding: 30px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    transition: .35s;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+/* Línea superior estilo estadio */
+
+.score-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(90deg,
+            var(--fifa-gold),
+            var(--fifa-blue));
+
+}
+
+
+.score-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 15px 35px rgba(255, 215, 0, .45);
+
+}
+
+
+.score-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin:
+        auto auto 15px;
+
+
+    border-radius: 50%;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    background:
+        linear-gradient(45deg,
+            var(--fifa-gold),
+            #ff9900);
+
+}
+
+
+.score-icon i {
+
+    color: #111;
+
+    font-size: 30px;
+
+}
+
+
+.score-card span {
+
+    display: block;
+
+    color: var(--fifa-text);
+
+    margin-bottom: 8px;
+
+}
+
+
+.score-card h2 {
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+}
+
+
+.highlight {
+
+    color: var(--fifa-gold);
+
+}
+
+
+/* ======================================
+        TITULOS DE SECCIÓN
+====================================== */
+
+.section-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.section-title h3 {
+
+    font-size: 28px;
+
+    color: white;
+
+}
+
+
+.section-title i {
+
+    color: var(--fifa-gold);
+
+    margin-right: 8px;
+
+}
+
+
+.section-title span {
+
+    color: var(--fifa-text);
+
+}
+
+
+/* ======================================
+        CATEGORÍAS MUNDIAL
+====================================== */
+
+
+.world-categories {
+
+    margin-bottom: 40px;
+
+}
+
+
+.category-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+.category-card {
+
+    background:
+        var(--glass-bg);
+
+    backdrop-filter:
+        blur(16px);
+
+    border:
+        1px solid var(--glass-border);
+
+
+    border-radius:
+        var(--radius);
+
+
+    text-align: center;
+
+    padding: 25px;
+
+    transition: .35s;
+
+
+}
+
+
+.category-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 0 30px rgba(0, 200, 255, .55);
+
+}
+
+
+.category-icon {
+
+    font-size: 45px;
+
+    color: var(--fifa-gold);
+
+    margin-bottom: 15px;
+
+}
+
+
+.category-card h4 {
+
+    font-size: 22px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.category-card small {
+
+    color:
+        var(--fifa-text);
+
+}
+
+
+/* Barra estilo progreso */
+
+.stadium-bar {
+
+    width: 100%;
+
+    height: 10px;
+
+    background:
+        rgba(255, 255, 255, .15);
+
+    border-radius: 50px;
+
+    overflow: hidden;
+
+    margin-bottom: 10px;
+
+}
+
+
+.bar-fill {
+
+    height: 100%;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(90deg,
+            var(--fifa-green),
+            var(--fifa-gold));
+
+}
+
+
+/* ======================================
+        COMUNIDADES / EQUIPOS
+====================================== */
+
+
+.teams-zone {
+
+    margin-bottom: 50px;
+
+}
+
+
+.teams-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 25px;
+
+}
+
+
+.team-card {
+
+    background:
+        var(--glass-bg);
+
+    border:
+        1px solid var(--glass-border);
+
+    backdrop-filter:
+        blur(16px);
+
+    border-radius:
+        var(--radius);
+
+    overflow: hidden;
+
+    transition: .4s;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.team-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 0 35px rgba(255, 215, 0, .5);
+
+}
+
+
+/* Imagen comunidad */
+
+.team-image {
+
+    height: 190px;
+
+    overflow: hidden;
+
+}
+
+
+.team-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .5s;
+
+}
+
+
+.team-card:hover .team-image img {
+
+    transform: scale(1.1);
+
+}
+
+
+/* Información */
+
+.team-info {
+
+    padding: 22px;
+
+}
+
+
+.team-info h4 {
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.team-info p {
+
+    color: var(--fifa-text);
+
+    margin-bottom: 15px;
+
+}
+
+
+.daily-profit {
+
+    color: var(--fifa-gold);
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+
+}
+
+
+.team-price {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* Botón unirse */
+
+.btn-team {
+
+    width: 100%;
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 14px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    color: #111;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(90deg,
+            var(--fifa-gold),
+            #ff9200);
+
     transition: .35s;
 
 }
 
-.hero-content button:hover {
 
-    transform:
-        translateY(-4px);
+.btn-team:hover {
+
+    transform: scale(1.04);
 
     box-shadow:
-        0 12px 25px rgba(255, 215, 0, .45);
+        0 10px 25px rgba(255, 215, 0, .5);
+
+}
+
+
+/* ======================================
+        RESPONSIVE MÓVIL
+====================================== */
+
+
+@media (max-width: 992px) {
+
+
+    .hero-worldcup {
+
+        padding: 55px 35px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 42px;
+
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+
+    .hero-worldcup {
+
+        padding: 40px 20px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .hero-content p {
+
+        font-size: 16px;
+
+    }
+
+
+    .section-title {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+
+    .scoreboard,
+    .category-grid,
+    .teams-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+
+    .hero-content h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .trophy-circle {
+
+        width: 80px;
+
+        height: 80px;
+
+        font-size: 35px;
+
+    }
+
+
+    .stadium-overlay {
+
+        padding: 25px;
+
+    }
+
+
+    .score-card h2 {
+
+        font-size: 26px;
+
+    }
+
+
+    .team-info {
+
+        padding: 18px;
+
+    }
+
 }

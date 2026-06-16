@@ -1,7 +1,10 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Inicio | Rddit{% endblock %}
+{% block title %}
+Inicio | Rddit
+{% endblock %}
+
 
 {% block extra_css %}
 
@@ -11,16 +14,20 @@
 
 {% endblock %}
 
+
 {% block contenido %}
 
-<!-- ===============================
-        OVERLAY COMUNIDAD
-================================ -->
+
+<!-- ======================================
+        OVERLAY COMUNIDAD MUNDIAL
+====================================== -->
 
 <div id="telegram-overlay">
 
-    
     <div class="stadium-overlay">
+
+
+        <!-- Trofeo -->
 
         <div class="trophy-circle">
 
@@ -29,10 +36,14 @@
         </div>
 
 
+        <!-- Título -->
+
         <h2>
             Únete a nuestra Comunidad
         </h2>
 
+
+        <!-- Descripción -->
 
         <p>
             Descubre publicaciones destacadas,
@@ -41,36 +52,48 @@
         </p>
 
 
+        <!-- Botón WhatsApp -->
+
         <a href="https://whatsapp.com/channel/0029VbChnfk6GcG6XhmvZc2C" target="_blank" class="btn-join">
+
 
             <i class="fa-solid fa-futbol"></i>
 
             Explorar comunidad
 
+
         </a>
 
 
+        <!-- Cerrar -->
+
         <button type="button" onclick="cerrarOverlay()" class="btn-close">
 
+
             Continuar
+
 
         </button>
 
 
     </div>
-    
 
 </div>
 
-<!-- ===============================
-            HERO MUNDIAL
-================================ -->
+
+
+<!-- ======================================
+            HERO ESTADIO MUNDIAL
+====================================== -->
+
 
 <section class="hero-worldcup">
 
-    
+
     <div class="hero-content">
 
+
+        <!-- Badge -->
 
         <span class="hero-badge">
 
@@ -79,11 +102,19 @@
         </span>
 
 
+
+        <!-- Título principal -->
+
+
         <h1>
 
             Descubre comunidades que te interesan
 
         </h1>
+
+
+
+        <!-- Texto -->
 
 
         <p>
@@ -95,40 +126,53 @@
         </p>
 
 
-        <button onclick="window.location.href='{% url 'recargar' %}'">
+
+        <!-- Botón -->
+
+
+        <button onclick="window.location.href='{% url " recargar" %}'">
+
 
             <i class="fa-solid fa-bolt"></i>
 
             Recargar ahora
 
+
         </button>
 
 
     </div>
-    
+
 
 </section>
 
-<!-- ===============================
-        MARCADOR ESTADÍSTICAS
-================================ -->
+
+
+<!-- ======================================
+          MARCADOR DE ESTADÍSTICAS
+====================================== -->
+
 
 <section class="scoreboard">
 
-    
+
+    <!-- Tarjeta Saldo -->
+
+
     <div class="score-card">
+
 
         <div class="score-icon">
 
+
             <i class="fa-solid fa-wallet"></i>
+
 
         </div>
 
 
         <span>
-
             Mi saldo
-
         </span>
 
 
@@ -143,12 +187,17 @@
 
 
 
+    <!-- Publicaciones -->
+
+
     <div class="score-card">
 
 
         <div class="score-icon">
 
+
             <i class="fa-solid fa-fire"></i>
+
 
         </div>
 
@@ -171,12 +220,17 @@
 
 
 
+    <!-- Comunidades -->
+
+
     <div class="score-card">
 
 
         <div class="score-icon">
 
+
             <i class="fa-solid fa-comments"></i>
+
 
         </div>
 
@@ -198,367 +252,341 @@
     </div>
 
 
-    <!-- ===============================
+</section>
+<!-- ======================================
         CATEGORÍAS POPULARES
-================================ -->
+====================================== -->
 
-    <section class="world-categories">
+<section class="world-categories">
 
-        
-        <div class="section-title">
+    <div class="section-title">
 
-            <h3>
+        <h3>
+            <i class="fa-solid fa-earth-americas"></i>
+            Categorías Populares
+        </h3>
 
-                <i class="fa-solid fa-earth-americas"></i>
+        <span>
+            Actualizado en tiempo real
+        </span>
 
-                Categorías Populares
-
-            </h3>
+    </div>
 
 
-            <span>
+    <div class="category-grid">
 
-                Actualizado en tiempo real
 
-            </span>
+        <!-- Gaming -->
+
+        <div class="category-card">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-gamepad"></i>
+
+            </div>
+
+
+            <h4>
+                Gaming
+            </h4>
+
+
+            <div class="stadium-bar">
+
+                <div class="bar-fill" style="width:75%;"></div>
+
+            </div>
+
+
+            <small>
+                75% de actividad
+            </small>
 
 
         </div>
 
 
-        <div class="category-grid">
+
+        <!-- Tecnología -->
+
+        <div class="category-card">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-laptop"></i>
+
+            </div>
 
 
-            <div class="category-card">
+            <h4>
+                Tecnología
+            </h4>
 
 
-                <div class="category-icon">
+            <div class="stadium-bar">
 
-                    <i class="fa-solid fa-gamepad"></i>
+                <div class="bar-fill" style="width:60%;"></div>
 
-                </div>
+            </div>
+
+
+            <small>
+                60% de actividad
+            </small>
+
+
+        </div>
+
+
+
+        <!-- Entretenimiento -->
+
+        <div class="category-card">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-film"></i>
+
+            </div>
+
+
+            <h4>
+                Entretenimiento
+            </h4>
+
+
+            <div class="stadium-bar">
+
+                <div class="bar-fill" style="width:85%;"></div>
+
+            </div>
+
+
+            <small>
+                85% de actividad
+            </small>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================
+        COMUNIDADES DESTACADAS
+====================================== -->
+
+
+<section class="teams-zone">
+
+
+    <div class="section-title">
+
+
+        <h3>
+
+            <i class="fa-solid fa-trophy"></i>
+
+            Comunidades Destacadas
+
+        </h3>
+
+
+        <span>
+
+            {{ productos|length }} disponibles
+
+        </span>
+
+
+    </div>
+
+
+
+    <div class="teams-grid">
+
+
+        {% for producto in productos %}
+
+
+        <div class="team-card">
+
+
+            <!-- Imagen -->
+
+            <div class="team-image">
+
+
+                {% if producto.imagen %}
+
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" loading="lazy">
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- Información -->
+
+
+            <div class="team-info">
 
 
                 <h4>
 
-                    Gaming
+                    r/{{ producto.nombre }}
 
                 </h4>
 
 
-                <div class="stadium-bar">
+                <p>
 
-                    <div class="bar-fill" style="width:75%"></div>
+                    {{ producto.duracion }}
+
+                </p>
+
+
+
+                <div class="daily-profit">
+
+                    {{ producto.ingreso_diario }} NIO
 
                 </div>
 
 
-                <small>
 
-                    75% de actividad
+                <span class="team-price">
 
-                </small>
+                    Costo: {{ producto.precio }} NIO
+
+                </span>
+
+
+
+                <!-- Formulario Django -->
+
+
+                <form method="POST" action="{% url 'invertir_producto' producto.id %}">
+
+
+                    {% csrf_token %}
+
+
+
+                    <button type="submit" class="btn-team">
+
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Unirse
+
+
+                    </button>
+
+
+                </form>
 
 
             </div>
 
 
+        </div>
 
 
-            <div class="category-card">
+        {% empty %}
 
 
-                <div class="category-icon">
+        <div class="team-card empty-card">
 
-                    <i class="fa-solid fa-laptop"></i>
 
-                </div>
+            <div class="team-info">
 
 
                 <h4>
-
-                    Tecnología
-
+                    No hay comunidades disponibles
                 </h4>
 
 
-                <div class="stadium-bar">
-
-                    <div class="bar-fill" style="width:60%"></div>
-
-                </div>
-
-
-                <small>
-
-                    60% de actividad
-
-                </small>
-
-
-            </div>
-
-
-
-
-            <div class="category-card">
-
-
-                <div class="category-icon">
-
-                    <i class="fa-solid fa-film"></i>
-
-                </div>
-
-
-                <h4>
-
-                    Entretenimiento
-
-                </h4>
-
-
-                <div class="stadium-bar">
-
-                    <div class="bar-fill" style="width:85%"></div>
-
-                </div>
-
-
-                <small>
-
-                    85% de actividad
-
-                </small>
-
-
             </div>
 
 
         </div>
-        
 
-    </section>
 
-    <!-- ===============================
-      COMUNIDADES DESTACADAS
-================================ -->
+        {% endfor %}
 
-    <section class="teams-zone">
 
-        
-        <div class="section-title">
+    </div>
 
 
-            <h3>
+</section>
 
-                <i class="fa-solid fa-trophy"></i>
 
-                Comunidades Destacadas
 
-            </h3>
-
-
-            <span>
-
-                {{ productos|length }} disponibles
-
-            </span>
-
-
-        </div>
-
-
-
-        <div class="teams-grid">
-
-
-            {% for producto in productos %}
-
-
-            <div class="team-card">
-
-
-                <!-- Imagen de comunidad -->
-
-
-                <div class="team-image">
-
-
-                    {% if producto.imagen %}
-
-
-                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" loading="lazy">
-
-
-                    {% endif %}
-
-
-                </div>
-
-
-
-                <div class="team-info">
-
-
-                    <h4>
-
-                        r/{{ producto.nombre }}
-
-                    </h4>
-
-
-
-                    <p>
-
-                        {{ producto.duracion }}
-
-                    </p>
-
-
-
-                    <div class="daily-profit">
-
-
-                        {{ producto.ingreso_diario }} NIO
-
-
-                    </div>
-
-
-
-                    <span class="team-price">
-
-
-                        Costo: {{ producto.precio }} NIO
-
-
-                    </span>
-
-
-
-                    <form method="POST" action="{% url 'invertir_producto' producto.id %}">
-
-
-                        {% csrf_token %}
-
-
-
-                        <button type="submit" class="btn-team">
-
-
-                            <i class="fa-solid fa-plus"></i>
-
-
-                            Unirse
-
-
-                        </button>
-
-
-
-                    </form>
-
-
-                </div>
-
-
-            </div>
-
-
-
-
-            {% empty %}
-
-
-
-            <div class="team-card empty-card">
-
-
-                <div class="team-info">
-
-
-                    <h4>
-
-                        No hay comunidades disponibles
-
-                    </h4>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            {% endfor %}
-
-
-        </div>
-        ```
-
-    </section>
-
-    <!-- ===============================
+<!-- ======================================
         JAVASCRIPT OVERLAY
-================================ -->
-
-    <script>
+====================================== -->
 
 
-        document.addEventListener("DOMContentLoaded", function () {
+<script>
 
 
-            const overlay = document.getElementById("telegram-overlay");
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const overlay = document.getElementById("telegram-overlay");
 
 
-            if (!overlay) return;
+        if (!overlay) {
+            return;
+        }
 
 
-            if (localStorage.getItem("telegram_visto") !== "true") {
+        if (localStorage.getItem("telegram_visto") !== "true") {
 
+            overlay.style.display = "flex";
 
-                overlay.style.display = "flex";
+        } else {
 
-
-            } else {
-
-
-                overlay.style.display = "none";
-
-
-            }
-
-
-        });
-
-
-
-        function cerrarOverlay() {
-
-
-            localStorage.setItem(
-                "telegram_visto",
-                "true"
-            );
-
-
-            const overlay = document.getElementById(
-                "telegram-overlay"
-            );
-
-
-            if (overlay) {
-
-                overlay.style.display = "none";
-
-            }
-
+            overlay.style.display = "none";
 
         }
 
 
-    </script>
+    });
 
-    {% endblock %}
+
+
+    function cerrarOverlay() {
+
+        localStorage.setItem(
+            "telegram_visto",
+            "true"
+        );
+
+
+        const overlay = document.getElementById(
+            "telegram-overlay"
+        );
+
+
+        if (overlay) {
+
+            overlay.style.display = "none";
+
+        }
+
+    }
+
+
+</script>
+
+
+{% endblock %}
