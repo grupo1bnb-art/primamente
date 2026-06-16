@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from .models import Usuario, Transaccion, Producto, Recarga, CuentaBancaria, Inversion, Retiro, CuentaUsuario, ComisionReferido
+from .models import Usuario, Transaccion, Producto, Recarga, RecargaCrypto , CuentaBancaria, Inversion, Retiro, CuentaUsuario, ComisionReferido
 from django.contrib.auth.hashers import make_password
 from django.db.models import Sum
 from.forms import ProductoForm, CuentaBancariaForm
@@ -1036,7 +1036,41 @@ def custom_404_view(request, exception):
 def es_admin(user):
     return user.is_superuser or user.groups.filter(name='ADMIN').exists()
 
+@login_required
+def recarga_crypto(request):
+    if request.method == 'POST':
+        red = request.POST.get('red')
+        monto = Decimal(request.POST.get('monto'))
+        txid = request.POST.get('txid')
+        voucher = request.FILES.get('voucher')
 
+        # Mínimo 14 USDT
+        if monto < Decimal('14'):
+            messages.error(
+                request,
+                'El depósito mínimo es de 14 USDT.'
+            )
+            return redirect('recarga_crypto')
+
+        direccion = (
+            "TU_DIRECCION_TRC20"
+            if red == "TRC20"
+            else "TU_DIRECCION_BEP20"
+        )
+
+        RecargaCrypto.objects.create(
+            usuario=request.user,
+            red=red,
+            direccion=direccion,
+            txid=txid,
+            monto=monto,
+            voucher=voucher
+        )
+
+        messages.success(request, "Recarga enviada correctamente.")
+        return redirect('mis_recargas')
+
+    return render(request, 'inverso_sa/recargar.html')
 
 
 

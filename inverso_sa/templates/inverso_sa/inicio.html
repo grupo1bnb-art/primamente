@@ -1,281 +1,488 @@
 {% extends "inverso_sa/dashboard.html" %}
 {% load static %}
 
-{% block title %}Inicio | Rddit{% endblock %}
+{% block title %}
+Inicio | Mundial 2026
+{% endblock %}
+
 
 {% block extra_css %}
+
 <link rel="stylesheet" href="{% static 'inverso_sa/css/inicio.css' %}">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 {% endblock %}
+
 
 {% block contenido %}
 
-<!-- OVERLAY COMUNIDAD -->
 
-<div id="telegram-overlay">
+<!-- ===============================
+        OVERLAY FAN ZONE
+================================ -->
 
-    <div class="telegram-box">
+<div id="fan-overlay">
 
-        <div class="telegram-icon">
-            <i class="fa-brands fa-reddit-alien"></i>
+    <div class="fan-box">
+
+        <div class="fan-icon">
+
+            <i class="fa-solid fa-futbol"></i>
+
         </div>
 
-        <h2>Únete a nuestra Comunidad</h2>
+
+        <h2>
+            ¡Bienvenido a la Fan Zone 2026!
+        </h2>
+
 
         <p>
-            Descubre publicaciones destacadas, tendencias,
-            debates y contenido compartido por miles de usuarios.
+            Vive la pasión del fútbol mundial.
+            Sigue selecciones, descubre partidos,
+            apoya a tus equipos favoritos y
+            celebra la mayor fiesta del planeta.
         </p>
 
-        <a href="https://whatsapp.com/channel/0029VbChnfk6GcG6XhmvZc2C"
-           target="_blank"
-           class="btn-join">
 
-            <i class="fa-brands fa-reddit-alien"></i>
-            Explorar comunidad
+        <a href="https://whatsapp.com/channel/0029VbChnfk6GcG6XhmvZc2C" target="_blank" class="btn-fan">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            Entrar a la Fan Zone
 
         </a>
 
+
         <button type="button" onclick="cerrarOverlay()" class="btn-close">
-            Continuar
+
+            Entrar al Mundial
+
         </button>
 
     </div>
 
 </div>
 
-<!-- HERO -->
 
-<section class="hero-ultra">
+<!-- ===============================
+            HERO MUNDIAL
+================================ -->
 
-    <div class="hero-info">
+
+<section class="hero-worldcup">
+
+
+    <div class="hero-content">
+
 
         <span class="hero-badge">
-            🔥 Tendencias más populares del día
+
+            🏆 FIFA WORLD CUP 2026
+
         </span>
 
+
         <h1>
-            Descubre comunidades que te interesan
+
+            La emoción del fútbol comienza aquí
+
         </h1>
 
+
         <p>
-            Participa en conversaciones, comparte contenido,
-            descubre noticias y conecta con personas de todo el mundo.
+
+            Sigue cada encuentro, descubre
+            las mejores selecciones del mundo
+            y siente la energía de cada gol.
+
         </p>
+
 
         <button onclick="window.location.href='{% url 'recargar' %}'">
 
-            <i class="fa-solid fa-fire"></i>
-            Recargar ahora
+
+            <i class="fa-solid fa-bolt"></i>
+
+            Ver partidos en vivo
+
 
         </button>
 
+
     </div>
+
 
 </section>
 
-<!-- RESUMEN -->
 
-<section class="kpi-grid">
+<!-- ===============================
+            MARCADORES
+================================ -->
 
-    <div class="kpi">
 
-        <i class="fa-solid fa-wallet"></i>
+<section class="score-grid">
 
-        <span>Mi saldo</span>
 
-        <h2>C${{ user.saldo }}</h2>
+    <div class="score-card">
 
-    </div>
 
-    <div class="kpi">
+        <i class="fa-solid fa-coins"></i>
 
-        <i class="fa-solid fa-arrow-trend-up"></i>
 
-        <span>Publicaciones hoy</span>
+        <span>
+            Mis monedas
+        </span>
 
-        <h2 class="green">
-            {{ ganancias_hoy }}
+
+        <h2>
+
+            C${{ user.saldo }}
+
         </h2>
 
-    </div>
-
-    <div class="kpi">
-
-        <i class="fa-solid fa-comments"></i>
-
-        <span>Comunidades activas</span>
-
-        <h2>{{ total_proyectos }}</h2>
 
     </div>
+
+
+
+    <div class="score-card">
+
+
+        <i class="fa-solid fa-futbol"></i>
+
+
+        <span>
+
+            Goles del día
+
+        </span>
+
+
+        <h2 class="goal">
+
+            {{ ganancias_hoy }}
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="score-card">
+
+
+        <i class="fa-solid fa-earth-americas"></i>
+
+
+        <span>
+
+            Selecciones activas
+
+        </span>
+
+
+        <h2>
+
+            {{ total_proyectos }}
+
+        </h2>
+
+
+    </div>
+
 
 </section>
+<!-- ===============================
+          GRUPOS DEL MUNDIAL
+================================ -->
 
-<!-- CATEGORIAS -->
+<section class="groups-section">
 
-<section class="energy-section">
 
     <div class="section-header">
 
-        <h3>Categorías Populares</h3>
+        <h3>
+            Fase de Grupos
+        </h3>
 
-        <span>Actualizado en tiempo real</span>
+        <span>
+            Camino hacia la gran final
+        </span>
+
+    </div>
+
+
+    <div class="groups-grid">
+
+
+        <!-- Grupo A -->
+
+        <div class="group-card">
+
+            <i class="fa-solid fa-flag"></i>
+
+            <h4>
+                Grupo A
+            </h4>
+
+
+            <div class="progress">
+
+                <div style="width: 85%;"></div>
+
+            </div>
+
+
+            <small>
+                85% de partidos jugados
+            </small>
+
+        </div>
+
+
+
+        <!-- Grupo B -->
+
+        <div class="group-card">
+
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+
+            <h4>
+                Grupo B
+            </h4>
+
+
+            <div class="progress">
+
+                <div style="width: 65%;"></div>
+
+            </div>
+
+
+            <small>
+                65% de partidos jugados
+            </small>
+
+        </div>
+
+
+
+        <!-- Grupo C -->
+
+        <div class="group-card">
+
+
+            <i class="fa-solid fa-trophy"></i>
+
+
+            <h4>
+                Grupo C
+            </h4>
+
+
+            <div class="progress">
+
+                <div style="width: 95%;"></div>
+
+            </div>
+
+
+            <small>
+                95% de partidos jugados
+            </small>
+
+
+        </div>
+
 
     </div>
 
-    <div class="energy-grid">
-
-        <div class="energy-card">
-
-            <i class="fa-solid fa-gamepad"></i>
-
-            <h4>Gaming</h4>
-
-            <div class="bar">
-                <div style="width:75%"></div>
-            </div>
-
-            <small>75% de actividad</small>
-
-        </div>
-
-        <div class="energy-card">
-
-            <i class="fa-solid fa-laptop"></i>
-
-            <h4>Tecnología</h4>
-
-            <div class="bar">
-                <div style="width:60%"></div>
-            </div>
-
-            <small>60% de actividad</small>
-
-        </div>
-
-        <div class="energy-card">
-
-            <i class="fa-solid fa-film"></i>
-
-            <h4>Entretenimiento</h4>
-
-            <div class="bar">
-                <div style="width:85%"></div>
-            </div>
-
-            <small>85% de actividad</small>
-
-        </div>
-
-    </div>
 
 </section>
 
-<!-- COMUNIDADES -->
 
-<section class="plans-ultra">
+
+<!-- ===============================
+       SELECCIONES DESTACADAS
+================================ -->
+
+<section class="teams-section">
+
 
     <div class="section-header">
 
-        <h3>Comunidades Destacadas</h3>
 
-        <span>{{ productos|length }} disponibles</span>
+        <h3>
+            Selecciones Destacadas
+        </h3>
+
+
+        <span>
+
+            {{ productos|length }} equipos disponibles
+
+        </span>
+
 
     </div>
 
-    <div class="plans-grid">
+
+
+    <div class="teams-grid">
+
 
         {% for producto in productos %}
 
-        <div class="plan">
 
-            <div class="plan-image">
+        <div class="team-card">
+
+
+            <!-- Imagen selección -->
+
+            <div class="team-image">
+
 
                 {% if producto.imagen %}
-                <img src="{{ producto.imagen.url }}"
-                     alt="{{ producto.nombre }}"
-                     loading="lazy">
+
+
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" loading="lazy">
+
+
                 {% endif %}
+
 
             </div>
 
-            <div class="plan-body">
 
-                <h4>r/{{ producto.nombre }}</h4>
+            <div class="team-body">
 
-                <p>{{ producto.duracion }}</p>
 
-                <div class="profit">
-                    {{ producto.ingreso_diario }} NIO
+                <h4>
+
+                    {{ producto.nombre }}
+
+                </h4>
+
+
+                <p>
+
+                    Torneo:
+                    {{ producto.duracion }}
+
+                </p>
+
+
+                <div class="goals">
+
+                    Puntos:
+                    {{ producto.ingreso_diario }}
+
                 </div>
 
-                <span class="price">
-                    Costo: {{ producto.precio }} NIO
+
+                <span class="value">
+
+                    Valor:
+                    {{ producto.precio }} NIO
+
                 </span>
 
-                <form method="POST"
-                      action="{% url 'invertir_producto' producto.id %}">
+
+                <form method="POST" action="{% url 'invertir_producto' producto.id %}">
+
 
                     {% csrf_token %}
 
-                    <button type="submit" class="btn-plan">
 
-                        <i class="fa-solid fa-plus"></i>
-                        Unirse
+                    <button type="submit" class="btn-team">
+
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        Apoyar Selección
+
 
                     </button>
 
+
                 </form>
+
 
             </div>
 
+
         </div>
+
+
 
         {% empty %}
 
-        <div class="plan">
-            <div class="plan-body">
-                <h4>No hay comunidades disponibles</h4>
+
+        <div class="team-card">
+
+
+            <div class="team-body">
+
+
+                <h4>
+
+                    No hay selecciones disponibles
+
+                </h4>
+
+
             </div>
+
+
         </div>
+
 
         {% endfor %}
 
+
     </div>
 
-</section>
 
+</section>
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
 
-    const overlay = document.getElementById("telegram-overlay");
+        const overlay = document.getElementById("fan-overlay");
 
-    if (!overlay) {
-        console.error("No existe #telegram-overlay");
-        return;
+        if (!overlay) return;
+
+        if (localStorage.getItem("fan_zone_visto") !== "true") {
+
+            overlay.style.display = "flex";
+
+        } else {
+
+            overlay.style.display = "none";
+
+        }
+
+    });
+
+
+    function cerrarOverlay() {
+
+        localStorage.setItem("fan_zone_visto", "true");
+
+        const overlay = document.getElementById("fan-overlay");
+
+        if (overlay) {
+
+            overlay.style.display = "none";
+
+        }
+
     }
-
-    if (localStorage.getItem("telegram_visto") !== "true") {
-        overlay.style.display = "flex";
-    } else {
-        overlay.style.display = "none";
-    }
-
-});
-
-function cerrarOverlay() {
-
-    localStorage.setItem("telegram_visto", "true");
-
-    const overlay = document.getElementById("telegram-overlay");
-
-    if (overlay) {
-        overlay.style.display = "none";
-    }
-
-}
 
 </script>
 

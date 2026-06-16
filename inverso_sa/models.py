@@ -80,6 +80,16 @@ class Recarga(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} - {self.monto}"
+    
+class RecargaCrypto(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    red = models.CharField(max_length=10)
+    direccion = models.CharField(max_length=255)
+    txid = models.CharField(max_length=255)
+    monto = models.DecimalField(max_digits=12, decimal_places=2)
+    voucher = models.ImageField(upload_to='crypto/')
+    estado = models.CharField(max_length=20, default='revision')
+    fecha = models.DateTimeField(auto_now_add=True)
 
 
 class Inversion(models.Model):
@@ -292,4 +302,15 @@ class Perfil(models.Model):
     def __str__(self):
         return self.usuario.username
 
+class WalletDeposito(models.Model):
+    REDES = (
+        ('TRC20', 'TRC20 (Tron)'),
+        ('BEP20', 'BEP20 (BSC)'),
+    )
 
+    red = models.CharField(max_length=10, choices=REDES)
+    direccion = models.CharField(max_length=255)
+    activa = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.red} - {self.direccion[:10]}..."
