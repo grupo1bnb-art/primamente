@@ -1,618 +1,465 @@
-:root{
+/* ======================================
+VARIABLES MUNDIAL 2026
+====================================== */
 
-    --green:#009739;
-    --green-dark:#005f24;
-    --gold:#ffd700;
-    --gold-dark:#d4af37;
-    --white:#ffffff;
-    --text:#dfe6e9;
-    --card:#111827;
-    --border:rgba(255,255,255,.15);
-    --shadow:0 10px 30px rgba(0,0,0,.5);
+:root {
+
+    --fifa-green: #0a7d32;
+    --fifa-dark: #031b0c;
+    --fifa-gold: #ffd700;
+    --fifa-blue: #00c8ff;
+    --fifa-white: #ffffff;
+    --fifa-text: #dfe6e9;
+
+    --glass-bg: rgba(255, 255, 255, .12);
+    --glass-border: rgba(255, 255, 255, .25);
+
+    --shadow:
+        0 10px 35px rgba(0, 0, 0, .55);
+
+    --radius: 22px;
 
 }
 
+/* ======================================
+CONFIGURACIÓN GENERAL
+====================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
 }
 
+body {
 
-body{
+    color: var(--fifa-white);
 
-    font-family:Arial, Helvetica, sans-serif;
-    color:var(--white);
+    font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
 
     background:
-        linear-gradient(
-        rgba(0,80,30,.88),
-        rgba(0,30,15,.95)),
-        url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1800");
+        linear-gradient(rgba(0, 0, 0, .65),
+            rgba(0, 30, 10, .85)),
 
-    background-size:cover;
-    background-attachment:fixed;
-
-}
+        url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2000");
 
 
-/*==============================
-        FAN ZONE
-===============================*/
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
 
-#fan-overlay{
-
-    position:fixed;
-    inset:0;
-
-    display:none;
-    justify-content:center;
-    align-items:center;
-
-    background:rgba(0,0,0,.85);
-    backdrop-filter:blur(8px);
-
-    z-index:9999;
+    min-height: 100vh;
 
 }
 
+/* ======================================
+ANIMACIONES
+====================================== */
 
-.fan-box{
+@keyframes fadeUp {
 
-    width:90%;
-    max-width:420px;
+    from {
 
-    background:linear-gradient(
-        160deg,
-        #132e1a,
-        #06120a
-    );
+        opacity: 0;
+        transform: translateY(35px);
 
-    border:2px solid var(--gold);
+    }
 
-    border-radius:25px;
 
-    padding:35px;
+    to {
 
-    text-align:center;
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+
+}
+
+@keyframes pulseTrophy {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+
+    50% {
+
+        transform: scale(1.08);
+
+    }
+
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+
+}
+
+/* ======================================
+OVERLAY COMUNIDAD
+====================================== */
+
+#telegram-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, .82);
+
+    backdrop-filter: blur(12px);
+
+    z-index: 999999;
+
+    padding: 20px;
+
+}
+
+/* Caja principal tipo estadio */
+
+.stadium-overlay {
+
+    width: 100%;
+    max-width: 450px;
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    text-align: center;
+
+
+    background:
+        linear-gradient(135deg,
+            rgba(0, 90, 30, .9),
+            rgba(0, 25, 8, .95));
+
+
+    border:
+        2px solid var(--fifa-gold);
+
 
     box-shadow:
-        0 0 20px var(--gold-dark),
+        0 0 30px rgba(255, 215, 0, .5),
         var(--shadow);
 
-    animation:zoom .5s ease;
+
+    animation:
+        fadeUp .6s ease;
 
 }
 
+/* Trofeo */
 
-.fan-icon{
+.trophy-circle {
 
-    width:90px;
-    height:90px;
+    width: 95px;
+    height: 95px;
 
-    margin:auto auto 20px;
+    margin: auto auto 25px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:var(--gold);
-
-    color:#000;
-
-    font-size:40px;
-
-}
-
-
-.fan-box h2{
-
-    font-size:28px;
-    margin-bottom:15px;
-
-}
-
-
-.fan-box p{
-
-    color:var(--text);
-    line-height:1.6;
-    margin-bottom:25px;
-
-}
-
-
-.btn-fan,
-.btn-close,
-.hero-content button,
-.btn-team{
-
-    width:100%;
-
-    border:none;
-
-    padding:14px;
-
-    border-radius:50px;
-
-    cursor:pointer;
-
-    font-size:15px;
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-
-.btn-fan,
-.hero-content button,
-.btn-team{
-
-    background:var(--gold);
-    color:#000;
-
-}
-
-
-.btn-fan:hover,
-.hero-content button:hover,
-.btn-team:hover{
-
-    background:#fff;
-    transform:scale(1.05);
-
-}
-
-
-.btn-close{
-
-    margin-top:10px;
-
-    background:transparent;
-    color:#fff;
-
-    border:2px solid var(--white);
-
-}
-
-
-.btn-close:hover{
-
-    background:white;
-    color:black;
-
-}
-
-
-/*==============================
-          HERO
-===============================*/
-
-
-.hero-worldcup{
-
-    margin-bottom:25px;
-    padding:80px 50px;
-
-    border-radius:25px;
 
     background:
-    linear-gradient(
-    rgba(0,0,0,.6),
-    rgba(0,0,0,.7)),
-    url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8?q=80&w=1800");
-
-    background-size:cover;
-    background-position:center;
-
-    box-shadow:var(--shadow);
-
-}
+        linear-gradient(45deg,
+            #ffe66d,
+            #d4a017);
 
 
-.hero-badge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background:var(--gold);
-    color:black;
 
-    padding:8px 18px;
+    color: #111;
 
-    border-radius:50px;
+    font-size: 42px;
 
-    font-weight:bold;
+
+    animation:
+        pulseTrophy 2s infinite;
 
 }
 
+/* Texto overlay */
 
-.hero-content h1{
+.stadium-overlay h2 {
 
-    margin:20px 0;
+    font-size: 32px;
 
-    font-size:55px;
+    margin-bottom: 15px;
 
-    max-width:700px;
-
-}
-
-
-.hero-content p{
-
-    font-size:18px;
-    max-width:600px;
-
-    margin-bottom:25px;
+    font-weight: 800;
 
 }
 
+.stadium-overlay p {
 
-/*==============================
-          MARCADORES
-===============================*/
+    color: #f1f1f1;
 
+    line-height: 1.7;
 
-.score-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(230px,1fr));
-
-    gap:20px;
-
-    margin-bottom:30px;
+    margin-bottom: 25px;
 
 }
 
+/* Botones */
 
-.score-card{
+.btn-join,
+.btn-close {
 
-    background:rgba(0,0,0,.45);
+    width: 100%;
 
-    border:1px solid var(--border);
+    padding: 15px;
 
-    border-radius:20px;
+    border-radius: 50px;
 
-    padding:25px;
+    border: none;
 
-    text-align:center;
+    font-size: 15px;
 
-    box-shadow:var(--shadow);
+    font-weight: 700;
 
-    transition:.3s;
+    cursor: pointer;
 
-}
-
-
-.score-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--gold);
+    transition: .35s;
 
 }
 
+.btn-join {
 
-.score-card i{
+    display: flex;
 
-    color:var(--gold);
+    justify-content: center;
+    align-items: center;
 
-    font-size:35px;
+    gap: 10px;
 
-    margin-bottom:12px;
+    text-decoration: none;
 
-}
-
-
-.score-card span{
-
-    display:block;
-
-    color:#ddd;
-
-}
-
-
-.score-card h2{
-
-    font-size:32px;
-
-    margin-top:10px;
-
-}
-
-
-.goal{
-
-    color:var(--gold);
-
-}
-
-
-/*==============================
-        SECCIONES
-===============================*/
-
-
-.section-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
-}
-
-
-.section-header h3{
-
-    font-size:28px;
-
-    color:var(--gold);
-
-}
-
-
-.section-header span{
-
-    color:#ddd;
-
-}
-
-
-/*==============================
-       GRUPOS
-===============================*/
-
-
-.groups-grid,
-.teams-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-    gap:20px;
-
-    margin-bottom:35px;
-
-}
-
-
-.group-card,
-.team-card{
 
     background:
-    rgba(5,15,10,.85);
+        linear-gradient(90deg,
+            var(--fifa-gold),
+            #ff9500);
 
-    border:1px solid var(--border);
 
-    border-radius:20px;
+    color: #111;
 
-    overflow:hidden;
-
-    box-shadow:var(--shadow);
-
-    transition:.3s;
+    margin-bottom: 12px;
 
 }
 
+.btn-join:hover {
 
-.group-card:hover,
-.team-card:hover{
+    transform: translateY(-4px);
 
-    transform:translateY(-8px);
-
-    border-color:var(--gold);
-
-}
-
-
-.group-card{
-
-    padding:25px;
-
-    text-align:center;
+    box-shadow:
+        0 10px 25px rgba(255, 215, 0, .5);
 
 }
 
-
-.group-card i{
-
-    color:var(--gold);
-
-    font-size:38px;
-
-    margin-bottom:12px;
-
-}
-
-
-.group-card h4{
-
-    margin-bottom:15px;
-
-}
-
-
-.progress{
-
-    height:10px;
-
-    background:#333;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:10px;
-
-}
-
-
-.progress div{
-
-    height:100%;
+.btn-close {
 
     background:
-    linear-gradient(
-    90deg,
-    var(--gold),
-    orange);
+        rgba(255, 255, 255, .12);
+
+    color: white;
+
+
+    border:
+        1px solid rgba(255, 255, 255, .35);
 
 }
 
+.btn-close:hover {
 
-/*==============================
-       SELECCIONES
-===============================*/
+    background: white;
 
-
-.team-image{
-
-    height:180px;
+    color: #111;
 
 }
 
+/* ======================================
+HERO ESTADIO MUNDIAL
+====================================== */
 
-.team-image img{
+.hero-worldcup {
 
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-}
+    position: relative;
 
 
-.team-body{
-
-    padding:20px;
-
-}
+    padding:
+        90px 65px;
 
 
-.team-body h4{
-
-    font-size:22px;
-
-    margin-bottom:10px;
-
-}
+    border-radius:
+        var(--radius);
 
 
-.team-body p{
-
-    color:#ccc;
-
-    margin-bottom:12px;
-
-}
+    overflow: hidden;
 
 
-.goals{
+    background:
 
-    color:var(--gold);
+        linear-gradient(rgba(0, 0, 0, .45),
+            rgba(0, 0, 0, .75)),
 
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
+        url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8?q=80&w=2000");
 
 
-.value{
+    background-size: cover;
 
-    display:block;
+    background-position: center;
 
-    margin-bottom:15px;
+
+    box-shadow:
+        var(--shadow);
+
+
+    margin-bottom: 28px;
+
+
+    animation:
+        fadeUp .7s ease;
 
 }
 
+/* Efecto de iluminación */
 
-/*==============================
-       ANIMACIONES
-===============================*/
+.hero-worldcup::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
 
 
-@keyframes zoom{
-
-    from{
-
-        opacity:0;
-        transform:scale(.7);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:scale(1);
-
-    }
+    background:
+        radial-gradient(circle at top,
+            rgba(255, 215, 0, .25),
+            transparent 60%);
 
 }
 
+/* Contenido encima de la luz */
 
-/*==============================
-       RESPONSIVE
-===============================*/
+.hero-content {
 
+    position: relative;
 
-@media(max-width:768px){
+    z-index: 2;
 
-    .hero-worldcup{
-
-        padding:40px 25px;
-
-    }
-
-    .hero-content h1{
-
-        font-size:35px;
-
-    }
-
-
-    .section-header{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:5px;
-
-    }
+    max-width: 700px;
 
 }
 
+.hero-badge {
 
-@media(max-width:480px){
+    display: inline-block;
 
-    .hero-content h1{
+    padding: 9px 18px;
 
-        font-size:28px;
+    border-radius: 50px;
 
-    }
 
-    .fan-box{
+    background:
+        rgba(255, 215, 0, .22);
 
-        padding:25px;
 
-    }
+    border:
+        1px solid var(--fifa-gold);
 
-    .score-card h2{
 
-        font-size:24px;
+    color:
+        var(--fifa-gold);
 
-    }
 
+    font-weight: 700;
+
+}
+
+/* Título principal */
+
+.hero-content h1 {
+
+    font-size: 58px;
+
+    font-weight: 900;
+
+    margin:
+        22px 0 15px;
+
+}
+
+.hero-content p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 28px;
+
+    color: var(--fifa-text);
+
+}
+
+/* Botón del hero */
+
+.hero-content button {
+
+    padding: 15px 32px;
+
+    border-radius: 50px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 800;
+
+    font-size: 15px;
+
+
+    background:
+        linear-gradient(90deg,
+            var(--fifa-gold),
+            #ff9100);
+
+
+    color: #111;
+
+
+    transition: .35s;
+
+}
+
+.hero-content button:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 25px rgba(255, 215, 0, .45);
 }
